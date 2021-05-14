@@ -1,10 +1,9 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* body::before {
-  background-image: url("https://s1.imagehub.cc/images/2021/05/03/bg-light.jpg");
-} */
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
 /* 侧边栏透明 */
-.sidebar {
-  opacity: 0.7;
+.sidebar{
+  opacity: 0.7!important;
 }
+
 /* 阅读更多按钮 */
 a.hty-button:hover {
   background-color: #ffb6c1 !important;
