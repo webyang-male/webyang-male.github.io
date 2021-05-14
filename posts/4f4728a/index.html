@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="大赵菌"><meta name="copyright" content="大赵菌"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>Hello flutter | 大赵菌的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.24/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_j5gk85dg4pf.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link class="aplayer-style-marker" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script class="aplayer-script-marker" src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" defer></script><script class="meting-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"zzychaser.top","root":"/","title":"大赵菌的小站","version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://el-bot-api.vercel.app/api/words/young"},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["255, 182, 93","135, 206, 250","173, 255, 47","255, 165, 0","255, 127, 79"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="/css/custom.css"><script src="/js/FunnyTitle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="🌱flutter学习之路开篇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hello flutter">
+<meta property="og:url" content="http://zzychaser.top/posts/4f4728a/index.html">
+<meta property="og:site_name" content="大赵菌的小站">
+<meta property="og:description" content="🌱flutter学习之路开篇">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2020/12/30/apphistory.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2020/12/30/3.png">
+<meta property="article:published_time" content="2020-12-26T15:11:35.000Z">
+<meta property="article:modified_time" content="2021-04-27T15:10:31.487Z">
+<meta property="article:author" content="大赵菌">
+<meta property="article:tag" content="flutter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.imagehub.cc/images/2020/12/30/apphistory.png"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="大赵菌"><img width="96" loading="lazy" src="/img/avatar.png" alt="大赵菌"><span class="site-author-status" title="撸起袖子加油干">👨‍🎓</span></a><div class="site-author-name"><a href="/about/">大赵菌</a></div><a class="site-name" href="/about/site.html">大赵菌的小站</a><sub class="site-subtitle">阿洋前端博客</sub><div class="site-desciption">祝幸福🍀祝你,也祝我</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">99</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">14</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">26</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="QQ-857613711" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/webyang-male/testOnline.git" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="豆瓣" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=86882247" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/shi-guang-fu-bi" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/284523421" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微信公众号" target="_blank" style="color:#1AAD19"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-2-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Telegram Channel" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=JR0QEhMUFhIcEWVUVAtGSkg" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-send-plane-2-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:#FFB6C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a><a class="links-item hty-icon-button" href="/albums/" title="大赵の相册" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2"><span class="toc-number">1.</span> <span class="toc-text">跨平台框架的发展历史</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E4%B8%AA%E6%97%B6%E4%BB%A3%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%86%E6%9E%B6%E5%AF%B9%E6%AF%94"><span class="toc-number">1.1.</span> <span class="toc-text">3个时代跨平台框架对比</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%87%E7%AB%A0"><span class="toc-number">1.2.</span> <span class="toc-text">其他文章:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Flutter%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">Flutter常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Flutter-SDK%E5%88%86%E6%94%AF"><span class="toc-number">2.1.</span> <span class="toc-text">Flutter SDK分支</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8D%87%E7%BA%A7flutter-SDK%E5%92%8C%E4%BE%9D%E8%B5%96%E5%8C%85"><span class="toc-number">2.2.</span> <span class="toc-text">升级flutter SDK和依赖包</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%8E%AF%E5%A2%83%E4%BE%9D%E8%B5%96-%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="toc-number">2.3.</span> <span class="toc-text">查看环境依赖(是否安装成功)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81"><span class="toc-number">2.4.</span> <span class="toc-text">分析项目代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%8C%87%E4%BB%A4"><span class="toc-number">2.5.</span> <span class="toc-text">其他指令</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IDE%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">IDE插件配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Android-Studio"><span class="toc-number">3.1.</span> <span class="toc-text">安装Android Studio</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Flutter%E5%92%8CDart%E6%8F%92%E4%BB%B6"><span class="toc-number">3.2.</span> <span class="toc-text">安装Flutter和Dart插件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-VS-Code"><span class="toc-number">3.3.</span> <span class="toc-text">安装 VS Code</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Flutter%E6%8F%92%E4%BB%B6"><span class="toc-number">3.4.</span> <span class="toc-text">安装Flutter插件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%9A%E8%BF%87Flutter-Doctor%E9%AA%8C%E8%AF%81%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.5.</span> <span class="toc-text">通过Flutter Doctor验证设置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%81%BF%E5%9D%91%E5%8D%9A%E5%AE%A2"><span class="toc-number">4.</span> <span class="toc-text">避坑博客</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="toc-number">5.</span> <span class="toc-text">结束语</span></a></li></ol></div></div></div><div class="tag-cloud"><div class="tag-cloud-tags"><a href="/tags/C/" style="font-size: 30px; color: #0078e7">C</a> <a href="/tags/C%E8%AF%95%E9%A2%98/" style="font-size: 21px; color: #4d89c0">C试题</a> <a href="/tags/Echarts/" style="font-size: 12px; color: #999">Echarts</a> <a href="/tags/Electron/" style="font-size: 16.5px; color: #7391ad">Electron</a> <a href="/tags/MongoDB/" style="font-size: 12px; color: #999">MongoDB</a> <a href="/tags/Node/" style="font-size: 25.5px; color: #2680d4">Node</a> <a href="/tags/Promise/" style="font-size: 12px; color: #999">Promise</a> <a href="/tags/css/" style="font-size: 16.5px; color: #7391ad">css</a> <a href="/tags/flutter/" style="font-size: 12px; color: #999">flutter</a> <a href="/tags/jq/" style="font-size: 16.5px; color: #7391ad">jq</a></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://zzychaser.top/posts/4f4728a/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="大赵菌"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大赵菌的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Hello flutter</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-12-26 23:11:35" itemprop="dateCreated datePublished" datetime="2020-12-26T23:11:35+08:00">2020-12-26</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-04-27 23:10:31" itemprop="dateModified" datetime="2021-04-27T23:10:31+08:00">2021-04-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">842</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">3m</span></span></span><span class="leancloud_visitors" id="/posts/4f4728a/" data-flag-title="Hello flutter"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/flutter/" style="--text-color:#00BFFF" itemprop="url" rel="index"><span itemprop="text">flutter</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/flutter/" style="--text-color:#87CEFA"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">flutter</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><p><svg t="1608995651198" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1959" width="32" height="32"><path d="M610.730667 0L98.133333 512 256 669.866667 925.184 0.512h-313.898667L610.730667 0z m0.597333 472.405333l-276.096 275.498667 276.053333 276.053333H925.866667l-275.626667-275.968 275.626667-275.626666h-314.496z" p-id="1960" fill="#1296db"></path></svg></p>
+<h4 id="跨平台框架的发展历史"><a href="#跨平台框架的发展历史" class="headerlink" title="跨平台框架的发展历史"></a>跨平台框架的发展历史</h4><p><img src="https://s1.imagehub.cc/images/2020/12/30/apphistory.png" alt="apphistory.png" loading="lazy"></p>
+<p>图片原文:<a target="_blank" rel="noopener" href="https://blog.csdn.net/pkx1993/article/details/81221256">https://blog.csdn.net/pkx1993/article/details/81221256</a></p>
+<h5 id="3个时代跨平台框架对比"><a href="#3个时代跨平台框架对比" class="headerlink" title="3个时代跨平台框架对比"></a>3个时代跨平台框架对比</h5><p><img src="https://s1.imagehub.cc/images/2020/12/30/3.png" alt="3.png" loading="lazy"></p>
+<h5 id="其他文章"><a href="#其他文章" class="headerlink" title="其他文章:"></a>其他文章:</h5><hr>
+<h4 id="Flutter常用命令"><a href="#Flutter常用命令" class="headerlink" title="Flutter常用命令"></a>Flutter常用命令</h4><h5 id="Flutter-SDK分支"><a href="#Flutter-SDK分支" class="headerlink" title="Flutter SDK分支"></a>Flutter SDK分支</h5><pre class="language-shell" data-language="shell"><code class="language-shell">flutter channel</code></pre>
+
+<h5 id="升级flutter-SDK和依赖包"><a href="#升级flutter-SDK和依赖包" class="headerlink" title="升级flutter SDK和依赖包"></a>升级flutter SDK和依赖包</h5><pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#升级（此命令会同时更新 Flutter SDK 和你的 Flutter 项目依赖包）</span>
+flutter upgrade
+
+<span class="token comment">#获取依赖包（只更新项目依赖包，不包括 Flutter SDK）</span>
+flutter packages get
+
+<span class="token comment">#升级依赖包（只更新项目依赖包，不包括 Flutter SDK）</span>
+flutter packages upgrade</code></pre>
+
+<h5 id="查看环境依赖-是否安装成功"><a href="#查看环境依赖-是否安装成功" class="headerlink" title="查看环境依赖(是否安装成功)"></a>查看环境依赖(是否安装成功)</h5><pre class="language-shell" data-language="shell"><code class="language-shell">flutter doctor
+
+<span class="token comment">#查看详细信息</span>
+flutter doctor -v	</code></pre>
+
+<h5 id="分析项目代码"><a href="#分析项目代码" class="headerlink" title="分析项目代码"></a>分析项目代码</h5><pre class="language-shell" data-language="shell"><code class="language-shell">flutter analyze</code></pre>
+
+<h5 id="其他指令"><a href="#其他指令" class="headerlink" title="其他指令"></a>其他指令</h5><table>
+<thead>
+<tr>
+<th>常用命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>–version</td>
+<td>查看Flutter版本</td>
+</tr>
+<tr>
+<td>-h或者–help</td>
+<td>打印所有命令行用法信息</td>
+</tr>
+<tr>
+<td>analyze</td>
+<td>分析项目的Dart代码。</td>
+</tr>
+<tr>
+<td>build</td>
+<td>Flutter构建命令。</td>
+</tr>
+<tr>
+<td>channel</td>
+<td>列表或开关Flutter通道。</td>
+</tr>
+<tr>
+<td>clean</td>
+<td>删除构建/目录。</td>
+</tr>
+<tr>
+<td>config</td>
+<td>配置Flutter设置。</td>
+</tr>
+<tr>
+<td>create</td>
+<td>创建一个新的Flutter项目。</td>
+</tr>
+<tr>
+<td>devices</td>
+<td>列出所有连接的设备。</td>
+</tr>
+<tr>
+<td>drive</td>
+<td>为当前项目运行Flutter驱动程序测试。</td>
+</tr>
+<tr>
+<td>format</td>
+<td>格式一个或多个Dart文件。</td>
+</tr>
+<tr>
+<td>fuchsia_reload</td>
+<td>在Fuchsia上进行热重载。</td>
+</tr>
+<tr>
+<td>help</td>
+<td>显示帮助信息的Flutter。</td>
+</tr>
+<tr>
+<td>install</td>
+<td>在附加设备上安装Flutter应用程序。</td>
+</tr>
+<tr>
+<td>logs</td>
+<td>显示用于运行Flutter应用程序的日志输出。</td>
+</tr>
+<tr>
+<td>packages</td>
+<td>命令用于管理Flutter包。</td>
+</tr>
+<tr>
+<td>precache</td>
+<td>填充了Flutter工具的二进制工件缓存。</td>
+</tr>
+<tr>
+<td>run</td>
+<td>在附加设备上运行你的Flutter应用程序。</td>
+</tr>
+<tr>
+<td>screenshot</td>
+<td>从一个连接的设备截图。</td>
+</tr>
+<tr>
+<td>stop</td>
+<td>停止在附加设备上的Flutter应用。</td>
+</tr>
+<tr>
+<td>test</td>
+<td>对当前项目的Flutter单元测试。</td>
+</tr>
+<tr>
+<td>trace</td>
+<td>开始并停止跟踪运行的Flutter应用程序。</td>
+</tr>
+</tbody></table>
+<h4 id="IDE插件配置"><a href="#IDE插件配置" class="headerlink" title="IDE插件配置"></a>IDE插件配置</h4><h5 id="安装Android-Studio"><a href="#安装Android-Studio" class="headerlink" title="安装Android Studio"></a>安装Android Studio</h5><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.android.com/studio/index.html">Android Studio</a>, 3.0或更高版本.</li>
+</ul>
+<p>或者，您也可以使用IntelliJ：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jetbrains.com/idea/download/">IntelliJ IDEA Community</a>, version 2017.1或更高版本.</li>
+<li><a target="_blank" rel="noopener" href="https://www.jetbrains.com/idea/download/">IntelliJ IDEA Ultimate</a>, version 2017.1 或更高版本.</li>
+</ul>
+<h5 id="安装Flutter和Dart插件"><a href="#安装Flutter和Dart插件" class="headerlink" title="安装Flutter和Dart插件"></a>安装Flutter和Dart插件</h5><p>需要安装两个插件:</p>
+<ul>
+<li><code>Flutter</code>插件： 支持Flutter开发工作流 (运行、调试、热重载等).</li>
+<li><code>Dart</code>插件： 提供代码分析 (输入代码时进行验证、代码补全等).</li>
+</ul>
+<p>要安装这些:</p>
+<ol>
+<li>启动Android Studio.</li>
+<li>打开插件首选项 (<strong>Preferences&gt;Plugins</strong> on macOS, <strong>File&gt;Settings&gt;Plugins</strong> on Windows &amp; Linux).</li>
+<li>选择 <strong>Browse repositories…</strong>, 选择 Flutter 插件并点击 <code>install</code>.</li>
+<li>重启Android Studio后插件生效.</li>
+</ol>
+<p><em>VS Code:</em> 轻量级编辑器，支持Flutter运行和调试.</p>
+<h5 id="安装-VS-Code"><a href="#安装-VS-Code" class="headerlink" title="安装 VS Code"></a>安装 VS Code</h5><ul>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VS Code</a>, 安装1.20.1或更高版本.</li>
+</ul>
+<h5 id="安装Flutter插件"><a href="#安装Flutter插件" class="headerlink" title="安装Flutter插件"></a>安装Flutter插件</h5><ol>
+<li>启动 VS Code</li>
+<li>调用 <strong>View&gt;Command Palette…</strong></li>
+<li>输入 ‘install’, 然后选择 <strong>Extensions: Install Extension</strong> action</li>
+<li>在搜索框输入 <code>flutter</code> , 在搜索结果列表中选择 ‘Flutter’, 然后点击 <strong>Install</strong></li>
+<li>选择 ‘OK’ 重新启动 VS Code</li>
+</ol>
+<h5 id="通过Flutter-Doctor验证设置"><a href="#通过Flutter-Doctor验证设置" class="headerlink" title="通过Flutter Doctor验证设置"></a>通过Flutter Doctor验证设置</h5><ol>
+<li>调用 <strong>View&gt;Command Palette…</strong></li>
+<li>输入 ‘doctor’, 然后选择 <strong>‘Flutter: Run Flutter Doctor’</strong> action</li>
+<li>查看“OUTPUT”窗口中的输出是否有问题</li>
+</ol>
+<h4 id="避坑博客"><a href="#避坑博客" class="headerlink" title="避坑博客"></a>避坑博客</h4><pre class="language-markdown" data-language="markdown"><code class="language-markdown">Android studio 安装 flutter 和Dart 插件时， 最好是到插件官网下载对应的插件版本。Android studio 3.1的版本对应的分别是 。 一定要保持版本号一致，否则会导致磁盘安装也是失败的。
+
+✏️插件官网地址：http://plugins.jetbrains.com/androidstudio</code></pre>
+
+<h4 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h4><p>不管未来有新的框架出现、还是老框架更新迭代，我们需要做的是掌握核心原理才能真正利于不败之地。</p>
+<p>对于实际项目:</p>
+<ul>
+<li>中短期项目,建议使用React-Native</li>
+<li>长期项目，建议使用Flutter</li>
+</ul>
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"></div><div style="display:inline-block"></div><div style="display:inline-block"></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>大赵菌</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://zzychaser.top/posts/4f4728a/" title="Hello flutter">http://zzychaser.top/posts/4f4728a/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/5a0e1d77/" rel="prev" title="vue初识"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">vue初识</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/cd7eefda/" rel="next" title="Node-中间件"><span class="post-nav-text">Node-中间件</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>尝试使用 valine 评论系统。</span><br><span>您可以点击下方按钮切换对应评论系统。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/webyang-male/webyang-male.github.io/issues?q=is:open+Hello flutter">GitHub Issues</a></div><div class="toggle-comment-system" style="margin: 1rem auto"><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#valine-container" onclick="showComment(this.dataset.target)">valine</a><style>.utterances {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target=".utterances" onclick="showComment(this.dataset.target)">utterances</a><style>#disqus_thread {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#disqus_thread" onclick="showComment(this.dataset.target)">disqusjs</a><script>function hideAllComment() {
+  //- hide all
+  document.querySelectorAll('.toggle-comment-btn').forEach((btn) => {
+    const container = document.querySelector(btn.dataset.target);
+    if (container) {
+      container.style.display = "none";
+    }
+  });
+}
+function showComment(target) {
+  hideAllComment();
+  //- show target
+  const targetContainer = document.querySelector(target);
+  if (targetContainer) {
+    targetContainer.style.display = "block";
+  }
+}
+</script></div><div id="disqus_thread"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqusjs.css"><script src="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqus.js"></script><script>const disqusjsConfig = {"enable":true,"shortname":"dazhao","apikey":"RyjBTPSwdNnrvz3hGg10KZWgMvaxmE0GuJEdpamXXSQdo97zBKUFv3v1oYaEyxxU","nocomment":"这里好冷清鸭,快来发表一下高见吧~"}
+function loadDisqus() {
+  const dsqjs = new DisqusJS(disqusjsConfig)
+}</script><script src="/js/comments/disqus.js"></script><div id="valine-container"></div><script>Yun.utils.getScript("https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js", () => {
+  const valineConfig = {"enable":true,"appId":"8GMDTzNh5Onyndyb0xIfgcd3-MdYXbMMI","appKey":"RIHIioX2uUer5PgWIDxsdriP","placeholder":"大佬求指教&nbsp_(:з」∠)_ （填写邮箱可以收到回复通知～）","avatar":null,"pageSize":10,"visitor":true,"highlight":true,"recordIP":true,"enableQQ":true,"serverURLs":null,"requiredFields":["nick","mail"],"emojiCDN":"//i0.hdslb.com/bfs/emote/","emojiMaps":{"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png","tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png","tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png","tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png","tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png","tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png","tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png","tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png","tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png","tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png","tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png","tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png","tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png","tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png","tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png","tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png","tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png","tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png","tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png","tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png","tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png","tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png","tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png","tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png","tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png","tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png","tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png","tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png","tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png","tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"},"el":"#valine-container","lang":"zh-cn"}
+  valineConfig.path = "/posts/4f4728a/"
+  new Valine(valineConfig)
+}, window.Valine);</script><style>.utterances {
+  max-width: 100%;
+}</style><script src="https://utteranc.es/client.js" repo="webyang-male/webyang-male.github.io" issue-term="title" theme="photon-dark" crossorigin="anonymous" async></script></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015500号-1</a></div><div class="copyright"><span>&copy; 2020 – 2021 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.upyun.com/" title="大赵菌的赞助者们"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 大赵菌</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-08-23T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div><div class="footer-support"><span>本网站由</span><a class="footer-support-logo" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png" alt="又拍云"></a><span>提供 CDN 加速</span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><div class="aplayer no-destroy" id="aplayer" data-id="99315329" data-server="netease" data-type="playlist" data-fixed="true" data-theme="#0078E7" data-loop="all" data-order="list" data-preload="auto" data-volume="0.7" data-mutex data-lrctype="0" data-listmaxheight="340px" data-storagename="metingjs"></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"live2d-widget-model-koharu"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

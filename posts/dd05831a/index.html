@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="大赵菌"><meta name="copyright" content="大赵菌"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>Typescript类型推论与兼容 | 大赵菌的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.24/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_j5gk85dg4pf.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link class="aplayer-style-marker" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script class="aplayer-script-marker" src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" defer></script><script class="meting-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"zzychaser.top","root":"/","title":"大赵菌的小站","version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://el-bot-api.vercel.app/api/words/young"},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["255, 182, 93","135, 206, 250","173, 255, 47","255, 165, 0","255, 127, 79"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="/css/custom.css"><script src="/js/FunnyTitle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="类型推论基础类型推论Typescript里，在有些没有明确指出类型的地方，类型推论会帮助提供类型.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Typescript类型推论与兼容">
+<meta property="og:url" content="http://zzychaser.top/posts/dd05831a/index.html">
+<meta property="og:site_name" content="大赵菌的小站">
+<meta property="og:description" content="类型推论基础类型推论Typescript里，在有些没有明确指出类型的地方，类型推论会帮助提供类型.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-27T09:50:49.000Z">
+<meta property="article:modified_time" content="2021-04-27T15:10:31.541Z">
+<meta property="article:author" content="大赵菌">
+<meta property="article:tag" content="typescript">
+<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="大赵菌"><img width="96" loading="lazy" src="/img/avatar.png" alt="大赵菌"><span class="site-author-status" title="撸起袖子加油干">👨‍🎓</span></a><div class="site-author-name"><a href="/about/">大赵菌</a></div><a class="site-name" href="/about/site.html">大赵菌的小站</a><sub class="site-subtitle">阿洋前端博客</sub><div class="site-desciption">祝幸福🍀祝你,也祝我</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">99</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">14</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">26</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="QQ-857613711" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/webyang-male/testOnline.git" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="豆瓣" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=86882247" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/shi-guang-fu-bi" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/284523421" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微信公众号" target="_blank" style="color:#1AAD19"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-2-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Telegram Channel" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=JR0QEhMUFhIcEWVUVAtGSkg" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-send-plane-2-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:#FFB6C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a><a class="links-item hty-icon-button" href="/albums/" title="大赵の相册" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E6%8E%A8%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">类型推论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B%E6%8E%A8%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text">基础类型推论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">最佳通用类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E7%B1%BB%E5%9E%8B%E6%8E%A8%E8%AE%BA-%E4%B8%8A%E4%B8%8B%E6%96%87%E5%BD%92%E7%B1%BB"><span class="toc-number">1.3.</span> <span class="toc-text">上下文类型推论(上下文归类)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%85%BC%E5%AE%B9"><span class="toc-number">2.</span> <span class="toc-text">类型兼容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text">类型兼容模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.2.</span> <span class="toc-text">结构化类型系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%AF%94%E8%BE%83"><span class="toc-number">2.2.1.</span> <span class="toc-text">函数的类型比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%A9%E4%BD%99%E5%8F%82%E6%95%B0"><span class="toc-number">2.2.2.</span> <span class="toc-text">剩余参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%AF%94%E8%BE%83"><span class="toc-number">2.2.3.</span> <span class="toc-text">枚举的类型比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%AF%94%E8%BE%83"><span class="toc-number">2.2.4.</span> <span class="toc-text">类的类型比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">2.2.5.</span> <span class="toc-text">泛型的类型兼容性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%B1%BB%E5%9E%8B%E4%B8%8E%E8%B5%8B%E5%80%BC%E7%9A%84%E7%90%86%E8%AE%BA%E8%BE%A8%E6%9E%90"><span class="toc-number">3.</span> <span class="toc-text">子类型与赋值的理论辨析</span></a></li></ol></div></div></div><div class="tag-cloud"><div class="tag-cloud-tags"><a href="/tags/C/" style="font-size: 30px; color: #0078e7">C</a> <a href="/tags/C%E8%AF%95%E9%A2%98/" style="font-size: 21px; color: #4d89c0">C试题</a> <a href="/tags/Echarts/" style="font-size: 12px; color: #999">Echarts</a> <a href="/tags/Electron/" style="font-size: 16.5px; color: #7391ad">Electron</a> <a href="/tags/MongoDB/" style="font-size: 12px; color: #999">MongoDB</a> <a href="/tags/Node/" style="font-size: 25.5px; color: #2680d4">Node</a> <a href="/tags/Promise/" style="font-size: 12px; color: #999">Promise</a> <a href="/tags/css/" style="font-size: 16.5px; color: #7391ad">css</a> <a href="/tags/flutter/" style="font-size: 12px; color: #999">flutter</a> <a href="/tags/jq/" style="font-size: 16.5px; color: #7391ad">jq</a></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://zzychaser.top/posts/dd05831a/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="大赵菌"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大赵菌的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Typescript类型推论与兼容</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-11-27 17:50:49" itemprop="dateCreated datePublished" datetime="2020-11-27T17:50:49+08:00">2020-11-27</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-04-27 23:10:31" itemprop="dateModified" datetime="2021-04-27T23:10:31+08:00">2021-04-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">2.6k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">10m</span></span></span><span class="leancloud_visitors" id="/posts/dd05831a/" data-flag-title="Typescript类型推论与兼容"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/Javascript/" style="--text-color:#FFA500" itemprop="url" rel="index"><span itemprop="text">Javascript</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/typescript/" style="--text-color:#00BFFF"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">typescript</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><h2 id="类型推论"><a href="#类型推论" class="headerlink" title="类型推论"></a>类型推论</h2><h3 id="基础类型推论"><a href="#基础类型推论" class="headerlink" title="基础类型推论"></a>基础类型推论</h3><p><font  style="color:deepskyblue;">Typescript里，在有些没有明确指出类型的地方，类型推论会帮助提供类型.</font></p>
+<span id="more"></span>
+
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">let</span> tingBaoAge <span class="token operator">=</span> <span class="token number">18</span><span class="token punctuation">;</span>
+<span class="token comment">/* 此处虽然没有直接声明x变量的值的类型，但是因为tingBaoAge被赋值为数字18
+那么x变量的数据类型就会被自动限制为数字
+ */</span>
+tingBaoAge <span class="token operator">=</span> <span class="token string">"18"</span><span class="token punctuation">;</span><span class="token comment">//err,不能将类型“string”分配给类型“number”。</span></code></pre>
+
+<p>这种推断发生在<font  style="color:red;">初始化变量和成员</font>，<font  style="color:red;">设置默认参数值</font>和<font  style="color:red;">决定函数返回值</font>时。</p>
+<h3 id="最佳通用类型"><a href="#最佳通用类型" class="headerlink" title="最佳通用类型"></a>最佳通用类型</h3><p>当需要从几个表达式中推断类型时候，会使用这些表达式的类型来推断出一个最合适的通用类型</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">let</span> tingBaoAge <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token number">99</span><span class="token punctuation">,</span><span class="token number">520</span><span class="token punctuation">,</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token keyword">undefined</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+tingBaoAge<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"18"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//err,不允许往该数组内添加字符串</span></code></pre>
+
+<p>为了推断x的类型，我们必须考虑所有元素的类型。这里有3种选择: <strong>number,undefined和null</strong>。计算通用类型算法会考虑所有的候选类型，并给出一个兼容所有候选类型的类型。</p>
+<p>✍由于最终的通用类型取自候选类型，<font  style="color:red;">有些时候候选类型共享相同的通用类型，但是却没有一个类型能做为所有候选类型的类型</font>。例如:</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">let</span> zoo <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">new</span> <span class="token class-name">Snake</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">Elephant</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">Monkey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+
+<p>这里，我们想让zoo被推断为Animal[]类型，但是这个数组里没有对象是Animal类型的，因此不能推断出这个结果。为了更正，当候选类型不能使用的时候我们需要明确的指出类型:</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">let</span> zoo<span class="token operator">:</span>Animal <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">new</span> <span class="token class-name">Snake</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">Elephant</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">Monkey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+
+<p>如果没有找到最佳通用类型的话，类型推断的结果为联合数组类型，(Rhino |Elephant | Snake)[ ]。</p>
+<h3 id="上下文类型推论-上下文归类"><a href="#上下文类型推论-上下文归类" class="headerlink" title="上下文类型推论(上下文归类)"></a>上下文类型推论(上下文归类)</h3><p>Typescript类型推论也可能按照相反的方向进行。这被叫做“按上下文归类”。按上下文归类会发生在表达式的类型与所处的位置相关时</p>
+<pre class="language-js" data-language="js"><code class="language-js">window<span class="token punctuation">.</span><span class="token function-variable function">onmousedown</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">mouseEvent</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mouseEvent<span class="token punctuation">.</span>button<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>Typescript类型检查器使用window. onmousedown函数的类型来推断右边函数表达式的类型。因此，就能推断出mouseEvent参数的类型了</p>
+<p>如果上下文类型表达式包含了明确的类型信息，上下文的类型被忽略:</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript">window<span class="token punctuation">.</span><span class="token function-variable function">onmousedown</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>mouseEvent<span class="token operator">:</span><span class="token builtin">any</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mouseEvent<span class="token punctuation">.</span>button<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>✏️上下文归类会在很多情况下使用到:</p>
+<ol>
+<li><p>通常包含函数的参数</p>
+</li>
+<li><p>赋值表达式的右边</p>
+</li>
+<li><p>类型断言</p>
+</li>
+<li><p>对象成员和数组字面量和返回值语句</p>
+</li>
+<li><p>上下文类型也会作为最佳通用类型的候选类型</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">createzoo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> Animal<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token keyword">new</span> <span class="token class-name">Monkey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Elephant</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Snake</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre></li>
+</ol>
+<p>这个例子里，最佳通用类型有4个候选者: Animal，Monkey，Elephant和Snake。当然，<font  style="color:skyblue;">Animal</font>会被做为最佳通用类型。</p>
+<h2 id="类型兼容"><a href="#类型兼容" class="headerlink" title="类型兼容"></a>类型兼容</h2><h3 id="类型兼容模型"><a href="#类型兼容模型" class="headerlink" title="类型兼容模型"></a>类型兼容模型</h3><p>目前在所有的编程语言中，对于类型兼容的实现除了结构类型外，还有一个叫做名义类型，结构类型和名义类型之间的区别如下:</p>
+<ol>
+<li>在基于名义类型的类型系统中，数据类型的兼容性或等价性是通过明确的声明和/或类型的名称来决定的</li>
+<li>在基于结构性的类型系统中，数据类型的兼容性或等价性是基于类型的组成结构，且不要求明确地声明。</li>
+</ol>
+<p><font  style="color:lightskyblue;">Typescript里的类型兼容性是基于结构子类型的，使用其成员来描述类型的方式</font></p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">Name</span> <span class="token punctuation">&#123;</span>
+    name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">&#123;</span>
+    name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> x<span class="token operator">:</span> Name<span class="token punctuation">;</span>
+
+x <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//正确,这个符合格式,因为Preson的实例里面有一个名为name的属性,这完全符合接口的要求</span></code></pre>
+
+<h3 id="结构化类型系统"><a href="#结构化类型系统" class="headerlink" title="结构化类型系统"></a>结构化类型系统</h3><p>TypeScript的结构性子类型是根据Javascript代码的典型写法来设计的。因为JavaScript里广泛地使用匿名对象，例如函数表达式和对象字面量，所以使用结构类型系统来描述这些类型比使用名义类型系统更好。</p>
+<p><font  style="color:red;font-size:20px">Typescript结构化类型系统的基本规则是，如果m要兼容n，那么n至少具有与m相同的属性</font></p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">Name</span> <span class="token punctuation">&#123;</span>
+    name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> x<span class="token operator">:</span> Name<span class="token punctuation">;</span>
+<span class="token keyword">let</span> y <span class="token operator">=</span> <span class="token punctuation">&#123;</span>name<span class="token operator">:</span><span class="token string">"tingbao"</span><span class="token punctuation">,</span>boyfriend<span class="token operator">:</span><span class="token string">"zzy"</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+x <span class="token operator">=</span> y<span class="token punctuation">;</span></code></pre>
+
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">Name</span> <span class="token punctuation">&#123;</span>
+    name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> x<span class="token operator">:</span> Name<span class="token punctuation">;</span>
+<span class="token keyword">let</span> y <span class="token operator">=</span> <span class="token punctuation">&#123;</span>name<span class="token operator">:</span><span class="token string">"tingbao"</span><span class="token punctuation">,</span>boyfriend<span class="token operator">:</span><span class="token string">"zzy"</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+x <span class="token operator">=</span> y<span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//&#123; name: 'tingbao', boyfriend: 'zzy' &#125;</span>
+<span class="token keyword">function</span> <span class="token function">love</span><span class="token punctuation">(</span>x<span class="token operator">:</span>Name<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'I love u!'</span><span class="token operator">+</span> x<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token punctuation">&#125;</span>
+<span class="token function">love</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//正确</span></code></pre>
+
+<p>这里要检查y是否能赋值给x，编译器检查x中的每个属性，看是否能在y中也找到对应属性。在这个例子中，y必须包含名字是name的string类型成员。y满足条件，因此赋值正确。</p>
+<p>🔺 y有个额外的boyfriend属性，但这不会引发错误。只有目标类型(这里是Named)的成员会被一 一检查是否兼容。</p>
+<p>​    这个比较过程是递归进行的，检查每个成员及子成员。</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">Name</span> <span class="token punctuation">&#123;</span>
+    name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+    sex<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">;</span>
+    age<span class="token operator">:</span><span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> x<span class="token operator">:</span> Name<span class="token punctuation">;</span>
+<span class="token keyword">let</span> y <span class="token operator">=</span> <span class="token punctuation">&#123;</span>name<span class="token operator">:</span><span class="token string">"tingbao"</span><span class="token punctuation">,</span>sex<span class="token operator">:</span><span class="token string">"女"</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+x <span class="token operator">=</span> y<span class="token punctuation">;</span><span class="token comment">//err,类型"&#123;name: string; sex: string; &#125;”中缺少属性“age"，但类型“Name”中需要该属性。</span>
+<span class="token comment">//y属性可以多,但是不能少</span></code></pre>
+
+<h4 id="函数的类型比较"><a href="#函数的类型比较" class="headerlink" title="函数的类型比较"></a>函数的类型比较</h4><pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">let</span> <span class="token function-variable function">x</span> <span class="token operator">=</span><span class="token punctuation">(</span>a<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token function-variable function">y</span> <span class="token operator">=</span><span class="token punctuation">(</span>b<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> s<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token number">0</span><span class="token punctuation">;</span>
+y <span class="token operator">=</span> x<span class="token punctuation">;</span> <span class="token comment">// OK</span>
+x <span class="token operator">=</span> y<span class="token punctuation">;</span> <span class="token comment">// Error不能将类型"(b: number， s: string) =>number”分配给类型"(a: number) => number”</span></code></pre>
+
+<p>要查看x是否能赋值给y，首先看它们的<font  style="color:gold;">参数列表</font>。x的每个参数<font  style="color:skyblue;">必须能</font>在y里找到对应类型的参数。</p>
+<p>🔺注意:参数的名字相同与否无所谓，只看它们的类型。这里，x的每个参数在y中都能找到对应的参数，所以允许赋值。</p>
+<p>但是反过来就不行了,第二个赋值错误，因为y有个必需的第二个参数，但是x并没有，所以不允许赋值。</p>
+<p>这里面有一个点需要注意，在第一个赋值例子代码中,之所以x可以赋值给y的原因就是JavaScript的函数允许实参少于形参</p>
+<p><strong>比如:</strong></p>
+<p>Array.forEach给回调函数传3个参数:数组元素，索引和整个数组。尽管如此，传入一个只使用第一个参数的回调函数也是很有用的:</p>
+<p><font  style="color:tomato;">    <strong>简而言之，TypeScript的函数类型比较里面,参数可以少,但不能多</strong></font></p>
+<hr>
+<p>不过<font  style="color:yellowgreen;">函数的返回值</font>进行比较的时候，就有些不同了，<font  style="color:tomato;">可以多，但不可以少</font></p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">let</span> <span class="token function-variable function">x</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">&#123;</span>name<span class="token operator">:</span> <span class="token string">'Alice'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token function-variable function">y</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=></span> <span class="token punctuation">(</span>iname<span class="token operator">:</span> <span class="token string">'Alice'</span><span class="token punctuation">,</span> location<span class="token operator">:</span> <span class="token string">'seattle '</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+x <span class="token operator">=</span> y<span class="token punctuation">;</span><span class="token comment">//right 变量x是源,变量y是目标</span>
+y <span class="token operator">=</span> x<span class="token punctuation">;</span><span class="token comment">//Error, because x() Lacks a Location property</span></code></pre>
+
+<p>类型系统强制源函数的返回值类型必须是目标函数返回值类型的子类型。</p>
+<h4 id="剩余参数"><a href="#剩余参数" class="headerlink" title="剩余参数"></a>剩余参数</h4><p>比较函数兼容性的时候，可选参数与必须参数是可互换的。源类型上有额外的可选参数不是错误，目标类型的可选参数在源类型里没有对应的参数也不是错误。</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">invokeLater</span><span class="token punctuation">(</span>args<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token function-variable function">callback</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">/* ... Invoke callback with 'args' ...*/</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">invokeLater</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x <span class="token operator">+</span> <span class="token string">', '</span> <span class="token operator">+</span> y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//正确</span>
+
+<span class="token function">invokeLater</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">(</span>x<span class="token operator">?</span><span class="token punctuation">,</span> y<span class="token operator">?</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x <span class="token operator">+</span> <span class="token string">', '</span><span class="token operator">+</span> y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//正确，因为对剩余这个概念来说，有的剩和没得剩都是一样的</span></code></pre>
+
+<p>当一个函数有剩余参数时，它被当做无限个可选参数。这对于类型系统来说是不稳定的，但从运行时的角度来看，可选参数一般来说是不强制的，因为对于大多数函数来说相当于传递了一些undefined。</p>
+<h4 id="枚举的类型比较"><a href="#枚举的类型比较" class="headerlink" title="枚举的类型比较"></a>枚举的类型比较</h4><p><font  style="color:red;font-size:18px">枚举类型与数字类型兼容，并且数字类型与枚举类型兼容。</font>不同枚举类型之间是不兼容的。</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">enum</span> Status <span class="token punctuation">&#123;</span> Ready<span class="token punctuation">,</span> Waiting <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token keyword">enum</span> Color <span class="token punctuation">&#123;</span> Red<span class="token punctuation">,</span> Blue<span class="token punctuation">,</span> Green <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> s <span class="token operator">=</span> Status<span class="token punctuation">.</span>Ready<span class="token punctuation">;</span>
+s <span class="token operator">=</span> <span class="token number">99</span><span class="token punctuation">;</span><span class="token comment">//正确</span>
+s<span class="token operator">=</span><span class="token string">"520"</span><span class="token comment">//不能将类型“520""分配给类型“Status”。</span>
+s<span class="token operator">=</span>Color<span class="token punctuation">.</span>Blue<span class="token punctuation">;</span><span class="token comment">//不能将类型“color.Blue”分配给类型“Status”</span></code></pre>
+
+<h4 id="类的类型比较"><a href="#类的类型比较" class="headerlink" title="类的类型比较"></a>类的类型比较</h4><p>类与对象字面量和接口差不多，但有一点不同:<font  style="color:gold;font-size:18px">类有静态部分和实例部分的类型</font></p>
+<p>比较两个类类型的对象时，只有实例的成员会被比较。静态成员和构造函数不在比较的范围内</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> isConstructorDeclaration <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"typescript"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">&#123;</span>
+    foot<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token function">sayMyName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"panda"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span>name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> numFoot<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">class</span> <span class="token class-name">Size</span> <span class="token punctuation">&#123;</span>
+    foot<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span>numFoot<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">let</span> a<span class="token operator">:</span> Animal<span class="token punctuation">;</span>
+<span class="token keyword">let</span> b<span class="token operator">:</span> Size<span class="token punctuation">;</span>
+
+a <span class="token operator">=</span> b<span class="token punctuation">;</span><span class="token comment">//正确</span>
+b <span class="token operator">=</span> a<span class="token punctuation">;</span><span class="token comment">//正确</span></code></pre>
+
+<p>类的私有成员和受保护成员会影响兼容性。</p>
+<p>当检查类实例的兼容时，<font  style="color:red;">如果目标类型包含一个私有成员，那么源类型必须包含来自同一个类的这个私有成员</font>。同样地，这条规则也适用于包含受保护成员实例的类型检查。这允许子类赋值给父类，但是不能赋值给其它有同样类型的类。</p>
+<h4 id="泛型的类型兼容性"><a href="#泛型的类型兼容性" class="headerlink" title="泛型的类型兼容性"></a>泛型的类型兼容性</h4><p>因为Typescript是结构性的类型系统，类型参数只影响使用其做为类型一部分的结果类型。</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">Empty<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span><span class="token punctuation">&#123;</span>
+<span class="token comment">//空泛型</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">let</span> x<span class="token operator">:</span>Empty<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> y<span class="token operator">:</span>Empty<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">></span><span class="token punctuation">;</span>
+
+x <span class="token operator">=</span> y<span class="token punctuation">;</span></code></pre>
+
+<p>上面代码里，x和y是兼容的，因为它们的结构使用类型参数时并没有什么不同。</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">notEmpty<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span> <span class="token punctuation">&#123;</span>
+    data<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">let</span> x<span class="token operator">:</span> notEmpty<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> y<span class="token operator">:</span> notEmpty<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token comment">/* 不能将类型“notEmpty&lt;string>”分配给类型"notEmpty&lt;number>”。
+不能将类型“string”分配给类型“number”。 */</span>
+x <span class="token operator">=</span> y<span class="token punctuation">;</span><span class="token comment">//err</span></code></pre>
+
+<p>在这里，泛型类型在使用时就好比不是一个泛型类型。</p>
+<hr>
+<p>对于没指定泛型类型的泛型参数时，会把所有泛型参数当成<font  style="color:skyblue;">any</font>比较。然后用结果类型进行比较。</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">let</span> <span class="token function-variable function">obj</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span><span class="token punctuation">(</span>x<span class="token operator">:</span><span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token constant">T</span><span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">someThing</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token operator">&lt;</span><span class="token constant">U</span><span class="token operator">></span><span class="token punctuation">(</span>y<span class="token operator">:</span><span class="token constant">U</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token constant">U</span><span class="token punctuation">&#123;</span>
+    
+<span class="token punctuation">&#125;</span>
+
+obj <span class="token operator">=</span> someThing<span class="token punctuation">;</span></code></pre>
+
+<h2 id="子类型与赋值的理论辨析"><a href="#子类型与赋值的理论辨析" class="headerlink" title="子类型与赋值的理论辨析"></a>子类型与赋值的理论辨析</h2><p>我们使用了“兼容性”，它在语言规范里没有定义。在Typescript里，有两种兼容性:<strong>子类型和赋值</strong>。</p>
+<p>它们的不同点在于，赋值扩展了子类型兼容性，增加了一些规则，允许和any来回赋值，以及enum和对应数字值之间的来回赋值。</p>
+<p>语言里的不同地方分别使用了它们之中的机制。</p>
+<p><font  style="color:red;">实际上，类型兼容性是由赋值兼容性来控制的，即使在implements和extends语句也不例外。</font></p>
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"></div><div style="display:inline-block"></div><div style="display:inline-block"></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>大赵菌</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://zzychaser.top/posts/dd05831a/" title="Typescript类型推论与兼容">http://zzychaser.top/posts/dd05831a/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/7ad7ab/" rel="prev" title="等春来"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">等春来</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/5efeb2f4/" rel="next" title="Typescript枚举类型"><span class="post-nav-text">Typescript枚举类型</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>尝试使用 valine 评论系统。</span><br><span>您可以点击下方按钮切换对应评论系统。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/webyang-male/webyang-male.github.io/issues?q=is:open+Typescript类型推论与兼容">GitHub Issues</a></div><div class="toggle-comment-system" style="margin: 1rem auto"><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#valine-container" onclick="showComment(this.dataset.target)">valine</a><style>.utterances {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target=".utterances" onclick="showComment(this.dataset.target)">utterances</a><style>#disqus_thread {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#disqus_thread" onclick="showComment(this.dataset.target)">disqusjs</a><script>function hideAllComment() {
+  //- hide all
+  document.querySelectorAll('.toggle-comment-btn').forEach((btn) => {
+    const container = document.querySelector(btn.dataset.target);
+    if (container) {
+      container.style.display = "none";
+    }
+  });
+}
+function showComment(target) {
+  hideAllComment();
+  //- show target
+  const targetContainer = document.querySelector(target);
+  if (targetContainer) {
+    targetContainer.style.display = "block";
+  }
+}
+</script></div><div id="disqus_thread"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqusjs.css"><script src="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqus.js"></script><script>const disqusjsConfig = {"enable":true,"shortname":"dazhao","apikey":"RyjBTPSwdNnrvz3hGg10KZWgMvaxmE0GuJEdpamXXSQdo97zBKUFv3v1oYaEyxxU","nocomment":"这里好冷清鸭,快来发表一下高见吧~"}
+function loadDisqus() {
+  const dsqjs = new DisqusJS(disqusjsConfig)
+}</script><script src="/js/comments/disqus.js"></script><div id="valine-container"></div><script>Yun.utils.getScript("https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js", () => {
+  const valineConfig = {"enable":true,"appId":"8GMDTzNh5Onyndyb0xIfgcd3-MdYXbMMI","appKey":"RIHIioX2uUer5PgWIDxsdriP","placeholder":"大佬求指教&nbsp_(:з」∠)_ （填写邮箱可以收到回复通知～）","avatar":null,"pageSize":10,"visitor":true,"highlight":true,"recordIP":true,"enableQQ":true,"serverURLs":null,"requiredFields":["nick","mail"],"emojiCDN":"//i0.hdslb.com/bfs/emote/","emojiMaps":{"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png","tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png","tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png","tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png","tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png","tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png","tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png","tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png","tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png","tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png","tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png","tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png","tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png","tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png","tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png","tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png","tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png","tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png","tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png","tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png","tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png","tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png","tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png","tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png","tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png","tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png","tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png","tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png","tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png","tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"},"el":"#valine-container","lang":"zh-cn"}
+  valineConfig.path = "/posts/dd05831a/"
+  new Valine(valineConfig)
+}, window.Valine);</script><style>.utterances {
+  max-width: 100%;
+}</style><script src="https://utteranc.es/client.js" repo="webyang-male/webyang-male.github.io" issue-term="title" theme="photon-dark" crossorigin="anonymous" async></script></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015500号-1</a></div><div class="copyright"><span>&copy; 2020 – 2021 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.upyun.com/" title="大赵菌的赞助者们"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 大赵菌</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-08-23T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div><div class="footer-support"><span>本网站由</span><a class="footer-support-logo" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png" alt="又拍云"></a><span>提供 CDN 加速</span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><div class="aplayer no-destroy" id="aplayer" data-id="99315329" data-server="netease" data-type="playlist" data-fixed="true" data-theme="#0078E7" data-loop="all" data-order="list" data-preload="auto" data-volume="0.7" data-mutex data-lrctype="0" data-listmaxheight="340px" data-storagename="metingjs"></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"live2d-widget-model-koharu"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

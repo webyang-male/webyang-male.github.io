@@ -1,0 +1,410 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="大赵菌"><meta name="copyright" content="大赵菌"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>Typescript接口 | 大赵菌的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.24/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_j5gk85dg4pf.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link class="aplayer-style-marker" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script class="aplayer-script-marker" src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" defer></script><script class="meting-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"zzychaser.top","root":"/","title":"大赵菌的小站","version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://el-bot-api.vercel.app/api/words/young"},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["255, 182, 93","135, 206, 250","173, 255, 47","255, 165, 0","255, 127, 79"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="/css/custom.css"><script src="/js/FunnyTitle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="一.什么是接口TypeScript的核心原则之一是对值所具有的结构进行类型检查。它有时被称做“鸭式辨型法”或“结构性子类型化”。 在TypeScript里，接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Typescript接口">
+<meta property="og:url" content="http://zzychaser.top/posts/bd340774/index.html">
+<meta property="og:site_name" content="大赵菌的小站">
+<meta property="og:description" content="一.什么是接口TypeScript的核心原则之一是对值所具有的结构进行类型检查。它有时被称做“鸭式辨型法”或“结构性子类型化”。 在TypeScript里，接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-16T13:44:40.000Z">
+<meta property="article:modified_time" content="2021-04-27T15:10:31.536Z">
+<meta property="article:author" content="大赵菌">
+<meta property="article:tag" content="typescript">
+<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="大赵菌"><img width="96" loading="lazy" src="/img/avatar.png" alt="大赵菌"><span class="site-author-status" title="撸起袖子加油干">👨‍🎓</span></a><div class="site-author-name"><a href="/about/">大赵菌</a></div><a class="site-name" href="/about/site.html">大赵菌的小站</a><sub class="site-subtitle">阿洋前端博客</sub><div class="site-desciption">祝幸福🍀祝你,也祝我</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">99</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">14</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">26</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="QQ-857613711" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/webyang-male/testOnline.git" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="豆瓣" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=86882247" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/shi-guang-fu-bi" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/284523421" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微信公众号" target="_blank" style="color:#1AAD19"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-2-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Telegram Channel" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=JR0QEhMUFhIcEWVUVAtGSkg" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-send-plane-2-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:#FFB6C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a><a class="links-item hty-icon-button" href="/albums/" title="大赵の相册" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E4%BB%80%E4%B9%88%E6%98%AF%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.</span> <span class="toc-text">一.什么是接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-interface%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 interface接口实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-interface%E6%8E%A5%E5%8F%A3%E7%89%B9%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">二.interface接口特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1interface%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7"><span class="toc-number">2.1.</span> <span class="toc-text">2.1interface接口实现之可选属性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%F0%9F%98%83interface%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">2.1.1.</span> <span class="toc-text">😃interface接口实现之可选属性的优点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2interface%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%8F%AA%E8%AF%BB%E5%B1%9E%E6%80%A7"><span class="toc-number">2.2.</span> <span class="toc-text">2.2interface接口实现之只读属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3interface%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%B1%9E%E6%80%A7%E6%A3%80%E6%9F%A5"><span class="toc-number">2.3.</span> <span class="toc-text">2.3interface接口实现之属性检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4interface%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%87%BD%E6%95%B0%E6%8F%8F%E8%BF%B0"><span class="toc-number">2.4.</span> <span class="toc-text">2.4interface接口实现之函数描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5interface%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E4%B9%8B%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.5.</span> <span class="toc-text">2.5interface接口实现之索引类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6interface%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E4%B9%8B%E2%80%9C%E7%B1%BBclass%E2%80%9D%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.6.</span> <span class="toc-text">2.6interface接口实现之“类class”类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7interface%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E4%B9%8B%E7%BB%A7%E6%89%BF%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.7.</span> <span class="toc-text">2.7interface接口实现之继承接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-interface%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E4%B9%8B%E6%B7%B7%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.8.</span> <span class="toc-text">2.8 interface接口实现之混合类型</span></a></li></ol></li></ol></div></div></div><div class="tag-cloud"><div class="tag-cloud-tags"><a href="/tags/C/" style="font-size: 30px; color: #0078e7">C</a> <a href="/tags/C%E8%AF%95%E9%A2%98/" style="font-size: 21px; color: #4d89c0">C试题</a> <a href="/tags/Echarts/" style="font-size: 12px; color: #999">Echarts</a> <a href="/tags/Electron/" style="font-size: 16.5px; color: #7391ad">Electron</a> <a href="/tags/MongoDB/" style="font-size: 12px; color: #999">MongoDB</a> <a href="/tags/Node/" style="font-size: 25.5px; color: #2680d4">Node</a> <a href="/tags/Promise/" style="font-size: 12px; color: #999">Promise</a> <a href="/tags/css/" style="font-size: 16.5px; color: #7391ad">css</a> <a href="/tags/flutter/" style="font-size: 12px; color: #999">flutter</a> <a href="/tags/jq/" style="font-size: 16.5px; color: #7391ad">jq</a></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://zzychaser.top/posts/bd340774/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="大赵菌"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大赵菌的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Typescript接口</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-11-16 21:44:40" itemprop="dateCreated datePublished" datetime="2020-11-16T21:44:40+08:00">2020-11-16</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-04-27 23:10:31" itemprop="dateModified" datetime="2021-04-27T23:10:31+08:00">2021-04-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">2.5k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">10m</span></span></span><span class="leancloud_visitors" id="/posts/bd340774/" data-flag-title="Typescript接口"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/Javascript/" style="--text-color:#FFA500" itemprop="url" rel="index"><span itemprop="text">Javascript</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/typescript/" style="--text-color:#00BFFF"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">typescript</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><h3 id="一-什么是接口"><a href="#一-什么是接口" class="headerlink" title="一.什么是接口"></a>一.什么是接口</h3><p>TypeScript的核心原则之一是对值所具有的结构进行类型检查。它有时被称做“鸭式辨型法”或“结构性子类型化”。</p>
+<p>在TypeScript里，接口的作用就是为这些类型命名和为你的代码或第三方代码<code>定义契约</code>。</p>
+<span id="more"></span>
+
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token punctuation">&#123;</span>name<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">&#125;</span><span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span>name<span class="token operator">:</span><span class="token punctuation">&#123;</span>name<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//报错,此处应有一个参数</span>
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//类型number”的参数不能赋给类型“&#123;name: string;&#125;”的参数。</span>
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>name<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//不能将类型“number”分配给类型“string”。</span>
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>name<span class="token operator">:</span><span class="token string">'婷宝儿'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//正确</span></code></pre>
+
+<p>{name:string}即所谓的接口,它对所传进来的参数作出强制约束.</p>
+<h4 id="1-1-interface接口实现"><a href="#1-1-interface接口实现" class="headerlink" title="1.1 interface接口实现"></a>1.1 interface接口实现</h4><pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">nameCheck</span><span class="token punctuation">&#123;</span>
+    name <span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> 
+<span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span>name<span class="token operator">:</span>nameCheck<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>name<span class="token operator">:</span><span class="token string">'婷宝儿'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//正确</span>
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>name<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//错误</span></code></pre>
+
+<p>代码实例2和实例1效果一致.</p>
+<blockquote>
+<p>类型检查器不会去检查属性的顺序，只要相应的属性存在并且类型也是对的就可以。</p>
+</blockquote>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">nameCheck</span><span class="token punctuation">&#123;</span>
+    name <span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    age <span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span> 
+<span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span>name<span class="token operator">:</span>nameCheck<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>age<span class="token operator">:</span><span class="token number">18</span><span class="token punctuation">,</span>name<span class="token operator">:</span><span class="token string">'婷宝儿'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//正确,参数位置调换也是可以的</span></code></pre>
+
+<p>当然多一个参数也不行的啦~</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">nameCheck</span><span class="token punctuation">&#123;</span>
+    name <span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    age <span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span> 
+<span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span>name<span class="token operator">:</span>nameCheck<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/* 类型"&#123; age: number;name: string; sex: string; &#125;”的参数不能赋给类型nameCheck”的参数。
+对象文字可以只指定已知属性，并且“sex”不在类型"nameCheck”中。 */</span>
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>age<span class="token operator">:</span><span class="token number">18</span><span class="token punctuation">,</span>name<span class="token operator">:</span><span class="token string">'婷宝儿'</span><span class="token punctuation">,</span>sex<span class="token operator">:</span><span class="token string">"女"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//报错</span>
+
+<span class="token comment">//这种也别想通过哈哈哈哈</span>
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>age<span class="token operator">:</span><span class="token number">18</span><span class="token punctuation">,</span>name<span class="token operator">:</span><span class="token string">'婷宝儿'</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span>age<span class="token operator">:</span><span class="token number">20</span><span class="token punctuation">,</span>name<span class="token operator">:</span><span class="token string">'zzy'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//报错--应有1个参数,但获得2个</span></code></pre>
+
+<p>然后…就这?  既然严格,那就贯彻到底咯💪</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">nameCheck</span><span class="token punctuation">&#123;</span>
+    name <span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    age <span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span> 
+<span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+<span class="token comment">//未作检查</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>age<span class="token operator">:</span><span class="token number">18</span><span class="token punctuation">,</span>name<span class="token operator">:</span><span class="token string">'婷宝儿'</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span>age<span class="token operator">:</span><span class="token number">20</span><span class="token punctuation">,</span>name<span class="token operator">:</span><span class="token string">'zzy'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//报错--应有1个参数,但获得2个</span>
+</code></pre>
+
+<p>想要通过? 可以! 加一个args参数,自己动</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">nameCheck</span><span class="token punctuation">&#123;</span>
+    name <span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    age <span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span> 
+<span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span>name<span class="token operator">:</span>nameCheck<span class="token punctuation">,</span><span class="token operator">...</span>args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>age<span class="token operator">:</span><span class="token number">18</span><span class="token punctuation">,</span>name<span class="token operator">:</span><span class="token string">'婷宝儿'</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span>age<span class="token operator">:</span><span class="token number">20</span><span class="token punctuation">,</span>name<span class="token operator">:</span><span class="token string">'zzy'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//正确</span></code></pre>
+
+<h3 id="二-interface接口特性"><a href="#二-interface接口特性" class="headerlink" title="二.interface接口特性"></a>二.interface接口特性</h3><h4 id="2-1interface接口实现之可选属性"><a href="#2-1interface接口实现之可选属性" class="headerlink" title="2.1interface接口实现之可选属性"></a>2.1interface接口实现之可选属性</h4><p>很多框架的API接口里面都给我们提供了一些可选的属性,用户可以选择是否输入该属性信息,无论输入或是不输入都不会报错</p>
+<p>可选属性在应用“option bags”模式时很常用，即给函数传入的参数对象中只有部分属性赋值了。</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">nameCheck</span><span class="token punctuation">&#123;</span>
+    name <span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    age <span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token comment">//可选参数后面加上一个----?,需在冒号前</span>
+<span class="token punctuation">&#125;</span> 
+<span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span>name<span class="token operator">:</span>nameCheck<span class="token punctuation">,</span><span class="token operator">...</span>args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>name<span class="token operator">:</span><span class="token string">'婷宝儿'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//正确</span>
+<span class="token comment">//say(&#123;age:18,name:'婷宝儿'&#125;);//同样正确,因为参数可选</span></code></pre>
+
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">nameCheck</span><span class="token punctuation">&#123;</span>
+    name <span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    age <span class="token operator">?</span><span class="token operator">:</span> <span class="token number">21</span>
+<span class="token punctuation">&#125;</span> 
+<span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span>name<span class="token operator">:</span>nameCheck<span class="token punctuation">,</span><span class="token operator">...</span>args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+<span class="token comment">//值不同</span>
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>age<span class="token operator">:</span><span class="token number">18</span><span class="token punctuation">,</span>name<span class="token operator">:</span><span class="token string">'婷宝儿'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//报错 不能将类型“18”分配给类型“21”.</span></code></pre>
+
+<h5 id="😃interface接口实现之可选属性的优点"><a href="#😃interface接口实现之可选属性的优点" class="headerlink" title="😃interface接口实现之可选属性的优点"></a>😃interface接口实现之可选属性的优点</h5><p>可选属性的好处:</p>
+<p>​        一是可以对可能存在的属性进行预定义</p>
+<p>​        二是可以捕获引用了不存在的属性时的错误</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">nameCheck</span><span class="token punctuation">&#123;</span>
+    name <span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    age <span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span>
+    sex <span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span> 
+<span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span>famale<span class="token operator">:</span>nameCheck<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">//类型“nameCheck”上不存在属性“address”。</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>famale<span class="token punctuation">.</span>address<span class="token punctuation">,</span>famale<span class="token punctuation">.</span>name<span class="token punctuation">,</span>famale<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>age<span class="token operator">:</span><span class="token number">18</span><span class="token punctuation">,</span>name<span class="token operator">:</span><span class="token string">'婷宝儿'</span><span class="token punctuation">,</span>sex<span class="token operator">:</span><span class="token string">"女"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+
+<p>当使用了可选属性之后，那么对于这传入的对象里面的属性的引用就会被限制，如果引用了接口里未定义的属性时,就会报错</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span>famale<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//类型“nameCheck”上不存在属性“address”。</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>famale<span class="token punctuation">.</span>address<span class="token punctuation">,</span> famale<span class="token punctuation">.</span>name<span class="token punctuation">,</span> famale<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> msg <span class="token operator">=</span> <span class="token punctuation">&#123;</span> age<span class="token operator">:</span> <span class="token number">18</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">'婷宝儿'</span><span class="token punctuation">,</span> sex<span class="token operator">:</span> <span class="token string">"女"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token function">say</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>say<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//undefined 婷宝儿 18</span>
+</code></pre>
+
+<p>如果没有使用接口的话,那么引用不存在的属性时,是不会报错的</p>
+<hr>
+<h4 id="2-2interface接口实现之只读属性"><a href="#2-2interface接口实现之只读属性" class="headerlink" title="2.2interface接口实现之只读属性"></a>2.2interface接口实现之只读属性</h4><p>接口不仅可以用在函数的传参上,也可以用作其他语句.比如,一些对象属性只能在对象刚刚创建的时候修改其值。</p>
+<p>你可以在属性名前用readonly来指定只读属性:</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">Point</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">readonly</span> x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span>
+    <span class="token keyword">readonly</span> y<span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> p1<span class="token operator">:</span> Point <span class="token operator">=</span> <span class="token punctuation">&#123;</span> x<span class="token operator">:</span> <span class="token number">6</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token number">8</span> <span class="token punctuation">&#125;</span>
+
+p1<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span><span class="token comment">//无法分配到“x”，因为它是只读属性。</span></code></pre>
+
+<p>最简单判断该用readonly还是const的方法是看要把它做为变量使用还是做为一个属性。做为变量使用的话用const，若做为属性则使用readonly。</p>
+<h4 id="2-3interface接口实现之属性检查"><a href="#2-3interface接口实现之属性检查" class="headerlink" title="2.3interface接口实现之属性检查"></a>2.3interface接口实现之属性检查</h4><p>在可选属性一页中咱们讲过，当我们给一个对象设置了可选属性是，那么函数内部对于其他的未在接口内定义的参数进行调用就会直接报错</p>
+<p>不过,绕开这些检查也不是不可以</p>
+<blockquote>
+<p>最简便的方法是使用类型断言</p>
+<p>最佳的方式是在接口里添加一个字符串索引签名</p>
+</blockquote>
+<p>以下是 <strong>字符串索引签名案例</strong></p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">nameCheck</span> <span class="token punctuation">&#123;</span>
+    age<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span>property<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token comment">//规定传进来的属性都是string,值都是number</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span>famale<span class="token operator">:</span> nameCheck<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> age<span class="token operator">:</span> <span class="token number">18</span><span class="token punctuation">,</span> <span class="token string">"id"</span><span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//正确</span>
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> age<span class="token operator">:</span> <span class="token number">18</span><span class="token punctuation">,</span> id<span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//正确</span>
+
+<span class="token comment">//name参数报错 不能将类型“string”分配给类型“number”</span>
+<span class="token comment">//[property: string]: number//规定传进来的属性都是string,值都是number</span>
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> age<span class="token operator">:</span> <span class="token number">18</span><span class="token punctuation">,</span> id<span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span>name<span class="token operator">:</span><span class="token string">"婷宝儿"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+
+<p>⚠️在进行对其他值的筛选时,一定要注意是在不违反之前的规则前提下进行</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">nameCheck</span> <span class="token punctuation">&#123;</span>
+    name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span><span class="token comment">//值要求是string类型</span>
+    age<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span>property<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token comment">//规定传进来的属性都是string,值要求是number类型</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span>famale<span class="token operator">:</span> nameCheck<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+<span class="token comment">//nameCheck接口参数第1个和第3个冲突</span>
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> age<span class="token operator">:</span> <span class="token number">18</span><span class="token punctuation">,</span> id<span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">"婷宝儿"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+
+<p>想让上面成立,改一下数据类型即可</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">nameCheck</span> <span class="token punctuation">&#123;</span>
+    name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    age<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span>property<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">any</span><span class="token comment">//对传进来的属性值没有约束</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span>famale<span class="token operator">:</span> nameCheck<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+<span class="token comment">//正确</span>
+<span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> age<span class="token operator">:</span> <span class="token number">18</span><span class="token punctuation">,</span> id<span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">"婷宝儿"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+
+<h4 id="2-4interface接口实现之函数描述"><a href="#2-4interface接口实现之函数描述" class="headerlink" title="2.4interface接口实现之函数描述"></a>2.4interface接口实现之函数描述</h4><p>接口能够描述JavaScript中对象拥有的各种各样的特性。除了描述带有属性的普通对象外，接口也可以描述函数类型。</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">checkfn</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">//圆括号内是参数的要求，冒号后面是返回值的类型要求</span>
+    <span class="token punctuation">(</span>m<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>n<span class="token operator">:</span><span class="token builtin">number</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">//对于函数类型的类型检查来说，函数的参数名不需要与接口里定义的名字相匹配。</span>
+<span class="token keyword">let</span> fn<span class="token operator">:</span><span class="token function-variable function">checkfn</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token comment">//let len = b.length;//报错,number类型没有length属性方法</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">fn</span><span class="token punctuation">(</span><span class="token string">"9"</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">)</span></code></pre>
+
+<p><font  style="color:red;font-size:18px;">typescript在编译的时候，会对函数的参数会逐个进行检查，要求对应位置上的参数类型是兼容的。</font></p>
+<p>如果你不想指定每个参数的特定类型也可以不写,TypeScript的类型系统会自动根据接口推断出参数类型，函数的返回值类型是通过其返回值推断出来的．如果让这个函数返回数字或字符串，类型检查器会警告我们函数的返回值类型与接口中的定义到底匹不匹配</p>
+<h4 id="2-5interface接口实现之索引类型"><a href="#2-5interface接口实现之索引类型" class="headerlink" title="2.5interface接口实现之索引类型"></a>2.5interface接口实现之索引类型</h4><p>与使用接口描述函数类型差不多，我们也可以描述那些能够“通过索引得到”的类型，比如x[10]或myName[ “Tom”]</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">proCheck</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">[</span>index<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+    <span class="token keyword">readonly</span> <span class="token punctuation">[</span>index<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> obj<span class="token operator">:</span> proCheck <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"婷宝儿"</span><span class="token punctuation">,</span>
+    <span class="token number">996</span><span class="token operator">:</span> <span class="token string">"No996"</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">[</span><span class="token number">996</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//No996</span>
+<span class="token comment">//obj[996] = "995";//类型“proCheck”中的索引签名仅允许读取</span>
+</code></pre>
+
+<blockquote>
+<p>TypeScript支持两种索引签名:<em><strong>字符串和数字</strong></em>。可以同时使用两种类型的索引，<strong>但是数字索引的返回值必须是字符串索引返回值类型的子类型。</strong></p>
+<p>这是因为当使用number来索引时，JavaScript会将它转换成string然后再去索引对象。也就是说用100 (一个number)去索引等同于使用”100”(一个string)去索引，因此两者需要保持一致。</p>
+</blockquote>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">proCheck</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">[</span>index<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    length<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">//错误，`name`索引本就是字符串，和上面的index设定是一样的</span>
+<span class="token comment">//但是上面已经规定了索引值是字符串的,值必须是number</span></code></pre>
+
+<blockquote>
+<p>可以将索引签名设置为<strong>只读</strong>，这样就防止了给某些特定的索引进行赋值</p>
+</blockquote>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">ReadonlyArray</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">readonly</span> <span class="token punctuation">[</span>index<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>index<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">let</span> newArray<span class="token operator">:</span> ReadonlyArray <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token number">0</span><span class="token operator">:</span> <span class="token string">"婷宝"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">:</span> <span class="token string">'zzy'</span><span class="token punctuation">,</span> <span class="token string">"age"</span><span class="token operator">:</span> <span class="token string">"18"</span> <span class="token punctuation">&#125;</span>
+newArray<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"婷宝儿"</span><span class="token punctuation">;</span><span class="token comment">//错误,索引为数字的键值对定义了readonly,不允许修改值</span>
+newArray<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token string">"20"</span> <span class="token comment">//正确,索引为字符串的键值对可以修改值</span>
+</code></pre>
+
+<h4 id="2-6interface接口实现之“类class”类型"><a href="#2-6interface接口实现之“类class”类型" class="headerlink" title="2.6interface接口实现之“类class”类型"></a>2.6interface接口实现之“类class”类型</h4><p>实现类接口的关键字是implements(英文释义为:使生效,执行)</p>
+<p>利用类接口的设计可以规范出一个标准类最起码所具备的属性和方法</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">classCheck</span> <span class="token punctuation">&#123;</span>
+    currentTime<span class="token operator">:</span> Date<span class="token punctuation">;</span>
+    <span class="token function">setTime</span><span class="token punctuation">(</span>d<span class="token operator">:</span>Date<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Clock</span> <span class="token keyword">implements</span> <span class="token class-name">classCheck</span> <span class="token punctuation">&#123;</span>
+   currentTime<span class="token operator">:</span>Date<span class="token punctuation">;</span>
+   <span class="token function">setTime</span><span class="token punctuation">(</span>d<span class="token operator">:</span>Date<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>currentTime <span class="token operator">=</span> d<span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span>
+   <span class="token keyword">constructor</span><span class="token punctuation">(</span>x<span class="token operator">:</span><span class="token builtin">number</span><span class="token punctuation">,</span>y<span class="token operator">:</span><span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="2-7interface接口实现之继承接口"><a href="#2-7interface接口实现之继承接口" class="headerlink" title="2.7interface接口实现之继承接口"></a>2.7interface接口实现之继承接口</h4><p>和类一样，接口也可以相互继承。这让我们能够从一个接口里复制成员到另一个接口里，可以更灵活地将接口分割到可重用的模块里。</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">Shape</span> <span class="token punctuation">&#123;</span>
+    color<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Square</span> <span class="token keyword">extends</span> <span class="token class-name">Shape</span><span class="token punctuation">&#123;</span>
+    SquareLength <span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> Producton <span class="token operator">:</span> Square <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//错误,所需类型来自属性"color"，在此处的“Square”类</span>
+    color <span class="token operator">:</span> <span class="token number">99</span> <span class="token punctuation">,</span><span class="token comment">//color值必须是"string"类型</span>
+    SquareLength <span class="token operator">:</span> <span class="token number">520</span>
+<span class="token punctuation">&#125;</span>
+</code></pre>
+
+
+
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">Shape</span> <span class="token punctuation">&#123;</span>
+    color<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Square</span> <span class="token keyword">extends</span> <span class="token class-name">Shape</span><span class="token punctuation">&#123;</span>
+    SquareLength <span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Producton</span> <span class="token keyword">extends</span> <span class="token class-name">Square</span><span class="token punctuation">,</span>Shape<span class="token punctuation">&#123;</span>
+    productonLength <span class="token operator">:</span> <span class="token number">520</span>
+<span class="token punctuation">&#125;</span>
+</code></pre>
+
+<p>一个接口也可以继承多个接口，创建出多个接口的合成接口，上面的代码运行结果是，一个调用了Square接口的对象里必须有color , penwidth , sideLength属性</p>
+<h4 id="2-8-interface接口实现之混合类型"><a href="#2-8-interface接口实现之混合类型" class="headerlink" title="2.8 interface接口实现之混合类型"></a>2.8 interface接口实现之混合类型</h4><pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">getCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span>Counter<span class="token punctuation">&#123;</span>
+  <span class="token comment">//&lt;Counter>类型断言</span>
+    <span class="token keyword">let</span> counter <span class="token operator">=</span> <span class="token operator">&lt;</span>Counter<span class="token operator">></span><span class="token keyword">function</span><span class="token punctuation">(</span>start<span class="token operator">:</span><span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token string">"婷宝儿"</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    counter<span class="token punctuation">.</span>interval <span class="token operator">=</span> <span class="token number">52099</span><span class="token punctuation">;</span>
+    counter<span class="token punctuation">.</span><span class="token function-variable function">reset</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> counter<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> count <span class="token operator">=</span> <span class="token function">getCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">count</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+count<span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+count<span class="token punctuation">.</span>interval <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span></code></pre>
+
+<p>函数也是对象，所以我们可以给一个函数制定一个接口，定义函数的传参和自定义的额外属性</p>
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"></div><div style="display:inline-block"></div><div style="display:inline-block"></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>大赵菌</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://zzychaser.top/posts/bd340774/" title="Typescript接口">http://zzychaser.top/posts/bd340774/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/cea80282/" rel="prev" title="Typescript公共/私有与受保护的修饰符"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">Typescript公共/私有与受保护的修饰符</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/1c7bbb8/" rel="next" title="明志录"><span class="post-nav-text">明志录</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>尝试使用 valine 评论系统。</span><br><span>您可以点击下方按钮切换对应评论系统。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/webyang-male/webyang-male.github.io/issues?q=is:open+Typescript接口">GitHub Issues</a></div><div class="toggle-comment-system" style="margin: 1rem auto"><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#valine-container" onclick="showComment(this.dataset.target)">valine</a><style>.utterances {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target=".utterances" onclick="showComment(this.dataset.target)">utterances</a><style>#disqus_thread {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#disqus_thread" onclick="showComment(this.dataset.target)">disqusjs</a><script>function hideAllComment() {
+  //- hide all
+  document.querySelectorAll('.toggle-comment-btn').forEach((btn) => {
+    const container = document.querySelector(btn.dataset.target);
+    if (container) {
+      container.style.display = "none";
+    }
+  });
+}
+function showComment(target) {
+  hideAllComment();
+  //- show target
+  const targetContainer = document.querySelector(target);
+  if (targetContainer) {
+    targetContainer.style.display = "block";
+  }
+}
+</script></div><div id="disqus_thread"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqusjs.css"><script src="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqus.js"></script><script>const disqusjsConfig = {"enable":true,"shortname":"dazhao","apikey":"RyjBTPSwdNnrvz3hGg10KZWgMvaxmE0GuJEdpamXXSQdo97zBKUFv3v1oYaEyxxU","nocomment":"这里好冷清鸭,快来发表一下高见吧~"}
+function loadDisqus() {
+  const dsqjs = new DisqusJS(disqusjsConfig)
+}</script><script src="/js/comments/disqus.js"></script><div id="valine-container"></div><script>Yun.utils.getScript("https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js", () => {
+  const valineConfig = {"enable":true,"appId":"8GMDTzNh5Onyndyb0xIfgcd3-MdYXbMMI","appKey":"RIHIioX2uUer5PgWIDxsdriP","placeholder":"大佬求指教&nbsp_(:з」∠)_ （填写邮箱可以收到回复通知～）","avatar":null,"pageSize":10,"visitor":true,"highlight":true,"recordIP":true,"enableQQ":true,"serverURLs":null,"requiredFields":["nick","mail"],"emojiCDN":"//i0.hdslb.com/bfs/emote/","emojiMaps":{"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png","tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png","tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png","tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png","tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png","tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png","tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png","tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png","tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png","tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png","tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png","tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png","tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png","tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png","tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png","tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png","tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png","tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png","tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png","tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png","tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png","tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png","tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png","tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png","tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png","tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png","tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png","tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png","tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png","tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"},"el":"#valine-container","lang":"zh-cn"}
+  valineConfig.path = "/posts/bd340774/"
+  new Valine(valineConfig)
+}, window.Valine);</script><style>.utterances {
+  max-width: 100%;
+}</style><script src="https://utteranc.es/client.js" repo="webyang-male/webyang-male.github.io" issue-term="title" theme="photon-dark" crossorigin="anonymous" async></script></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015500号-1</a></div><div class="copyright"><span>&copy; 2020 – 2021 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.upyun.com/" title="大赵菌的赞助者们"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 大赵菌</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-08-23T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div><div class="footer-support"><span>本网站由</span><a class="footer-support-logo" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png" alt="又拍云"></a><span>提供 CDN 加速</span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><div class="aplayer no-destroy" id="aplayer" data-id="99315329" data-server="netease" data-type="playlist" data-fixed="true" data-theme="#0078E7" data-loop="all" data-order="list" data-preload="auto" data-volume="0.7" data-mutex data-lrctype="0" data-listmaxheight="340px" data-storagename="metingjs"></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"live2d-widget-model-koharu"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

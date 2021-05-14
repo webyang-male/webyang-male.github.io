@@ -1,0 +1,648 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="大赵菌"><meta name="copyright" content="大赵菌"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>jQuery_Note | 大赵菌的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.24/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_j5gk85dg4pf.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link class="aplayer-style-marker" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script class="aplayer-script-marker" src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" defer></script><script class="meting-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"zzychaser.top","root":"/","title":"大赵菌的小站","version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://el-bot-api.vercel.app/api/words/young"},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["255, 182, 93","135, 206, 250","173, 255, 47","255, 165, 0","255, 127, 79"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="/css/custom.css"><script src="/js/FunnyTitle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="jquery的入口函数使用jQuery的三个步骤：  引入jQuery文件 入口函数 功能实现  关于jQuery的入口函数： &#x2F;&#x2F;第一种写法 $(document).ready(function() &amp;#123; 	 &amp;#125;); &#x2F;&#x2F;第二种写法 $(function() &amp;#123; 	 &amp;#125;);   jQuery入口函数与js入口函数的对比：  JavaScript的入口函数要等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery_Note">
+<meta property="og:url" content="http://zzychaser.top/posts/e47f544/index.html">
+<meta property="og:site_name" content="大赵菌的小站">
+<meta property="og:description" content="jquery的入口函数使用jQuery的三个步骤：  引入jQuery文件 入口函数 功能实现  关于jQuery的入口函数： &#x2F;&#x2F;第一种写法 $(document).ready(function() &amp;#123; 	 &amp;#125;); &#x2F;&#x2F;第二种写法 $(function() &amp;#123; 	 &amp;#125;);   jQuery入口函数与js入口函数的对比：  JavaScript的入口函数要等">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-01T02:06:36.000Z">
+<meta property="article:modified_time" content="2021-04-28T10:31:03.285Z">
+<meta property="article:author" content="大赵菌">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="jq">
+<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="大赵菌"><img width="96" loading="lazy" src="/img/avatar.png" alt="大赵菌"><span class="site-author-status" title="撸起袖子加油干">👨‍🎓</span></a><div class="site-author-name"><a href="/about/">大赵菌</a></div><a class="site-name" href="/about/site.html">大赵菌的小站</a><sub class="site-subtitle">阿洋前端博客</sub><div class="site-desciption">祝幸福🍀祝你,也祝我</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">99</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">14</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">26</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="QQ-857613711" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/webyang-male/testOnline.git" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="豆瓣" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=86882247" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/shi-guang-fu-bi" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/284523421" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微信公众号" target="_blank" style="color:#1AAD19"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-2-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Telegram Channel" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=JR0QEhMUFhIcEWVUVAtGSkg" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-send-plane-2-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:#FFB6C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a><a class="links-item hty-icon-button" href="/albums/" title="大赵の相册" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jquery%E7%9A%84%E5%85%A5%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">jquery的入口函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jq%E5%AF%B9%E8%B1%A1%E5%92%8Cdom%E5%AF%B9%E8%B1%A1-%E9%87%8D%E8%A6%81"><span class="toc-number">2.</span> <span class="toc-text">jq对象和dom对象(重要)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jquery%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">jquery选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFjQuery%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text">什么是jQuery选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.2.</span> <span class="toc-text">基本选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%82%E7%BA%A7%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text">层级选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.4.</span> <span class="toc-text">过滤选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%9B%E9%80%89%E9%80%89%E6%8B%A9%E5%99%A8-%E6%96%B9%E6%B3%95"><span class="toc-number">3.5.</span> <span class="toc-text">筛选选择器(方法)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">元素设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.1.</span> <span class="toc-text">样式设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%90%8D%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.2.</span> <span class="toc-text">类名设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.3.</span> <span class="toc-text">属性设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prop%E6%96%B9%E6%B3%95"><span class="toc-number">4.4.</span> <span class="toc-text">prop方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB"><span class="toc-number">5.</span> <span class="toc-text">动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8A%A8%E7%94%BB"><span class="toc-number">5.1.</span> <span class="toc-text">基本动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%91%E5%85%A5%E6%BB%91%E5%87%BA"><span class="toc-number">5.2.</span> <span class="toc-text">滑入滑出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%A1%E5%85%A5%E6%B7%A1%E5%87%BA"><span class="toc-number">5.3.</span> <span class="toc-text">淡入淡出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8A%A8%E7%94%BB"><span class="toc-number">5.4.</span> <span class="toc-text">自定义动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E9%98%9F%E5%88%97"><span class="toc-number">5.5.</span> <span class="toc-text">动画队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stop%E4%BD%BF%E7%94%A8"><span class="toc-number">5.6.</span> <span class="toc-text">stop使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E6%93%8D%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">节点操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%8A%82%E7%82%B9"><span class="toc-number">6.1.</span> <span class="toc-text">创建节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%8B%E9%9A%86%E8%8A%82%E7%82%B9"><span class="toc-number">6.2.</span> <span class="toc-text">克隆节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0-amp-%E7%A7%BB%E5%8A%A8%E8%8A%82%E7%82%B9"><span class="toc-number">6.3.</span> <span class="toc-text">添加&amp;移动节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9-amp-%E6%B8%85%E7%A9%BA%E8%8A%82%E7%82%B9"><span class="toc-number">6.4.</span> <span class="toc-text">删除节点&amp;清空节点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery%E7%89%B9%E6%AE%8A%E5%B1%9E%E6%80%A7%E6%93%8D%E4%BD%9C"><span class="toc-number">7.</span> <span class="toc-text">jQuery特殊属性操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#val%E6%96%B9%E6%B3%95"><span class="toc-number">7.1.</span> <span class="toc-text">val方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html%E6%96%B9%E6%B3%95%E4%B8%8Etext%E6%96%B9%E6%B3%95"><span class="toc-number">7.2.</span> <span class="toc-text">html方法与text方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#width%E6%96%B9%E6%B3%95%E4%B8%8Eheight%E6%96%B9%E6%B3%95"><span class="toc-number">7.3.</span> <span class="toc-text">width方法与height方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scrollTop%E4%B8%8EscrollLeft"><span class="toc-number">7.4.</span> <span class="toc-text">scrollTop与scrollLeft</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#offset%E6%96%B9%E6%B3%95%E4%B8%8Eposition%E6%96%B9%E6%B3%95"><span class="toc-number">7.5.</span> <span class="toc-text">offset方法与position方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6"><span class="toc-number">8.</span> <span class="toc-text">jQuery事件机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery%E4%BA%8B%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B-%E4%BA%86%E8%A7%A3"><span class="toc-number">8.1.</span> <span class="toc-text">jQuery事件发展历程(了解)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#on%E6%B3%A8%E5%86%8C%E4%BA%8B%E4%BB%B6-%E9%87%8D%E7%82%B9"><span class="toc-number">8.2.</span> <span class="toc-text">on注册事件(重点)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E8%A7%A3%E7%BB%91"><span class="toc-number">8.3.</span> <span class="toc-text">事件解绑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6"><span class="toc-number">8.4.</span> <span class="toc-text">触发事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1"><span class="toc-number">8.5.</span> <span class="toc-text">jQuery事件对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">9.</span> <span class="toc-text">jQuery补充知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E5%BC%8F%E7%BC%96%E7%A8%8B"><span class="toc-number">9.1.</span> <span class="toc-text">链式编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#each%E6%96%B9%E6%B3%95"><span class="toc-number">9.2.</span> <span class="toc-text">each方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%BA%93%E5%85%B1%E5%AD%98"><span class="toc-number">9.3.</span> <span class="toc-text">多库共存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6"><span class="toc-number">10.</span> <span class="toc-text">插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6"><span class="toc-number">10.1.</span> <span class="toc-text">常用插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jquery-ui-js%E6%8F%92%E4%BB%B6"><span class="toc-number">10.2.</span> <span class="toc-text">jquery.ui.js插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%B6%E4%BD%9Cjquery%E6%8F%92%E4%BB%B6"><span class="toc-number">11.</span> <span class="toc-text">制作jquery插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E6%96%87%E9%93%BE%E6%8E%A5"><span class="toc-number">12.</span> <span class="toc-text">原文链接:</span></a></li></ol></div></div></div><div class="tag-cloud"><div class="tag-cloud-tags"><a href="/tags/C/" style="font-size: 30px; color: #0078e7">C</a> <a href="/tags/C%E8%AF%95%E9%A2%98/" style="font-size: 21px; color: #4d89c0">C试题</a> <a href="/tags/Echarts/" style="font-size: 12px; color: #999">Echarts</a> <a href="/tags/Electron/" style="font-size: 16.5px; color: #7391ad">Electron</a> <a href="/tags/MongoDB/" style="font-size: 12px; color: #999">MongoDB</a> <a href="/tags/Node/" style="font-size: 25.5px; color: #2680d4">Node</a> <a href="/tags/Promise/" style="font-size: 12px; color: #999">Promise</a> <a href="/tags/css/" style="font-size: 16.5px; color: #7391ad">css</a> <a href="/tags/flutter/" style="font-size: 12px; color: #999">flutter</a> <a href="/tags/jq/" style="font-size: 16.5px; color: #7391ad">jq</a></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://zzychaser.top/posts/e47f544/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="大赵菌"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大赵菌的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">jQuery_Note</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-10-01 10:06:36" itemprop="dateCreated datePublished" datetime="2020-10-01T10:06:36+08:00">2020-10-01</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-04-28 18:31:03" itemprop="dateModified" datetime="2021-04-28T18:31:03+08:00">2021-04-28</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">3.8k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">14m</span></span></span><span class="leancloud_visitors" id="/posts/e47f544/" data-flag-title="jQuery_Note"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E7%AC%94%E8%AE%B0/" style="--text-color:#FFD700" itemprop="url" rel="index"><span itemprop="text">笔记</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E7%AC%94%E8%AE%B0/" style="--text-color:#FFD700"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">笔记</span></a><a class="tag-item" href="/tags/jq/" style="--text-color:#0769ad"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">jq</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><h2 id="jquery的入口函数"><a href="#jquery的入口函数" class="headerlink" title="jquery的入口函数"></a>jquery的入口函数</h2><p>使用jQuery的三个步骤：</p>
+<ol>
+<li>引入jQuery文件</li>
+<li>入口函数</li>
+<li>功能实现</li>
+</ol>
+<p>关于jQuery的入口函数：</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//第一种写法</span>
+<span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//第二种写法</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+
+<p>jQuery入口函数与js入口函数的对比：</p>
+<ol>
+<li>JavaScript的入口函数要等到页面中所有资源（包括图片、文件）加载完成才开始执行。</li>
+<li>jQuery的入口函数只会等待文档树加载完成就开始执行，并不会等待图片、文件的加载。</li>
+</ol>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script<span class="token operator">></span>
+  <span class="token comment">//1.$是什么?</span>
+  <span class="token comment">//如果报了这个错误:$ is not defined,就说明没有引入jQuery文件.</span>
+  <span class="token comment">// $(function () &#123;</span>
+  <span class="token comment">//</span>
+  <span class="token comment">// &#125;);</span>
+
+
+  <span class="token comment">//2.jQuery文件结构.</span>
+  <span class="token comment">//其实是一个自执行函数.</span>
+  <span class="token comment">// (function()&#123;</span>
+  <span class="token comment">//   window.jQuery = window.$ = jQuery;</span>
+  <span class="token comment">// &#125;());</span>
+
+
+  <span class="token comment">//3.</span>
+  <span class="token comment">//a.引入一个js文件,是会执行这js文件中的代码的.</span>
+  <span class="token comment">//console.log(num);//10</span>
+  <span class="token comment">//b.jQuery文件是一个自执行函数,执行这个jQUERY文件中的代码,其实就是执行这个自执行函数.</span>
+  <span class="token comment">//c.这个自执行文件就是给window对象添加一个jQuery属性和$属性.</span>
+  <span class="token comment">//console.log(window);</span>
+  <span class="token comment">//d.$其实和jQuery是等价的,是一个函数.</span>
+
+  <span class="token comment">// console.log(window.jQuery === window.$);//true</span>
+  <span class="token comment">// console.log(Object.prototype.toString.call($));//'[object Function]'</span>
+
+
+  <span class="token comment">//4.$是一个函数</span>
+  <span class="token comment">//参数传递不同,效果也不一样.</span>
+  <span class="token comment">//4.1 如果参数传递的是一个匿名函数-入口函数</span>
+  <span class="token comment">// $(function()&#123;</span>
+  <span class="token comment">// &#125;);</span>
+
+  <span class="token comment">//4.2 如果参数传递的是一个字符串-选择器/创建一个标签</span>
+  <span class="token comment">//$('#one');</span>
+  <span class="token comment">//$('&lt;div>啦啦,我是一个div&lt;/div>');</span>
+
+  <span class="token comment">//4.3 如果参数是一个dom对象,那他就会把dom对象转换成jQuery对象.</span>
+  <span class="token comment">//$(dom对象);</span>
+
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+</code></pre>
+
+<h2 id="jq对象和dom对象-重要"><a href="#jq对象和dom对象-重要" class="headerlink" title="jq对象和dom对象(重要)"></a>jq对象和dom对象(重要)</h2><ol>
+<li>DOM对象：使用JavaScript中的方法获取页面中的元素返回的对象就是dom对象。</li>
+<li>jQuery对象：jquery对象就是使用jquery的方法获取页面中的元素返回的对象就是jQuery对象。</li>
+<li>jQuery对象其实就是DOM对象的包装集<strong>包装了DOM对象的集合（伪数组）</strong></li>
+<li>DOM对象与jQuery对象的方法不能混用。</li>
+</ol>
+<p>DOM对象转换成jQuery对象：【联想记忆：花钱】</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> $obj <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span>domObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// $(document).ready(function()&#123;&#125;);就是典型的DOM对象转jQuery对象</span>
+</code></pre>
+
+<p>jQuery对象转换成DOM对象：</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> $li <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//第一种方法（推荐使用）</span>
+$li<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token comment">//第二种方法</span>
+$li<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span></code></pre>
+
+<h2 id="jquery选择器"><a href="#jquery选择器" class="headerlink" title="jquery选择器"></a>jquery选择器</h2><h3 id="什么是jQuery选择器"><a href="#什么是jQuery选择器" class="headerlink" title="什么是jQuery选择器"></a>什么是jQuery选择器</h3><ul>
+<li>jQuery选择器是jQuery为我们提供的一组方法，让我们更加方便的获取到页面中的元素。<br>注意：jQuery选择器返回的是jQuery对象。</li>
+<li>jQuery选择器有很多，基本兼容了CSS1到CSS3所有的选择器，并且jQuery还添加了很多扩展性的选择器。<br>【查看jQuery文档】</li>
+<li>jQuery选择器虽然很多，但是选择器之间可以相互替代，就是说获取一个元素，你会有很多种方法获取到。<br>所以我们平时真正能用到的只是少数的最常用的选择器。</li>
+</ul>
+<h3 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>用法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ID选择器</td>
+<td>$(“#id”);</td>
+<td>获取指定ID的元素</td>
+</tr>
+<tr>
+<td>类选择器</td>
+<td>$(“.class”);</td>
+<td>获取同一类class的元素</td>
+</tr>
+<tr>
+<td>标签选择器</td>
+<td>$(“div”);</td>
+<td>获取同一类标签的所有元素</td>
+</tr>
+<tr>
+<td>并集选择器</td>
+<td>$(“div,p,li”);</td>
+<td>使用逗号分隔，只要符合条件之一就可。</td>
+</tr>
+<tr>
+<td>交集选择器</td>
+<td>$(“div.redClass”);</td>
+<td>获取class为redClass的div元素</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>总结：跟css的选择器用法一模一样。</p>
+</blockquote>
+<h3 id="层级选择器"><a href="#层级选择器" class="headerlink" title="层级选择器"></a>层级选择器</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>用法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>子代选择器</td>
+<td>$(“ul&gt;li”);</td>
+<td>使用&gt;号，获取儿子层级的元素，注意，并不会获取孙子层级的元素</td>
+</tr>
+<tr>
+<td>后代选择器</td>
+<td>$(“ul li”);</td>
+<td>使用空格，代表后代选择器，获取ul下的所有li元素，包括孙子等</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>总结：跟css的选择器用法一模一样。</p>
+</blockquote>
+<h3 id="过滤选择器"><a href="#过滤选择器" class="headerlink" title="过滤选择器"></a>过滤选择器</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>用法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:eq（index）</td>
+<td>$(“li:eq(2)”).css(“color”, ”red”);</td>
+<td>获取到的li元素中，选择索引号为2的元素，索引号index从0开始。</td>
+</tr>
+<tr>
+<td>:odd</td>
+<td>$(“li:odd”).css(“color”, ”red”);</td>
+<td>获取到的li元素中，选择索引号为奇数的元素</td>
+</tr>
+<tr>
+<td>:even</td>
+<td>$(“li:even”).css(“color”, ”red”);</td>
+<td>获取到的li元素中，选择索引号为偶数的元素</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>总结：这类选择器都带冒号</p>
+</blockquote>
+<h3 id="筛选选择器-方法"><a href="#筛选选择器-方法" class="headerlink" title="筛选选择器(方法)"></a>筛选选择器(方法)</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>用法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>children(selector)</td>
+<td>$(“ul”).children(“li”)</td>
+<td>相当于$(“ul&gt;li”)，子类选择器</td>
+</tr>
+<tr>
+<td>find(selector)</td>
+<td>$(“ul”).find(“li”);</td>
+<td>相当于$(“ul li”),后代选择器</td>
+</tr>
+<tr>
+<td>siblings(selector)</td>
+<td>$(“#first”).siblings(“li”);</td>
+<td>查找兄弟节点，不包括自己本身。</td>
+</tr>
+<tr>
+<td>parent()</td>
+<td>$(“#first”).parent();</td>
+<td>查找父亲</td>
+</tr>
+<tr>
+<td>eq(index)</td>
+<td>$(“li”).eq(2);</td>
+<td>相当于$(“li:eq(2)”),index从0开始</td>
+</tr>
+<tr>
+<td>next()</td>
+<td>$(“li”).next()</td>
+<td>找下一个兄弟</td>
+</tr>
+<tr>
+<td>prev()</td>
+<td>$(“li”).prev()</td>
+<td>找上一次兄弟</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>总结：筛选选择器的功能与过滤选择器有点类似，但是用法不一样，筛选选择器主要是方法。</p>
+</blockquote>
+<h2 id="元素设置"><a href="#元素设置" class="headerlink" title="元素设置"></a>元素设置</h2><h3 id="样式设置"><a href="#样式设置" class="headerlink" title="样式设置"></a>样式设置</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*1.设置一个样式*/</span>
+<span class="token comment">//两个参数  设置的样式属性,具体样式</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">'color'</span><span class="token punctuation">,</span><span class="token string">'red'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//传入对象（设置的样式属性:具体样式）</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">'color'</span><span class="token operator">:</span><span class="token string">'red'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*2.设置多个样式*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+    <span class="token string">'color'</span><span class="token operator">:</span><span class="token string">'green'</span><span class="token punctuation">,</span>
+    <span class="token string">'font-size'</span><span class="token operator">:</span><span class="token string">'20px'</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="类名设置"><a href="#类名设置" class="headerlink" title="类名设置"></a>类名设置</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*1.添加一个类*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass</span><span class="token punctuation">(</span><span class="token string">'now'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*2.删除一个类*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeClass</span><span class="token punctuation">(</span><span class="token string">'now'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*3.切换一个类  有就删除没有就添加*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toggleClass</span><span class="token punctuation">(</span><span class="token string">'now'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*4.匹配一个类  判断是否包含某个类  如果包含返回true否知返回false*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasClass</span><span class="token punctuation">(</span><span class="token string">'now'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="属性设置"><a href="#属性设置" class="headerlink" title="属性设置"></a>属性设置</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*1.获取属性*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*2.设置属性*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span><span class="token string">'tom'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*3.设置多个属性*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+    <span class="token string">'name'</span><span class="token operator">:</span><span class="token string">'tom'</span><span class="token punctuation">,</span>
+    <span class="token string">'age'</span><span class="token operator">:</span><span class="token string">'18'</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*4.删除属性*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeAttr</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="prop方法"><a href="#prop方法" class="headerlink" title="prop方法"></a>prop方法</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*对于布尔类型的属性，不要attr方法，应该用prop方法 prop用法跟attr方法一样。*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#checkbox"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span><span class="token string">"checked"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#checkbox"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span><span class="token string">"checked"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#checkbox"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span><span class="token string">"checked"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#checkbox"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeProp</span><span class="token punctuation">(</span><span class="token string">"checked"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><h3 id="基本动画"><a href="#基本动画" class="headerlink" title="基本动画"></a>基本动画</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*注意：动画的本质是改变容器的大小和透明度*/</span>
+<span class="token comment">/*注意：如果不传参数是看不到动画*/</span>
+<span class="token comment">/*注意：可传入特殊的字符  fast normal slow*/</span>
+<span class="token comment">/*注意：可传入数字 单位毫秒*/</span>
+<span class="token comment">/*1.展示动画*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*2.隐藏动画*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hide</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*3.切换展示和隐藏*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toggle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="滑入滑出"><a href="#滑入滑出" class="headerlink" title="滑入滑出"></a>滑入滑出</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*注意：动画的本质是改变容器的高度*/</span>
+<span class="token comment">/*1.滑入动画*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">slideDown</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*2.滑出动画*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">slideUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*3.切换滑入滑出*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">slideToggle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="淡入淡出"><a href="#淡入淡出" class="headerlink" title="淡入淡出"></a>淡入淡出</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*注意：动画的本质是改变容器的透明度*/</span>
+<span class="token comment">/*1.淡入动画*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fadeIn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*2.淡出动画*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fadeOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*3.切换淡入淡出*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fadeToggle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fadeTo</span><span class="token punctuation">(</span><span class="token string">'speed'</span><span class="token punctuation">,</span><span class="token string">'opacity'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="自定义动画"><a href="#自定义动画" class="headerlink" title="自定义动画"></a>自定义动画</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*
+* 自定义动画
+* 参数1：需要做动画的属性
+* 参数2：需要执行动画的总时长
+* 参数3：执行动画的时候的速度
+* 参数4：执行动画完成之后的回调函数
+* */</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#box1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>left<span class="token operator">:</span><span class="token number">800</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#box2'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>left<span class="token operator">:</span><span class="token number">800</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token number">5000</span><span class="token punctuation">,</span><span class="token string">'linear'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#box3'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>left<span class="token operator">:</span><span class="token number">800</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token number">5000</span><span class="token punctuation">,</span><span class="token string">'swing'</span><span class="token punctuation">,</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'动画执行完成'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="动画队列"><a href="#动画队列" class="headerlink" title="动画队列"></a>动画队列</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*
+jQuery中有个动画队列的机制。
+当我们对一个对象添加多次动画效果时后添加的动作就会被放入这个动画队列中，  
+等前面的动画完成后再开始执行。
+可是用户的操作往往都比动画快，  
+如果用户对一个对象频繁操作时不处理动画队列就会造成队列堆积，
+影响到效果。
+*/</span></code></pre>
+
+<h3 id="stop使用"><a href="#stop使用" class="headerlink" title="stop使用"></a>stop使用</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*1.停止当前动画  如果动画队列当中还有动画立即执行*/</span>
+<span class="token comment">//$('div').stop();</span>
+<span class="token comment">/*2.和stop()效果一致  说明这是默认设置*/</span>
+<span class="token comment">//$('div').stop(false,false);</span>
+<span class="token comment">/*3.停止当前动画  清除动画队列*/</span>
+<span class="token comment">//$('div').stop(true,false);</span>
+<span class="token comment">/*4.停止当前动画并且到结束位置  清除了动画队列*/</span>
+<span class="token comment">//$('div').stop(true,true);</span>
+<span class="token comment">/*5.停止当前动画并且到结束位置  如果动画队列当中还有动画立即执行*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h2 id="节点操作"><a href="#节点操作" class="headerlink" title="节点操作"></a>节点操作</h2><h3 id="创建节点"><a href="#创建节点" class="headerlink" title="创建节点"></a>创建节点</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*创建节点*/</span>
+<span class="token keyword">var</span> $a <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'&lt;a href="http://www.baidu.com" target="_blank">百度1&lt;/a>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="克隆节点"><a href="#克隆节点" class="headerlink" title="克隆节点"></a>克隆节点</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*如果想克隆事件  false  true克隆事件*/</span>
+<span class="token keyword">var</span> $cloneP <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="添加-amp-移动节点"><a href="#添加-amp-移动节点" class="headerlink" title="添加&amp;移动节点"></a>添加&amp;移动节点</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*追加自身的最后面  传对象和html格式代码*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#box'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'&lt;a href="http://www.baidu.com" target="_blank">&lt;b>百度3&lt;/b>&lt;/a>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#box'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*追加到目标元素最后面  传目标元素的选择器或者对象*/</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'&lt;a href="http://www.baidu.com" target="_blank">&lt;b>百度3&lt;/b>&lt;/a>'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">appendTo</span><span class="token punctuation">(</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#box'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">appendTo</span><span class="token punctuation">(</span><span class="token string">'#box'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">prepend</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">prependTo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">after</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">before</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="删除节点-amp-清空节点"><a href="#删除节点-amp-清空节点" class="headerlink" title="删除节点&amp;清空节点"></a>删除节点&amp;清空节点</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/*1.清空box里面的元素*/</span>
+<span class="token comment">/* 清理门户 */</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#box'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*2.删除某个元素*/</span>
+<span class="token comment">/* 自杀 */</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#box'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h2 id="jQuery特殊属性操作"><a href="#jQuery特殊属性操作" class="headerlink" title="jQuery特殊属性操作"></a>jQuery特殊属性操作</h2><h3 id="val方法"><a href="#val方法" class="headerlink" title="val方法"></a>val方法</h3><blockquote>
+<p>val方法用于设置和获取表单元素的值，例如input、textarea的值</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//设置值</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#name"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token string">'张三'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//获取值</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#name"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="html方法与text方法"><a href="#html方法与text方法" class="headerlink" title="html方法与text方法"></a>html方法与text方法</h3><blockquote>
+<p>html方法相当于innerHTML text方法相当于innerText</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//设置内容</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token string">'&lt;span>这是一段内容&lt;/span>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//获取内容</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">//设置内容</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token string">'&lt;span>这是一段内容&lt;/span>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//获取内容</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+
+<p>区别：html方法会识别html标签，text方法会那内容直接当成字符串，并不会识别html标签。</p>
+<h3 id="width方法与height方法"><a href="#width方法与height方法" class="headerlink" title="width方法与height方法"></a>width方法与height方法</h3><blockquote>
+<p>设置或者获取高度</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//带参数表示设置高度</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">height</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//不带参数获取高度</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">height</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<p>获取网页的可视区宽高</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//获取可视区宽度</span>
+<span class="token function">$</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">width</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//获取可视区高度</span>
+<span class="token function">$</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">height</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="scrollTop与scrollLeft"><a href="#scrollTop与scrollLeft" class="headerlink" title="scrollTop与scrollLeft"></a>scrollTop与scrollLeft</h3><blockquote>
+<p>设置或者获取垂直滚动条的位置</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//获取页面被卷曲的高度</span>
+<span class="token function">$</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">scrollTop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//获取页面被卷曲的宽度</span>
+<span class="token function">$</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">scrollLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="offset方法与position方法"><a href="#offset方法与position方法" class="headerlink" title="offset方法与position方法"></a>offset方法与position方法</h3><blockquote>
+<p>offset方法获取元素距离document的位置，position方法获取的是元素距离有定位的父元素的位置。</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//获取元素距离document的位置,返回值为对象：&#123;left:100, top:100&#125;</span>
+<span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">offset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//获取相对于其最近的有定位的父元素的位置。</span>
+<span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">position</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h2 id="jQuery事件机制"><a href="#jQuery事件机制" class="headerlink" title="jQuery事件机制"></a>jQuery事件机制</h2><blockquote>
+<p>JavaScript中已经学习过了事件，但是jQuery对JavaScript事件进行了封装，增加并扩展了事件处理机制。jQuery不仅提供了更加优雅的事件处理语法，而且极大的增强了事件的处理能力。</p>
+</blockquote>
+<h3 id="jQuery事件发展历程-了解"><a href="#jQuery事件发展历程-了解" class="headerlink" title="jQuery事件发展历程(了解)"></a>jQuery事件发展历程(了解)</h3><p>简单事件绑定&gt;&gt;bind事件绑定&gt;&gt;delegate事件绑定&gt;&gt;on事件绑定(推荐)</p>
+<blockquote>
+<p>简单事件注册</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">click</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span>			<span class="token comment">//单击事件</span>
+<span class="token function">mouseenter</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span>		<span class="token comment">//鼠标进入事件</span>
+<span class="token function">mouseleave</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span>		<span class="token comment">//鼠标离开事件</span></code></pre>
+
+<p>缺点：不能同时注册多个事件</p>
+<blockquote>
+<p>bind方式注册事件</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//第一个参数：事件类型</span>
+<span class="token comment">//第二个参数：事件处理程序</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token string">"click mouseenter"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">//事件响应方法</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<p>缺点：不支持动态事件绑定</p>
+<blockquote>
+<p>delegate注册委托事件</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 第一个参数：selector，要绑定事件的元素</span>
+<span class="token comment">// 第二个参数：事件类型</span>
+<span class="token comment">// 第三个参数：事件处理函数</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">".parentBox"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">delegate</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">,</span> <span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">//为 .parentBox下面的所有的p标签绑定事件</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<p>缺点：只能注册委托事件，因此注册时间需要记得方法太多了</p>
+<blockquote>
+<p>on注册事件</p>
+</blockquote>
+<h3 id="on注册事件-重点"><a href="#on注册事件-重点" class="headerlink" title="on注册事件(重点)"></a>on注册事件(重点)</h3><blockquote>
+<p>jQuery1.7之后，jQuery用on统一了所有事件的处理方法。</p>
+<p>最现代的方式，兼容zepto(移动端类似jQuery的一个库)，强烈建议使用。</p>
+</blockquote>
+<p>on注册简单事件</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 表示给$(selector)绑定事件，并且由自己触发，不支持动态绑定。</span>
+<span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span> <span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<p>on注册委托事件</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 表示给$(selector)绑定代理事件，当必须是它的内部元素span才能触发这个事件，支持动态绑定</span>
+<span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span> <span class="token string">"click"</span><span class="token punctuation">,</span><span class="token string">'span'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<p>on注册事件的语法：</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 第一个参数：events，绑定事件的名称可以是由空格分隔的多个事件（标准事件或者自定义事件）</span>
+<span class="token comment">// 第二个参数：selector, 执行事件的后代元素（可选），如果没有后代元素，那么事件将有自己执行。</span>
+<span class="token comment">// 第三个参数：data，传递给处理函数的数据，事件触发的时候通过event.data来使用（不常使用）</span>
+<span class="token comment">// 第四个参数：handler，事件处理函数</span>
+<span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span>events<span class="token punctuation">,</span><span class="token punctuation">[</span>selector<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span>data<span class="token punctuation">]</span><span class="token punctuation">,</span>handler<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="事件解绑"><a href="#事件解绑" class="headerlink" title="事件解绑"></a>事件解绑</h3><blockquote>
+<p>unbind方式（不用）</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unbind</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//解绑所有的事件</span>
+<span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unbind</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//解绑指定的事件</span></code></pre>
+
+<blockquote>
+<p>undelegate方式（不用）</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span> selector <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">undelegate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//解绑所有的delegate事件</span>
+<span class="token function">$</span><span class="token punctuation">(</span> selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">undelegate</span><span class="token punctuation">(</span> <span class="token string">'click'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//解绑所有的click事件</span></code></pre>
+
+<blockquote>
+<p>off方式（推荐）</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 解绑匹配元素的所有事件</span>
+<span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">off</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 解绑匹配元素的所有click事件</span>
+<span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">off</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="触发事件"><a href="#触发事件" class="headerlink" title="触发事件"></a>触发事件</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//触发 click事件</span>
+<span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trigger</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="jQuery事件对象"><a href="#jQuery事件对象" class="headerlink" title="jQuery事件对象"></a>jQuery事件对象</h3><p>jQuery事件对象其实就是js事件对象的一个封装，处理了兼容性。</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//screenX和screenY	对应屏幕最左上角的值</span>
+<span class="token comment">//clientX和clientY	距离页面左上角的位置（忽视滚动条）</span>
+<span class="token comment">//pageX和pageY	距离页面最顶部的左上角的位置（会计算滚动条的距离）</span>
+
+<span class="token comment">//event.keyCode	按下的键盘代码</span>
+<span class="token comment">//event.data	存储绑定事件时传递的附加数据</span>
+
+<span class="token comment">//event.stopPropagation()	阻止事件冒泡行为</span>
+<span class="token comment">//event.preventDefault()	阻止浏览器默认行为</span>
+<span class="token comment">//return false:既能阻止事件冒泡，又能阻止浏览器默认行为。</span></code></pre>
+
+<h2 id="jQuery补充知识点"><a href="#jQuery补充知识点" class="headerlink" title="jQuery补充知识点"></a>jQuery补充知识点</h2><h3 id="链式编程"><a href="#链式编程" class="headerlink" title="链式编程"></a>链式编程</h3><blockquote>
+<p>通常情况下，只有设置操作才能把链式编程延续下去。因为获取操作的时候，会返回获取到的相应的值，无法返回 jQuery对象。</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 筛选选择器会改变jQuery对象的DOM对象，想要回复到上一次的状态，并且返回匹配元素之前的状态。</span></code></pre>
+
+
+
+<h3 id="each方法"><a href="#each方法" class="headerlink" title="each方法"></a>each方法</h3><blockquote>
+<p>jQuery的隐式迭代会对所有的DOM对象设置相同的值，但是如果我们需要给每一个对象设置不同的值的时候，就需要自己进行迭代了。</p>
+</blockquote>
+<p>作用：遍历jQuery对象集合，为每个匹配的元素执行一个函数</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 参数一表示当前元素在所有匹配元素中的索引号</span>
+<span class="token comment">// 参数二表示当前元素（DOM对象）</span>
+<span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">each</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">index<span class="token punctuation">,</span>element</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+
+
+<h3 id="多库共存"><a href="#多库共存" class="headerlink" title="多库共存"></a>多库共存</h3><blockquote>
+<p>jQuery使用作 为 标 示 符 ， 但 是 如 果 与 其 他 框 架 中 的 作为标示符，但是如果与其他框架中的作为标示符，但是如果与其他框架中的冲突时，jQuery可以释放$符的控制权.</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> c <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">noConflict</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//释放$的控制权,并且把$的能力给了c</span></code></pre>
+
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h3 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h3><blockquote>
+<p>插件：jquery不可能包含所有的功能，我们可以通过插件扩展jquery的功能。</p>
+<p>jQuery有着丰富的插件，使用这些插件能给jQuery提供一些额外的功能。</p>
+</blockquote>
+<ol>
+<li>jquery.color.js</li>
+</ol>
+<blockquote>
+<p>animate不支持颜色的渐变，但是使用了jquery.color.js后，就可以支持颜色的渐变了。</p>
+</blockquote>
+<p>使用插件的步骤</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//1. 引入jQuery文件</span>
+<span class="token comment">//2. 引入插件（如果有用到css的话，需要引入css）</span>
+<span class="token comment">//3. 使用插件</span>
+</code></pre>
+
+<p> 2.jquery.lazyload.js</p>
+<blockquote>
+<p>懒加载插件</p>
+</blockquote>
+<h3 id="jquery-ui-js插件"><a href="#jquery-ui-js插件" class="headerlink" title="jquery.ui.js插件"></a>jquery.ui.js插件</h3><p>jQueryUI专指由jQuery官方维护的UI方向的插件。</p>
+<p>官方API：<a target="_blank" rel="noopener" href="http://api.jqueryui.com/category/all/">http://api.jqueryui.com/category/all/</a></p>
+<p>其他教程：<a target="_blank" rel="noopener" href="http://www.runoob.com/jqueryui/jqueryui-tutorial.html">jQueryUI教程</a></p>
+<p>基本使用:</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//1.	引入jQueryUI的样式文件</span>
+<span class="token comment">//2.	引入jQuery</span>
+<span class="token comment">//3.	引入jQueryUI的js文件</span>
+<span class="token comment">//4.	使用jQueryUI功能</span></code></pre>
+
+<p>使用jquery.ui.js手风琴菜单</p>
+<h2 id="制作jquery插件"><a href="#制作jquery插件" class="headerlink" title="制作jquery插件"></a>制作jquery插件</h2><blockquote>
+<p>原理：jquery插件其实说白了就是给jquery对象增加一个新的方法，让jquery对象拥有某一个功能。</p>
+</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//通过给$.fn添加方法就能够扩展jquery对象</span>
+$<span class="token punctuation">.</span>fn<span class="token punctuation">.</span> <span class="token function-variable function">pluginName</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<hr>
+<h2 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接:"></a>原文链接:</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wuyxinu/article/details/103669718">https://blog.csdn.net/wuyxinu/article/details/103669718</a></p>
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"></div><div style="display:inline-block"></div><div style="display:inline-block"></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>大赵菌</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://zzychaser.top/posts/e47f544/" title="jQuery_Note">http://zzychaser.top/posts/e47f544/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/f2632dcb/" rel="prev" title="jQuery_Note1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">jQuery_Note1</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/cdff216d/" rel="next" title="div水平垂直居中的方法"><span class="post-nav-text">div水平垂直居中的方法</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>尝试使用 valine 评论系统。</span><br><span>您可以点击下方按钮切换对应评论系统。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/webyang-male/webyang-male.github.io/issues?q=is:open+jQuery_Note">GitHub Issues</a></div><div class="toggle-comment-system" style="margin: 1rem auto"><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#valine-container" onclick="showComment(this.dataset.target)">valine</a><style>.utterances {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target=".utterances" onclick="showComment(this.dataset.target)">utterances</a><style>#disqus_thread {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#disqus_thread" onclick="showComment(this.dataset.target)">disqusjs</a><script>function hideAllComment() {
+  //- hide all
+  document.querySelectorAll('.toggle-comment-btn').forEach((btn) => {
+    const container = document.querySelector(btn.dataset.target);
+    if (container) {
+      container.style.display = "none";
+    }
+  });
+}
+function showComment(target) {
+  hideAllComment();
+  //- show target
+  const targetContainer = document.querySelector(target);
+  if (targetContainer) {
+    targetContainer.style.display = "block";
+  }
+}
+</script></div><div id="disqus_thread"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqusjs.css"><script src="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqus.js"></script><script>const disqusjsConfig = {"enable":true,"shortname":"dazhao","apikey":"RyjBTPSwdNnrvz3hGg10KZWgMvaxmE0GuJEdpamXXSQdo97zBKUFv3v1oYaEyxxU","nocomment":"这里好冷清鸭,快来发表一下高见吧~"}
+function loadDisqus() {
+  const dsqjs = new DisqusJS(disqusjsConfig)
+}</script><script src="/js/comments/disqus.js"></script><div id="valine-container"></div><script>Yun.utils.getScript("https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js", () => {
+  const valineConfig = {"enable":true,"appId":"8GMDTzNh5Onyndyb0xIfgcd3-MdYXbMMI","appKey":"RIHIioX2uUer5PgWIDxsdriP","placeholder":"大佬求指教&nbsp_(:з」∠)_ （填写邮箱可以收到回复通知～）","avatar":null,"pageSize":10,"visitor":true,"highlight":true,"recordIP":true,"enableQQ":true,"serverURLs":null,"requiredFields":["nick","mail"],"emojiCDN":"//i0.hdslb.com/bfs/emote/","emojiMaps":{"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png","tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png","tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png","tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png","tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png","tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png","tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png","tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png","tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png","tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png","tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png","tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png","tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png","tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png","tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png","tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png","tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png","tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png","tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png","tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png","tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png","tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png","tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png","tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png","tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png","tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png","tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png","tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png","tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png","tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"},"el":"#valine-container","lang":"zh-cn"}
+  valineConfig.path = "/posts/e47f544/"
+  new Valine(valineConfig)
+}, window.Valine);</script><style>.utterances {
+  max-width: 100%;
+}</style><script src="https://utteranc.es/client.js" repo="webyang-male/webyang-male.github.io" issue-term="title" theme="photon-dark" crossorigin="anonymous" async></script></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015500号-1</a></div><div class="copyright"><span>&copy; 2020 – 2021 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.upyun.com/" title="大赵菌的赞助者们"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 大赵菌</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-08-23T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div><div class="footer-support"><span>本网站由</span><a class="footer-support-logo" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png" alt="又拍云"></a><span>提供 CDN 加速</span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><div class="aplayer no-destroy" id="aplayer" data-id="99315329" data-server="netease" data-type="playlist" data-fixed="true" data-theme="#0078E7" data-loop="all" data-order="list" data-preload="auto" data-volume="0.7" data-mutex data-lrctype="0" data-listmaxheight="340px" data-storagename="metingjs"></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"live2d-widget-model-koharu"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

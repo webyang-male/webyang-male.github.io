@@ -1,0 +1,505 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="大赵菌"><meta name="copyright" content="大赵菌"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>C数据的存储 | 大赵菌的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.24/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_j5gk85dg4pf.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link class="aplayer-style-marker" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script class="aplayer-script-marker" src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" defer></script><script class="meting-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"zzychaser.top","root":"/","title":"大赵菌的小站","version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://el-bot-api.vercel.app/api/words/young"},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["255, 182, 93","135, 206, 250","173, 255, 47","255, 165, 0","255, 127, 79"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="/css/custom.css"><script src="/js/FunnyTitle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="🌾C进阶学习笔记--数据的存储">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C数据的存储">
+<meta property="og:url" content="http://zzychaser.top/posts/fb66a821/index.html">
+<meta property="og:site_name" content="大赵菌的小站">
+<meta property="og:description" content="🌾C进阶学习笔记--数据的存储">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2021/04/17/int-c.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2021/04/17/float-c.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2021/04/17/c.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2021/04/17/-2021-04-17-200636.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2021/04/19/IEEE-754-32.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2021/04/19/IEEE-754-64.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2021/04/19/c.png">
+<meta property="article:published_time" content="2021-04-17T08:54:59.000Z">
+<meta property="article:modified_time" content="2021-05-05T13:29:28.485Z">
+<meta property="article:author" content="大赵菌">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.imagehub.cc/images/2021/04/17/int-c.png"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="大赵菌"><img width="96" loading="lazy" src="/img/avatar.png" alt="大赵菌"><span class="site-author-status" title="撸起袖子加油干">👨‍🎓</span></a><div class="site-author-name"><a href="/about/">大赵菌</a></div><a class="site-name" href="/about/site.html">大赵菌的小站</a><sub class="site-subtitle">阿洋前端博客</sub><div class="site-desciption">祝幸福🍀祝你,也祝我</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">99</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">14</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">26</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="QQ-857613711" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/webyang-male/testOnline.git" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="豆瓣" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=86882247" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/shi-guang-fu-bi" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/284523421" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微信公众号" target="_blank" style="color:#1AAD19"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-2-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Telegram Channel" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=JR0QEhMUFhIcEWVUVAtGSkg" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-send-plane-2-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:#FFB6C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a><a class="links-item hty-icon-button" href="/albums/" title="大赵の相册" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E7%BA%B2"><span class="toc-number">1.</span> <span class="toc-text">大纲</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text">数据类型介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%BD%92%E7%B1%BB%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">类型的基本归类：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E5%BD%A2%E5%AE%B6%E6%97%8F%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">整形家族：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E5%AE%B6%E6%97%8F%EF%BC%9A"><span class="toc-number">3.2.</span> <span class="toc-text">浮点数家族：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-number">3.3.</span> <span class="toc-text">构造类型：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.4.</span> <span class="toc-text">指针类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-number">3.5.</span> <span class="toc-text">空类型：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%BD%A2%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-number">4.</span> <span class="toc-text">整形在内存中的存储</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81"><span class="toc-number">4.1.</span> <span class="toc-text">原码、反码、补码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%A7%E5%B0%8F%E7%AB%AF%E4%BB%8B%E7%BB%8D"><span class="toc-number">4.2.</span> <span class="toc-text">大小端介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98"><span class="toc-number">4.2.1.</span> <span class="toc-text">习题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E5%9E%8B%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-number">5.</span> <span class="toc-text">浮点型在内存中的存储</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%9C%A8%E5%86%85%E5%AD%98%E5%AD%98%E6%94%BE%E4%BB%A3%E7%A0%81%E4%BE%8B"><span class="toc-number">5.1.</span> <span class="toc-text">浮点型数据在内存存放代码例:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BE%8BF1"><span class="toc-number">5.1.1.</span> <span class="toc-text">例F1</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E6%95%B0E%E4%BB%8E%E5%86%85%E5%AD%98%E4%B8%AD%E5%8F%96%E5%87%BA%E5%8F%AF%E5%88%86%E6%88%90%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5%EF%BC%9A"><span class="toc-number">5.2.</span> <span class="toc-text">指数E从内存中取出可分成三种情况：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#E%E4%B8%8D%E5%85%A8%E4%B8%BA0%E6%88%96%E4%B8%8D%E5%85%A8%E4%B8%BA1"><span class="toc-number">5.2.1.</span> <span class="toc-text">E不全为0或不全为1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#E%E5%85%A8%E4%B8%BA0"><span class="toc-number">5.2.2.</span> <span class="toc-text">E全为0</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#E%E5%85%A8%E4%B8%BA1"><span class="toc-number">5.2.3.</span> <span class="toc-text">E全为1</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%9C%88%EF%B8%8F%E4%BE%8BF1%E8%A7%A3%E6%9E%90"><span class="toc-number">5.3.</span> <span class="toc-text">✈️例F1解析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9A%A1%E4%B9%A0%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text">⚡习题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%98%82%E6%B8%85%E9%86%92%E4%B8%80%E4%B8%8B"><span class="toc-number">7.</span> <span class="toc-text">😂清醒一下</span></a></li></ol></div></div></div><div class="tag-cloud"><div class="tag-cloud-tags"><a href="/tags/C/" style="font-size: 30px; color: #0078e7">C</a> <a href="/tags/C%E8%AF%95%E9%A2%98/" style="font-size: 21px; color: #4d89c0">C试题</a> <a href="/tags/Echarts/" style="font-size: 12px; color: #999">Echarts</a> <a href="/tags/Electron/" style="font-size: 16.5px; color: #7391ad">Electron</a> <a href="/tags/MongoDB/" style="font-size: 12px; color: #999">MongoDB</a> <a href="/tags/Node/" style="font-size: 25.5px; color: #2680d4">Node</a> <a href="/tags/Promise/" style="font-size: 12px; color: #999">Promise</a> <a href="/tags/css/" style="font-size: 16.5px; color: #7391ad">css</a> <a href="/tags/flutter/" style="font-size: 12px; color: #999">flutter</a> <a href="/tags/jq/" style="font-size: 16.5px; color: #7391ad">jq</a></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://zzychaser.top/posts/fb66a821/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="大赵菌"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大赵菌的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">C数据的存储</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2021-04-17 16:54:59" itemprop="dateCreated datePublished" datetime="2021-04-17T16:54:59+08:00">2021-04-17</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-05-05 21:29:28" itemprop="dateModified" datetime="2021-05-05T21:29:28+08:00">2021-05-05</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">3.2k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">13m</span></span></span><span class="leancloud_visitors" id="/posts/fb66a821/" data-flag-title="C数据的存储"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/C/" style="--text-color:#BDB76B" itemprop="url" rel="index"><span itemprop="text">C</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/C/" style="--text-color:#FF6347"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">C</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><h3 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h3><ol>
+<li>数据类型详细介绍</li>
+<li>整形在内存中的存储：原码、反码、补码</li>
+<li>大小端字节序介绍及判断</li>
+<li>浮点型在内存中的存储解析</li>
+</ol>
+<h3 id="数据类型介绍"><a href="#数据类型介绍" class="headerlink" title="数据类型介绍"></a>数据类型介绍</h3><pre class="language-c" data-language="c"><code class="language-c"><span class="token comment">//内置类型</span>
+
+<span class="token keyword">char</span> <span class="token comment">//字符数据类型</span>
+<span class="token keyword">short</span> <span class="token comment">//短整型</span>
+<span class="token keyword">int</span> <span class="token comment">//整形</span>
+<span class="token keyword">long</span> <span class="token comment">//长整型</span>
+<span class="token keyword">long</span> <span class="token keyword">long</span> <span class="token comment">//更长的整形</span>
+<span class="token keyword">float</span> <span class="token comment">//单精度浮点数</span>
+<span class="token keyword">double</span> <span class="token comment">//双精度浮点数</span></code></pre>
+
+<p><font style="color:skyblue;">C语言数据类型分为内置类型和自定义类型(构造类型)</font></p>
+<p><strong>类型的意义：</strong></p>
+<p>​    1.类型开辟内存空间的大小（大小决定了使用范围）。</p>
+<p>​    2.决定看待内存空间的视角</p>
+<p><strong>代码实例及图解</strong></p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_CRT_SECURE_NO_WARNINGS</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+	<span class="token keyword">float</span> b <span class="token operator">=</span> <span class="token number">10.0</span><span class="token punctuation">;</span>
+	
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/MltCm"><img src="https://s1.imagehub.cc/images/2021/04/17/int-c.png" alt="int-c.png" loading="lazy"></a><a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/Ml8rN"><img src="https://s1.imagehub.cc/images/2021/04/17/float-c.png" alt="float-c.png" loading="lazy"></a></p>
+<p>从图例结果可以看到,定义的数值大小一致,但由于数据类型不同,其对应的在内存中存储的值不一样</p>
+<h3 id="类型的基本归类："><a href="#类型的基本归类：" class="headerlink" title="类型的基本归类："></a>类型的基本归类：</h3><h4 id="整形家族："><a href="#整形家族：" class="headerlink" title="整形家族："></a>整形家族：</h4><pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">char</span>
+<span class="token keyword">signed</span> <span class="token keyword">char</span>
+  
+<span class="token keyword">short</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">short</span> <span class="token punctuation">[</span><span class="token keyword">int</span><span class="token punctuation">]</span>
+<span class="token keyword">signed</span> <span class="token keyword">short</span> <span class="token punctuation">[</span><span class="token keyword">int</span><span class="token punctuation">]</span>
+  
+<span class="token keyword">int</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">int</span>
+<span class="token keyword">signed</span> <span class="token keyword">int</span>
+  
+<span class="token keyword">long</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token punctuation">[</span><span class="token keyword">int</span><span class="token punctuation">]</span>
+<span class="token keyword">signed</span> <span class="token keyword">long</span> <span class="token punctuation">[</span><span class="token keyword">int</span><span class="token punctuation">]</span></code></pre>
+
+<h4 id="浮点数家族："><a href="#浮点数家族：" class="headerlink" title="浮点数家族："></a>浮点数家族：</h4><pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">float</span>
+<span class="token keyword">double</span></code></pre>
+
+<h4 id="构造类型："><a href="#构造类型：" class="headerlink" title="构造类型："></a>构造类型：</h4><pre class="language-c" data-language="c"><code class="language-c">数组类型
+结构体类型 <span class="token keyword">struct</span>
+枚举类型 <span class="token keyword">enum</span>
+联合类型 <span class="token keyword">union</span></code></pre>
+
+<h4 id="指针类型"><a href="#指针类型" class="headerlink" title="指针类型"></a>指针类型</h4><pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token operator">*</span>pi<span class="token punctuation">;</span>
+<span class="token keyword">char</span> <span class="token operator">*</span>pc<span class="token punctuation">;</span>
+<span class="token keyword">float</span><span class="token operator">*</span> pf<span class="token punctuation">;</span>
+<span class="token keyword">void</span><span class="token operator">*</span> pv<span class="token punctuation">;</span></code></pre>
+
+<h4 id="空类型："><a href="#空类型：" class="headerlink" title="空类型："></a>空类型：</h4><blockquote>
+<p>void 表示空类型（无类型）<br>通常应用于函数的返回类型、函数的参数、指针类型。</p>
+</blockquote>
+<h3 id="整形在内存中的存储"><a href="#整形在内存中的存储" class="headerlink" title="整形在内存中的存储"></a>整形在内存中的存储</h3><p>一个变量的创建是要在内存中开辟空间的。空间的大小是根据不同的类型而决定的。</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_CRT_SECURE_NO_WARNINGS</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+	<span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">20</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>我们知道int类型为<code>a </code>分配四个字节的空间。</p>
+<p>那如何存储？接下来了解下面的概念：</p>
+<h4 id="原码、反码、补码"><a href="#原码、反码、补码" class="headerlink" title="原码、反码、补码"></a>原码、反码、补码</h4><p>计算机中的有符号数有三种表示方法，即原码、反码和补码。</p>
+<p>三种表示方法均有<font style="color:pink;font-size:18px;">符号位和数值位</font>两部分，符号位都是用0表示“正”，用1表示“负”，而数值位三种表示方法各不相同。</p>
+<blockquote>
+<p><strong>原码</strong><br>直接将二进制按照正负数的形式翻译成二进制就可以。</p>
+</blockquote>
+<blockquote>
+<p><strong>反码</strong><br>将原码的符号位不变，其他位依次按位取反就可以得到了。</p>
+</blockquote>
+<blockquote>
+<p><strong>补码</strong><br>反码+1就得到补码。</p>
+</blockquote>
+<p><font style="color:deepskyblue;">正数的原、反、补码都相同。</font></p>
+<p>✏️对于整形来说：数据存放内存中其实存放的是补码。</p>
+<blockquote>
+<p>在计算机系统中，数值一律用补码来表示和存储。原因在于，使用补码，可以将符号位和数值域统一处理； 同时，加法和减法也可以统一处理（CPU只有加法器）此外，补码与原码相互转换，其运算过程是相同的，不需要额外的硬件电路。</p>
+</blockquote>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_CRT_SECURE_NO_WARNINGS</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token comment">//00000000 00000000 00000000 00010100 - 原码</span>
+	<span class="token comment">//00000000 00000000 00000000 00010100 - 反码</span>
+	<span class="token comment">//00000000 00000000 00000000 00010100 - 补码</span>
+	<span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span><span class="token comment">//4个字节-32bit</span>
+	<span class="token comment">//10000000 00000000 00000000 00001010 - 原码</span>
+	<span class="token comment">//11111111 11111111 11111111 11110101 - 反码</span>
+	<span class="token comment">//1111 1111 1111 1111 1111 1111 1111 0110 - 补码</span>
+	<span class="token comment">//四位二进制可以转换为16进制数</span>
+	<span class="token comment">//变量b的补码转换成16进制数为:</span>
+	<span class="token comment">//FFFFFFF6</span>
+	<span class="token comment">//转换成地址:0xFFFFFFF6</span>
+	<span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">10</span><span class="token punctuation">;</span>
+	
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><strong>图例A:</strong></p>
+<p><img src="https://s1.imagehub.cc/images/2021/04/17/c.png" alt="c.png" loading="lazy"></p>
+<p>✍<strong>小结:</strong></p>
+<p><img src="https://s1.imagehub.cc/images/2021/04/17/-2021-04-17-200636.png" alt="-2021-04-17-200636.png" loading="lazy"></p>
+<p>我们可以看到对于a和b分别存储的是补码。但是我们发现顺序有点不对劲。 为什么？</p>
+<h4 id="大小端介绍"><a href="#大小端介绍" class="headerlink" title="大小端介绍"></a>大小端介绍</h4><blockquote>
+<p>大端（存储）模式，是指数据的低位保存在内存的高地址中，而数据的高位，保存在内存的低地址中；</p>
+<p>小端（存储）模式，是指数据的低位保存在内存的低地址中，而数据的高位,，保存在内存的高地址中。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/360037797">为什么存在 大端 模式 小端</a></p>
+<blockquote>
+<p>为什么会有大小端模式之分呢？</p>
+<p>这是因为在计算机系统中，我们是以字节为单位的，每个地址单元都对应着一个字节，一个字节为8bit。但是在C语言中除了8bit的char之外，还有16bit的short型，32bit的long型（要看具体的编译器），另外，对于位数大于8位的处理器，例如16位或者32位的处理器，由于寄存器宽度大于一个字节，那么必然存在着一个如何将多个字节安排的问题。因此就导致了大端存储模式和小端存储模式。</p>
+<p>例如一个16bit 的short 型x ，在内存中的地址为0x0010 ， x 的值为0x1122 ，那么0x11 为高字节， 0x22为低字节。对于大端模式，就将0x11 放在低地址中，即0x0010 中， 0x22 放在高地址中，即0x0011 中。小端模式，刚好相反。我们常用的X86 结构是小端模式，而KEIL C51 则为大端模式。很多的ARM，DSP都为小端模式。有些ARM处理器还可以由硬件来选择是大端模式还是小端模式。</p>
+</blockquote>
+<h5 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h5><p>设计一个小程序来判断当前机器的字节序</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_CRT_SECURE_NO_WARNINGS</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token function">check_sys</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+	<span class="token comment">//char* p = (char*)&amp;a;</span>
+	<span class="token comment">////*p返回1,小端 返回0,大端</span>
+	<span class="token comment">//return *p;</span>
+	<span class="token keyword">return</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token comment">//返回1,小端 返回0,大端</span>
+	<span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">check_sys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"小端\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">else</span>
+	<span class="token punctuation">&#123;</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"大端\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h3 id="浮点型在内存中的存储"><a href="#浮点型在内存中的存储" class="headerlink" title="浮点型在内存中的存储"></a>浮点型在内存中的存储</h3><p><strong>常见的浮点数：</strong><br>        <code>3.14159 1E10 </code></p>
+<blockquote>
+<p>浮点数家族包括： float、double、long double 类型。 </p>
+<p>浮点数表示的范围：<code>float.h</code>中定义</p>
+</blockquote>
+<p>浮点数存储代码例：</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_CRT_SECURE_NO_WARNINGS</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token number">9</span><span class="token punctuation">;</span>
+	<span class="token keyword">float</span> <span class="token operator">*</span>pFloat <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>n<span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"n的值为：%d\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//9</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*pFloat的值为：%f\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>pFloat<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//0.000000</span>
+	<span class="token operator">*</span>pFloat <span class="token operator">=</span> <span class="token number">9.0</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"num的值为：%d\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//1091567616</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*pFloat的值为：%f\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>pFloat<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//9.000000</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>num 和*pFloat 在内存中明明是同一个数，为什么浮点数和整数的解读结果会差别这么大？ </p>
+<p>📖详细解读：</p>
+<blockquote>
+<p>根据国际标准IEEE（电气和电子工程协会） 754，任意一个二进制浮点数V可以表示成下面的形式：</p>
+<ul>
+<li>​                (-1)^S * M * 2^E</li>
+<li>​                (-1)^s表示符号位，当s=0，V为正数；当s=1，V为负数。</li>
+<li>​                M表示有效数字，大于等于1，小于2。</li>
+<li>​                2^E表示指数位。</li>
+</ul>
+</blockquote>
+<p>举个🌰：</p>
+<p> 十进制的5.0，写成二进制是101.0 ，相当于1.01×2^2 。 那么，按照上面V的格式，可以得出s=0，M=1.01，E=2。<br>        十进制的-5.0，写成二进制是-101.0 ，相当于-1.01×2^2 。那么，s=1，M=1.01，E=2。</p>
+<p><font style="color:deepskyblue;font-size:17px;">IEEE 754规定： </font></p>
+<p>​        对于32位的浮点数，最高的1位是符号位s，接着的8位是指数E，剩下的23位为有效数字M。</p>
+<p><img src="https://s1.imagehub.cc/images/2021/04/19/IEEE-754-32.png" alt="IEEE-754-32.png" loading="lazy"></p>
+<p>​        对于64位的浮点数，最高的1位是符号位S，接着的11位是指数E，剩下的52位为有效数字M。</p>
+<p><img src="https://s1.imagehub.cc/images/2021/04/19/IEEE-754-64.png" alt="IEEE-754-64.png" loading="lazy"></p>
+<p>​        <font style="color:orange;">IEEE 754对有效数字M和指数E，还有一些特别规定。</font> 前面说过， 1≤M&lt;2 ，也就是说，M可以写成1.xxxxxx 的形式，其中xxxxxx表示小数部分。</p>
+<p>​       IEEE 754规定，在计算机内部保存M时，默认这个数的第一位总是1，因此可以被舍去，只保存后面的xxxxxx部分。比如保存1.01的时候，只保存01，等到读取的时候，再把第一位的1加上去。这样做的目的，是节省1位有效数字。以32位浮点数为例，留给M只有23位，将第一位的1舍去以后，等于可以保存24位有效数字。</p>
+<p>​     <font style="color:orange;">至于指数E，情况就比较复杂。</font><br>​            <font style="color:pink;">首先，E为一个无符号整数（unsigned int）</font> 这意味着，如果E为8位，它的取值范围为<code>0-255</code>；如果E为11位，它的取值范围为<code>0-2047</code>。但是，我们知道，科学计数法中的E是可以出现负数的，所以IEEE 754规定，存入内存时E的真实值必须再加上一个中间数， <font style="color:yellowgreen;">对于8位的E，这个中间数是127；对于11位的E，这个中间数是1023。</font>比如，2^10的E是10，所以保存成32位浮点数时，必须保存成10+127=137，即10001001。</p>
+<h4 id="浮点型数据在内存存放代码例"><a href="#浮点型数据在内存存放代码例" class="headerlink" title="浮点型数据在内存存放代码例:"></a><font style="color:deepskyblue;">浮点型数据在内存存放代码例:</font></h4><h5 id="例F1"><a href="#例F1" class="headerlink" title="例F1"></a>例F1</h5><pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_CRT_SECURE_NO_WARNINGS</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">float</span> f <span class="token operator">=</span> <span class="token number">5.5</span><span class="token punctuation">;</span>
+	<span class="token comment">//十进制5.5转换成二进制数-->101.1</span>
+	<span class="token comment">//转换成浮点数计数法-->(-1)^0 * 1.011*2^2</span>
+	<span class="token comment">//S=0 M=1.011 E =2</span>
+	<span class="token comment">/*
+	按照IEEE 754规则:
+	最高位符号位为0
+	E实际值为2,8个bit位=>2+127=>129
+	129的二进制序列为=>10000001
+	紧接着存放小数位=>011,但规定float有23个bit位
+	则小数位转换成二进制序列为:
+	011 0000 0000 0000 0000 0000
+	所以浮点数5.5的完整二级制序列为
+	0(符号位)+ 10000001 + 011 0000 0000 0000 0000 0000,即
+	0100 0000 1011 0000 0000 0000 0000 0000
+	转换成16进制数=>
+	0100 = 4 
+	0000 = 0
+	1011 = 11 = B
+	...
+	最终浮点数5.5的16进制数为=>0x40b00000
+	*/</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><img src="https://s1.imagehub.cc/images/2021/04/19/c.png" alt="c.png" loading="lazy"></p>
+<h4 id="指数E从内存中取出可分成三种情况："><a href="#指数E从内存中取出可分成三种情况：" class="headerlink" title="指数E从内存中取出可分成三种情况："></a><font style="color:orange;">指数E从内存中取出可分成三种情况：</font></h4><h5 id="E不全为0或不全为1"><a href="#E不全为0或不全为1" class="headerlink" title="E不全为0或不全为1"></a>E不全为0或不全为1</h5><blockquote>
+<p>这时，浮点数就采用下面的规则表示，即指数E的计算值减去127（或1023），得到真实值，再将有效数字M前加上第一位的1。 比如： 0.5（1/2）的二进制形式为0.1，由于规定正数部分必须为1，即将小数点右移1位，则为1.0*2^(-1)，其阶码为-1+127=126，表示为01111110，而尾数1.0去掉整数部分为0，补齐0到23位00000000000000000000000，则其二进制表示形式为:</p>
+</blockquote>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token number">0</span> <span class="token number">01111110</span> <span class="token number">00000000000000000000000</span></code></pre>
+
+<h5 id="E全为0"><a href="#E全为0" class="headerlink" title="E全为0"></a>E全为0</h5><blockquote>
+<p>这时，浮点数的指数E等于1-127（或者1-1023）即为真实值， 有效数字M不再加上第一位的1，而是还原为0.xxxxxx的小数。这样做是为了表示±0，以及接近于0的很小的数字</p>
+</blockquote>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token comment">//假设内存中存储这样一个二进制数</span>
+<span class="token number">0</span> <span class="token number">00000000</span> <span class="token number">01100000000000000000000</span>
+<span class="token comment">//则按照全0规则转换为</span>
+<span class="token operator">+</span><span class="token operator">/</span><span class="token operator">-</span>   <span class="token number">0.011</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token operator">^</span><span class="token operator">-</span><span class="token number">126</span></code></pre>
+
+<h5 id="E全为1"><a href="#E全为1" class="headerlink" title="E全为1"></a>E全为1</h5><blockquote>
+<p>这时，如果有效数字M全为0，表示±无穷大（正负取决于符号位s）</p>
+</blockquote>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token comment">//假设当前二进制序列值为</span>
+<span class="token number">0</span> <span class="token number">11111111</span> <span class="token number">0110000</span> <span class="token number">0000</span> <span class="token number">0000</span> <span class="token number">0000</span> <span class="token number">0000</span>
+<span class="token number">11111111</span> <span class="token operator">=</span> <span class="token number">255</span> <span class="token operator">=</span> E <span class="token operator">+</span> <span class="token number">127</span> <span class="token operator">=</span> <span class="token operator">></span>E <span class="token operator">=</span> <span class="token number">128</span>
+<span class="token comment">//如果转化成计数法将是如下情形(数值将正负无穷大)</span>
+<span class="token operator">+</span><span class="token operator">/</span><span class="token operator">-</span> <span class="token number">1.</span>XXX <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">^</span> <span class="token number">128</span></code></pre>
+
+<h4 id="✈️例F1解析"><a href="#✈️例F1解析" class="headerlink" title="✈️例F1解析"></a>✈️例F1解析</h4><pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_CRT_SECURE_NO_WARNINGS</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token comment">/*
+	整型9的原反补码:
+	00000000 00000000 00000000 00001001
+	*/</span>
+	<span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token number">9</span><span class="token punctuation">;</span>
+	<span class="token comment">/*
+		*pFloat
+		S=>0=>正数
+		E=>00000000=>全0情况
+		(-1)^0 * 0.0000000 00000000 00000000 00001001 * 2^-126
+		综上所述:该数值表示正无限趋近于0
+	*/</span>
+	<span class="token keyword">float</span> <span class="token operator">*</span>pFloat <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>n<span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"n的值为：%d\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//9</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*pFloat的值为：%f\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>pFloat<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//0.000000</span>
+
+	<span class="token operator">*</span>pFloat <span class="token operator">=</span> <span class="token number">9.0</span><span class="token punctuation">;</span>
+	<span class="token comment">/*
+		1001.0
+		1.001*2^3
+		(-1)^0 * 1.001 * 2^3
+		0(正数) + 3+127=130 + 001 0000 0000 0000 0000 0000
+		即:
+		0 10000010 001 0000 0000 0000 0000 0000
+		01000001000100000000000000000000
+	*/</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"num的值为：%d\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//1091567616</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*pFloat的值为：%f\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>pFloat<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//9.000000</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+
+
+<h3 id="⚡习题"><a href="#⚡习题" class="headerlink" title="⚡习题"></a>⚡习题</h3><p>下面这些代码例输出结果是什么?</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_CRT_SECURE_NO_WARNINGS</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token comment">//变量a的原反补码:</span>
+	<span class="token comment">//10000000 00000000 00000000 00000001</span>
+	<span class="token comment">//11111111 11111111 11111111 11111110</span>
+	<span class="token comment">//11111111 11111111 11111111 11111111</span>
+	<span class="token comment">//a一个字节只能存8个bit位->11111111</span>
+	<span class="token comment">//a是有符号位char,则最高位为符号位进行整型提升,补码结果:</span>
+	<span class="token comment">//11111111 11111111 11111111 11111111</span>
+	<span class="token comment">//转换成原码还是10000000 00000000 00000000 00000001,所以打印-1</span>
+	<span class="token keyword">char</span> a <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token comment">//变量b的补码:11111111</span>
+	<span class="token keyword">signed</span> <span class="token keyword">char</span> b <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token comment">//变量c的补码:11111111</span>
+	<span class="token comment">//无符号字符变量c,整型提升高位补0,则32位完整补码为:00000000 00000000 00000000 11111111</span>
+	<span class="token comment">//最高位是0,为正数,则原反补相同</span>
+	<span class="token comment">//11111111装换成十进制就是255</span>
+	<span class="token keyword">unsigned</span> <span class="token keyword">char</span> c <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">" a=%d\n b=%d\n c=%d\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_CRT_SECURE_NO_WARNINGS</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token comment">//10000000 00000000 00000000 10000000</span>
+	<span class="token comment">//11111111 11111111 11111111 01111111</span>
+	<span class="token comment">//11111111 11111111 11111111 10000000 -补码</span>
+	<span class="token comment">//10000000</span>
+	<span class="token comment">//整型提升结果:</span>
+	<span class="token comment">//11111111 11111111 11111111 10000000 -补码</span>
+
+	<span class="token keyword">char</span> a <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">128</span><span class="token punctuation">;</span>
+	<span class="token comment">//%d - 打印十进制的有符号数字</span>
+	<span class="token comment">//%u - 打印十进制的无符号数字 - 则原反补相同</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%u\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//输出补码转换后的十进制结果 - 4294967168</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_CRT_SECURE_NO_WARNINGS</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;Windows.h></span><span class="token comment">//Sleep休眠函数头文件</span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token comment">//无符号数没有符号位(0/1)</span>
+	<span class="token keyword">unsigned</span> <span class="token keyword">int</span> i<span class="token punctuation">;</span><span class="token comment">//-1在无符号数定义下被认为是一个超大二进制数(最终转为十进制数输出)</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">9</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%u\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">1500</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//毫秒单位</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_CRT_SECURE_NO_WARNINGS</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token comment">//char的取值范围为 - 128~127</span>
+	<span class="token keyword">char</span> a<span class="token punctuation">[</span><span class="token number">1000</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//下标0-999</span>
+	<span class="token keyword">int</span> i<span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">1000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+		a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">-</span> i<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//打印\0之前的长度</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_CRT_SECURE_NO_WARNINGS</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">unsigned</span> <span class="token keyword">char</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//0-255</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token comment">//i &lt;= 255恒成立</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">255</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"hello world\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h3 id="😂清醒一下"><a href="#😂清醒一下" class="headerlink" title="😂清醒一下"></a>😂清醒一下</h3><iframe height="691" src="https://www.yunyoujun.cn/air-conditioner/"></iframe>
+
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"></div><div style="display:inline-block"></div><div style="display:inline-block"></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>大赵菌</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://zzychaser.top/posts/fb66a821/" title="C数据的存储">http://zzychaser.top/posts/fb66a821/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/b3621a9f/" rel="prev" title="C指针的进阶"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">C指针的进阶</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/41ac2d81/" rel="next" title="C基础结构体"><span class="post-nav-text">C基础结构体</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>尝试使用 valine 评论系统。</span><br><span>您可以点击下方按钮切换对应评论系统。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/webyang-male/webyang-male.github.io/issues?q=is:open+C数据的存储">GitHub Issues</a></div><div class="toggle-comment-system" style="margin: 1rem auto"><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#valine-container" onclick="showComment(this.dataset.target)">valine</a><style>.utterances {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target=".utterances" onclick="showComment(this.dataset.target)">utterances</a><style>#disqus_thread {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#disqus_thread" onclick="showComment(this.dataset.target)">disqusjs</a><script>function hideAllComment() {
+  //- hide all
+  document.querySelectorAll('.toggle-comment-btn').forEach((btn) => {
+    const container = document.querySelector(btn.dataset.target);
+    if (container) {
+      container.style.display = "none";
+    }
+  });
+}
+function showComment(target) {
+  hideAllComment();
+  //- show target
+  const targetContainer = document.querySelector(target);
+  if (targetContainer) {
+    targetContainer.style.display = "block";
+  }
+}
+</script></div><div id="disqus_thread"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqusjs.css"><script src="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqus.js"></script><script>const disqusjsConfig = {"enable":true,"shortname":"dazhao","apikey":"RyjBTPSwdNnrvz3hGg10KZWgMvaxmE0GuJEdpamXXSQdo97zBKUFv3v1oYaEyxxU","nocomment":"这里好冷清鸭,快来发表一下高见吧~"}
+function loadDisqus() {
+  const dsqjs = new DisqusJS(disqusjsConfig)
+}</script><script src="/js/comments/disqus.js"></script><div id="valine-container"></div><script>Yun.utils.getScript("https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js", () => {
+  const valineConfig = {"enable":true,"appId":"8GMDTzNh5Onyndyb0xIfgcd3-MdYXbMMI","appKey":"RIHIioX2uUer5PgWIDxsdriP","placeholder":"大佬求指教&nbsp_(:з」∠)_ （填写邮箱可以收到回复通知～）","avatar":null,"pageSize":10,"visitor":true,"highlight":true,"recordIP":true,"enableQQ":true,"serverURLs":null,"requiredFields":["nick","mail"],"emojiCDN":"//i0.hdslb.com/bfs/emote/","emojiMaps":{"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png","tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png","tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png","tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png","tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png","tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png","tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png","tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png","tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png","tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png","tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png","tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png","tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png","tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png","tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png","tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png","tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png","tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png","tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png","tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png","tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png","tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png","tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png","tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png","tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png","tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png","tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png","tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png","tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png","tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"},"el":"#valine-container","lang":"zh-cn"}
+  valineConfig.path = "/posts/fb66a821/"
+  new Valine(valineConfig)
+}, window.Valine);</script><style>.utterances {
+  max-width: 100%;
+}</style><script src="https://utteranc.es/client.js" repo="webyang-male/webyang-male.github.io" issue-term="title" theme="photon-dark" crossorigin="anonymous" async></script></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015500号-1</a></div><div class="copyright"><span>&copy; 2020 – 2021 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.upyun.com/" title="大赵菌的赞助者们"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 大赵菌</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-08-23T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div><div class="footer-support"><span>本网站由</span><a class="footer-support-logo" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png" alt="又拍云"></a><span>提供 CDN 加速</span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><div class="aplayer no-destroy" id="aplayer" data-id="99315329" data-server="netease" data-type="playlist" data-fixed="true" data-theme="#0078E7" data-loop="all" data-order="list" data-preload="auto" data-volume="0.7" data-mutex data-lrctype="0" data-listmaxheight="340px" data-storagename="metingjs"></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"live2d-widget-model-koharu"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

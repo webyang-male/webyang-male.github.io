@@ -1,0 +1,75 @@
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* body::before {
+  background-image: url("https://s1.imagehub.cc/images/2021/05/03/bg-light.jpg");
+} */
+/* 侧边栏透明 */
+.sidebar {
+  opacity: 0.7;
+}
+/* 阅读更多按钮 */
+a.hty-button:hover {
+  background-color: #ffb6c1 !important;
+}
+/* 网站公告 */
+div.notice {
+  color: #ffb6c1;
+}
+/* 目录 */
+a.category-list-link {
+  color: #0078e7 !important;
+}
+span.category-list-count {
+  color: #3cb371;
+}
+.category-list li:hover a {
+  color: tomato !important;
+}
+
+/* 头像旋转 */
+.site-author-avatar img:hover {
+  transform: rotate(360deg);
+  animation: rotation 2s linear infinite;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* 折叠菜单 */
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+  background-color: orange !important;
+}
+/* 评论样式 */
+@media screen and (max-width: 500px) {
+  div.toggle-comment-system > a {
+    display: inline-flex !important;
+    justify-content: space-between !important;
+    align-items: center;
+    margin: 0 0.2rem;
+    max-width: 33.333% !important;
+  }
+}
+.vheader {
+  font-size: 1.2em;
+}
+.vheader > .vnick {
+  color: gold !important;
+}
+input.vmail {
+  color: rgba(0, 120, 231, 0.9) !important;
+}
+input.vlink {
+  color: tomato !important;
+}
+textarea#veditor {
+  font-size: 1em;
+  color: pink !important;
+}
+/* 页脚 */
+footer > div:hover {
+  color: tomato !important;
+}

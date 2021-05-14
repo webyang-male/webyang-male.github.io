@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="大赵菌"><meta name="copyright" content="大赵菌"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>运算符 | 大赵菌的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.24/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_j5gk85dg4pf.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link class="aplayer-style-marker" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script class="aplayer-script-marker" src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" defer></script><script class="meting-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"zzychaser.top","root":"/","title":"大赵菌的小站","version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://el-bot-api.vercel.app/api/words/young"},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["255, 182, 93","135, 206, 250","173, 255, 47","255, 165, 0","255, 127, 79"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="/css/custom.css"><script src="/js/FunnyTitle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="一.运算符 ​        运算符也叫操作符,操作符是我们如何在变量和值时实施操作的方式,是我们发起运算最简单的方式.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运算符">
+<meta property="og:url" content="http://zzychaser.top/posts/f29265a7/index.html">
+<meta property="og:site_name" content="大赵菌的小站">
+<meta property="og:description" content="一.运算符 ​        运算符也叫操作符,操作符是我们如何在变量和值时实施操作的方式,是我们发起运算最简单的方式.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-06T00:34:27.000Z">
+<meta property="article:modified_time" content="2021-04-27T15:10:31.612Z">
+<meta property="article:author" content="大赵菌">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="大赵菌"><img width="96" loading="lazy" src="/img/avatar.png" alt="大赵菌"><span class="site-author-status" title="撸起袖子加油干">👨‍🎓</span></a><div class="site-author-name"><a href="/about/">大赵菌</a></div><a class="site-name" href="/about/site.html">大赵菌的小站</a><sub class="site-subtitle">阿洋前端博客</sub><div class="site-desciption">祝幸福🍀祝你,也祝我</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">99</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">14</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">26</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="QQ-857613711" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/webyang-male/testOnline.git" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="豆瓣" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=86882247" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/shi-guang-fu-bi" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/284523421" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微信公众号" target="_blank" style="color:#1AAD19"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-2-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Telegram Channel" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=JR0QEhMUFhIcEWVUVAtGSkg" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-send-plane-2-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:#FFB6C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a><a class="links-item hty-icon-button" href="/albums/" title="大赵の相册" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.</span> <span class="toc-text">一.运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.0.1.</span> <span class="toc-text">1赋值运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E6%9E%84"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">解构</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.比较运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.算术运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.逻辑运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.0.5.</span> <span class="toc-text">5 .字符串运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E6%9D%A1%E4%BB%B6-%E4%B8%89%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.0.6.</span> <span class="toc-text">6.条件(三元运算符)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E9%80%97%E5%8F%B7%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.0.7.</span> <span class="toc-text">7.逗号操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-%E4%B8%80%E5%85%83%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.0.8.</span> <span class="toc-text">8.一元操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#delete"><span class="toc-number">1.0.8.1.</span> <span class="toc-text">delete</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#typeof"><span class="toc-number">1.0.8.2.</span> <span class="toc-text">typeof</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#void"><span class="toc-number">1.0.8.3.</span> <span class="toc-text">void</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.0.9.</span> <span class="toc-text">9关系运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#in"><span class="toc-number">1.0.9.1.</span> <span class="toc-text">in</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#instanceof"><span class="toc-number">1.0.9.2.</span> <span class="toc-text">instanceof</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><div class="tag-cloud"><div class="tag-cloud-tags"><a href="/tags/C/" style="font-size: 30px; color: #0078e7">C</a> <a href="/tags/C%E8%AF%95%E9%A2%98/" style="font-size: 21px; color: #4d89c0">C试题</a> <a href="/tags/Echarts/" style="font-size: 12px; color: #999">Echarts</a> <a href="/tags/Electron/" style="font-size: 16.5px; color: #7391ad">Electron</a> <a href="/tags/MongoDB/" style="font-size: 12px; color: #999">MongoDB</a> <a href="/tags/Node/" style="font-size: 25.5px; color: #2680d4">Node</a> <a href="/tags/Promise/" style="font-size: 12px; color: #999">Promise</a> <a href="/tags/css/" style="font-size: 16.5px; color: #7391ad">css</a> <a href="/tags/flutter/" style="font-size: 12px; color: #999">flutter</a> <a href="/tags/jq/" style="font-size: 16.5px; color: #7391ad">jq</a></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://zzychaser.top/posts/f29265a7/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="大赵菌"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大赵菌的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">运算符</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-09-06 08:34:27" itemprop="dateCreated datePublished" datetime="2020-09-06T08:34:27+08:00">2020-09-06</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-04-27 23:10:31" itemprop="dateModified" datetime="2021-04-27T23:10:31+08:00">2021-04-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">2k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">8m</span></span></span><span class="leancloud_visitors" id="/posts/f29265a7/" data-flag-title="运算符"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E7%AC%94%E8%AE%B0/" style="--text-color:#FFD700" itemprop="url" rel="index"><span itemprop="text">笔记</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/js/" style="--text-color:#FFFF00"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">js</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><h2 id="一-运算符"><a href="#一-运算符" class="headerlink" title="一.运算符"></a>一.运算符</h2><blockquote>
+<p>​        运算符也叫操作符,操作符是我们如何在变量和值时实施操作的方式,是我们发起运算最简单的方式.</p>
+</blockquote>
+<span id="more"></span>
+
+<p>JavaScript 拥有如下类型的运算符。</p>
+<blockquote>
+<ul>
+<li>赋值运算符((Arithmetic operators)</li>
+<li>比较运算符((Comparison operators)</li>
+<li>算法运算符((Logical operators))</li>
+<li>位运算符(Bitwise operators)</li>
+<li>逻辑运算符(Logical operators)</li>
+<li>字符串运算符(String operators)</li>
+<li>条件（三元）运算符(Conditional operator)</li>
+<li>逗号运算符(Comma operator)</li>
+<li>一元运算符(Unary operators)</li>
+<li>关系运算符(Relational operator)</li>
+</ul>
+</blockquote>
+<h4 id="1赋值运算符"><a href="#1赋值运算符" class="headerlink" title="1赋值运算符"></a>1<code>赋值运算符</code></h4><p>一个 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Assignment_Operators">赋值运算符(assignment operator)</a> 将它右边操作数的值赋给它左边的操作数。最简单的赋值运算符是等于（<code>=</code>），它将右边的操作数值赋给左边的操作数。那么 <code>x = y</code> 就是将 y 的值赋给 x。</p>
+<blockquote>
+<p>=  赋值</p>
+<p>+= 加法赋值</p>
+<p>-= 减法赋值</p>
+<p>*= 乘法赋值</p>
+<p>/=  除法赋值</p>
+<p>%= 取余赋值</p>
+<p>**= 求幂赋值</p>
+<p>++</p>
+<p>…</p>
+</blockquote>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> num <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment">//将数字2的值赋值给变量a</span>
+num <span class="token operator">+=</span> <span class="token number">3</span><span class="token punctuation">;</span><span class="token comment">//  等价于 a = a + 3;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token comment">// 7 </span>
+<span class="token keyword">let</span> num_a <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+num_a <span class="token operator">**=</span> <span class="token number">3</span><span class="token punctuation">;</span> <span class="token comment">// 等价为 num_a = num_a * num_a *  num_a 即 num_a的3次方</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token comment">// 8</span></code></pre>
+
+<h5 id="解构"><a href="#解构" class="headerlink" title="解构"></a><code>解构</code></h5><p>对于更复杂的赋值，解构赋值语法是一个能从数组或对象对应的数组结构或对象字面量里提取数据的 <code>Javascript</code> 表达式。</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token string">'three'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">//不使用解构</span>
+<span class="token keyword">let</span> one <span class="token operator">=</span> foo<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    tow <span class="token operator">=</span> foo<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    three<span class="token operator">=</span>  foo<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">//使用解构赋值</span>
+<span class="token keyword">let</span> <span class="token punctuation">[</span>one<span class="token punctuation">,</span> two<span class="token punctuation">,</span> three<span class="token punctuation">]</span> <span class="token operator">=</span> foo<span class="token punctuation">;</span></code></pre>
+
+<h4 id="2-比较运算符"><a href="#2-比较运算符" class="headerlink" title="2.比较运算符"></a>2.<code>比较运算符</code></h4><p>比较运算符]比较它的操作数并返回一个基于表达式是否为真的逻辑值,一般返回true 或false.</p>
+<table>
+<thead>
+<tr>
+<th align="left">等于  ==</th>
+<th>如果两边操作数相等返回true</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">不等于 !=</td>
+<td>如果两边操作数不相等返回true</td>
+</tr>
+<tr>
+<td align="left">全等 ===</td>
+<td>两边操作数相等且类型相同,返回true</td>
+</tr>
+<tr>
+<td align="left">不全等 !==</td>
+<td>两边操作数不相等且类型不相同,返回true</td>
+</tr>
+<tr>
+<td align="left">大于 &gt;</td>
+<td>左边操作数大于右边操作数返回true</td>
+</tr>
+<tr>
+<td align="left">大于等于 &gt;=</td>
+<td>左边的操作数大于或等于右边的操作数返回true</td>
+</tr>
+<tr>
+<td align="left">小于</td>
+<td>左边的操作数小于右边返回true</td>
+</tr>
+<tr>
+<td align="left">小于等于</td>
+<td>左边的操作数小于等于右边的操作数返回true</td>
+</tr>
+</tbody></table>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    b <span class="token operator">=</span> <span class="token string">'1'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a <span class="token operator">===</span> b<span class="token punctuation">)</span><span class="token comment">// 返回false  因为全等两边操作数类型不相同;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">40</span> <span class="token operator">></span> <span class="token number">50</span><span class="token punctuation">)</span> <span class="token comment">//fasle</span></code></pre>
+
+<h4 id="3-算术运算符"><a href="#3-算术运算符" class="headerlink" title="3.算术运算符"></a>3.<code>算术运算符</code></h4><p>算术运算符使用`作为操作数并返回一个数字,标准的算术运算符就是加减乘除;</p>
+<p>加 <code>+</code> 减 <code>-</code> 乘 <code>*</code> 除 <code>\</code> 取余数 <code>%</code> 括号()</p>
+<p>除了这几种标准运算符 还有 自增 <code>++</code>, 自减 <code>--</code>, 一元负值符,<code>-</code>,一元正值符,<code>+</code>,指数运算符 <code>**</code>;</p>
+<pre class="language-js" data-language="js"><code class="language-js">consoel<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token number">1</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment">//3 两数之和</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token number">1</span> <span class="token operator">-</span> <span class="token number">4</span> <span class="token punctuation">)</span><span class="token comment">// - 3 两数之差</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token number">1</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment">// 2 两数之积</span>
+console<span class="token punctuation">.</span><span class="token function">loh</span><span class="token punctuation">(</span> <span class="token number">6</span> <span class="token operator">/</span> <span class="token number">3</span> <span class="token punctuation">)</span> <span class="token comment">// 2 两数之商</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token number">2</span> <span class="token operator">%</span> <span class="token number">3</span> <span class="token punctuation">)</span> <span class="token comment">//2 两数之余</span>
+<span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+a<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token comment">//等价为 a += 1;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token comment">// 2 </span>
+<span class="token operator">-</span>a<span class="token punctuation">;</span><span class="token comment">// 等价于 a = -a 返回操作数的负值.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//-3</span></code></pre>
+
+<h4 id="4-逻辑运算符"><a href="#4-逻辑运算符" class="headerlink" title="4.逻辑运算符"></a>4.<code>逻辑运算符</code></h4><p>逻辑运算符常用于布尔（逻辑）值之间; 当操作数都是布尔值时，返回值也是布尔值。</p>
+<blockquote>
+<p>且 或非</p>
+<p>&amp;&amp; 逻辑与预算(且);   <code>&amp;&amp;</code>用于布尔值时，当操作数都为true时返回true；否则返回false.</p>
+<p>|| 逻辑或运算(或);     <code>||</code>用于布尔值时，当操作数有一个为true时返回true；如果两个操作数都是false返回false;</p>
+<p>! 逻辑非元素 (非);       如果操作数能够转为true则返回false, 否则返回true;</p>
+</blockquote>
+<pre class="language-js" data-language="js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token boolean">true</span> <span class="token operator">&amp;&amp;</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token boolean">true</span> <span class="token operator">||</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token comment">// false;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token boolean">true</span> <span class="token operator">||</span> <span class="token boolean">false</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token boolean">true</span> <span class="token operator">||</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token comment">// true</span>
+短路求值</code></pre>
+
+<p>作为逻辑表达式进行求值是从左到右，它们是为可能的“短路”的出现而使用以下规则进行测试：</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token boolean">false</span> <span class="token operator">&amp;&amp;</span> angthing <span class="token comment">// 被短路求值为fasle;</span>
+<span class="token boolean">true</span> <span class="token operator">||</span> anything <span class="token comment">// 被短路求值为 true</span>
+<span class="token comment">//anythin表示任意变量, anything部分不会被求值，所以这样做不会产生任何副作用。</span></code></pre>
+
+<h4 id="5-字符串运算符"><a href="#5-字符串运算符" class="headerlink" title="5 .字符串运算符"></a>5 .<code>字符串运算符</code></h4><p>除了比较操作符，它可以在字符串值中使用，连接操作符（+）连接两个字符串值相连接，返回另一个字符串，它是两个操作数串的结合。</p>
+<pre class="language-js" data-language="js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"my "</span> <span class="token operator">+</span> <span class="token string">' name '</span> <span class="token operator">+</span> <span class="token string">' is ayu'</span><span class="token punctuation">)</span><span class="token comment">//my  name  is ayu</span></code></pre>
+
+<p>简写操作符+= 也可以用来拼接字符串,例如:</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">'string'</span><span class="token punctuation">;</span>
+str<span class="token operator">+=</span><span class="token string">'data'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token comment">// stringdata</span></code></pre>
+
+<h4 id="6-条件-三元运算符"><a href="#6-条件-三元运算符" class="headerlink" title="6.条件(三元运算符)"></a>6.<code>条件(三元运算符)</code></h4><p><code>条件操作符</code>是JavaScript中唯一需要三个操作数的运算符.运算的结果根据给定条件在两个值中取一.语法为:</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token comment">//条件 ?  值一 : 值二</span>
+<span class="token keyword">let</span> num <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> yesOrNo <span class="token operator">=</span> <span class="token punctuation">(</span>num <span class="token operator">>=</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">?</span>  <span class="token string">'yes'</span> <span class="token operator">:</span> <span class="token string">'no'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>yesOrNo<span class="token punctuation">)</span><span class="token comment">// no</span>
+<span class="token comment">//当num大于等于 10 条件成立返回true时, 将'yes'赋值给yesOrNo, 否则赋值'no'</span></code></pre>
+
+<h4 id="7-逗号操作符"><a href="#7-逗号操作符" class="headerlink" title="7.逗号操作符"></a>7.<code>逗号操作符</code></h4><p><strong>逗号操作符</strong> 对它的每个操作数求值（从左到右），并返回最后一个操作数的值。</p>
+<p>语法 expr1, expr2,expr3…. 参数任意表达式</p>
+<p>描述:</p>
+<p>当你想要在期望一个表达式的位置包含多个表达式时，可以使用逗号操作符。这个操作符最常用的一种情况是：<code>for</code> 循环中提供多个参数。</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+x <span class="token operator">=</span> <span class="token punctuation">(</span>x<span class="token operator">++</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token comment">// 5</span>
+<span class="token keyword">let</span> a<span class="token punctuation">,</span>b <span class="token operator">=</span><span class="token number">43</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token comment">//undefined ;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token comment">// 43</span></code></pre>
+
+<h4 id="8-一元操作符"><a href="#8-一元操作符" class="headerlink" title="8.一元操作符"></a>8.<code>一元操作符</code></h4><p>一元操作符仅仅操作一个操作数.</p>
+<h5 id="delete"><a href="#delete" class="headerlink" title="delete"></a><code>delete</code></h5><p><code>delete</code>操作符, 删除一个对象或一个对象的属性或者一个数组中某一个的键值.语法如下</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">delete</span> objectName<span class="token punctuation">;</span>
+<span class="token keyword">delete</span> objectName<span class="token punctuation">.</span>property<span class="token punctuation">;</span>
+<span class="token keyword">delete</span> objectName<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">delete</span> property<span class="token punctuation">;</span> <span class="token comment">// legal only within a with statement</span></code></pre>
+
+<p><code>objectName</code>是一个对象名，<code>property</code> 是一个已经存在的属性，<code>index</code>是数组中的一个已经存在的键值的索引值。</p>
+<p>你能使用 <code>delete</code> 删除各种各样的隐式声明， 但是被<code>var</code>声明的除外。</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token comment">// 如果删除成功返回 true  属性或元素会变成undefined   删除失败 返回false</span>
+x <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> y <span class="token operator">=</span> <span class="token number">43</span><span class="token punctuation">;</span>
+myobj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Number</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myobj<span class="token punctuation">.</span>h <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>    <span class="token comment">// 创建一个属性 h</span>
+<span class="token keyword">delete</span> x<span class="token punctuation">;</span>       <span class="token comment">//返回true</span>
+<span class="token keyword">delete</span> y<span class="token punctuation">;</span>       <span class="token comment">// 返回false  如果用var 声明则不能删除</span>
+<span class="token keyword">delete</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token punctuation">;</span> <span class="token comment">// 返回false  不能删除预定义的方法</span>
+<span class="token keyword">delete</span> myobj<span class="token punctuation">.</span>h<span class="token punctuation">;</span> <span class="token comment">//返回 true   可以删除用户定义的属性吗</span>
+<span class="token keyword">delete</span> myobj<span class="token punctuation">;</span>   <span class="token comment">// 返回 true 可以删除隐式声明的变量</span>
+删除数组的元素</code></pre>
+
+<p>删除数组中的元素时,数组的长度是不变的, 值变为undefined;</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">43</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">546</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">delete</span> arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token comment">//[empty, 5, 4, 546]</span>
+arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token comment">//[1, 5, 4, 546]</span>
+<span class="token comment">//empty 表示空 数组下标0对应的数字变为空, 但下标依然存在</span></code></pre>
+
+<h5 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a><code>typeof</code></h5><p><code>typeof</code>操作符 可以通过下面两种方式使用.</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">typeof</span> operand
+<span class="token keyword">typeof</span> <span class="token punctuation">(</span>operand<span class="token punctuation">)</span></code></pre>
+
+<p>typeof 操作符返回一个表示 operand 类型的字符串值。operand 可为字符串、变量、关键词或对象，其类型将被返回。operand 两侧的括号为可选。</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> <span class="token function-variable function">fn</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">'data'</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> num <span class="token operator">=</span> <span class="token number">43</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> today <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> fn<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//function</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// string</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//Number</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>today<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// object</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token comment">// boolean</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token comment">// object; null</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span><span class="token comment">//undefined</span></code></pre>
+
+<h5 id="void"><a href="#void" class="headerlink" title="void"></a><code>void</code></h5><pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">void</span> <span class="token punctuation">(</span>expression<span class="token punctuation">)</span>
+<span class="token keyword">void</span> expression</code></pre>
+
+<p>void运算符表示一个运算没有返回值.</p>
+<p>例如如下创建了一个超链接的文本, 当用户点击文本时, 不会任何效果.</p>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>javascript:void(0)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Click here to do nothing<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+
+<h4 id="9关系运算符"><a href="#9关系运算符" class="headerlink" title="9关系运算符"></a>9<code>关系运算符</code></h4><p>关系运算符对操作数进行比较, 根据比较结果真或假, 返回相应的布尔值.</p>
+<h5 id="in"><a href="#in" class="headerlink" title="in"></a><code>in</code></h5><p><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in"><code>in</code>操作符</a>，如果所指定的<strong>属性</strong>确实存在于所指定的对象中，则会返回<code>true</code>，语法如下：</p>
+<pre class="language-js" data-language="js"><code class="language-js">propNameOrNumber <span class="token keyword">in</span> objectName</code></pre>
+
+<p>在这里 <code>propNameOrNumber</code>可以是一个代表着属性名的字符串或者是一个代表着数组索引的数值表达式，而<code>objectName</code>则是一个对象名。</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token string">"data1"</span><span class="token punctuation">,</span><span class="token string">"data2"</span><span class="token punctuation">,</span><span class="token string">"data3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span>name<span class="token operator">:</span><span class="token string">"ayu"</span><span class="token punctuation">,</span>age<span class="token operator">:</span><span class="token number">78</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">0</span> <span class="token keyword">in</span> arr<span class="token punctuation">)</span><span class="token comment">// return true;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'data1'</span> <span class="token keyword">in</span> arr<span class="token punctuation">)</span> <span class="token comment">// return true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'name'</span> <span class="token keyword">in</span> obj<span class="token punctuation">)</span><span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>name <span class="token keyword">in</span> obj<span class="token punctuation">)</span> <span class="token comment">// false</span></code></pre>
+
+<h5 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a><code>instanceof</code></h5><p>如果所判断的对象确实是所指定的类型, 则返回true , 语法如下:</p>
+<pre class="language-js" data-language="js"><code class="language-js">objectName <span class="token keyword">instanceof</span> <span class="token class-name">objectType</span></code></pre>
+
+<p><code>objectName</code> 是需要做判别的对象的名称,而<code>objectType</code>是假定的对象的类型, 例如<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Date"><code>Date</code></a>或 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Array"><code>Array</code></a>.</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2020</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>date <span class="token keyword">instanceof</span> <span class="token class-name">Date</span><span class="token punctuation">)</span><span class="token comment">//true</span></code></pre>
+
+
+
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"></div><div style="display:inline-block"></div><div style="display:inline-block"></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>大赵菌</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://zzychaser.top/posts/f29265a7/" title="运算符">http://zzychaser.top/posts/f29265a7/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/1899c4f/" rel="prev" title="Css书写规范及顺序"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">Css书写规范及顺序</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/3a595082/" rel="next" title="Js变量和数据类型"><span class="post-nav-text">Js变量和数据类型</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>尝试使用 valine 评论系统。</span><br><span>您可以点击下方按钮切换对应评论系统。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/webyang-male/webyang-male.github.io/issues?q=is:open+运算符">GitHub Issues</a></div><div class="toggle-comment-system" style="margin: 1rem auto"><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#valine-container" onclick="showComment(this.dataset.target)">valine</a><style>.utterances {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target=".utterances" onclick="showComment(this.dataset.target)">utterances</a><style>#disqus_thread {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#disqus_thread" onclick="showComment(this.dataset.target)">disqusjs</a><script>function hideAllComment() {
+  //- hide all
+  document.querySelectorAll('.toggle-comment-btn').forEach((btn) => {
+    const container = document.querySelector(btn.dataset.target);
+    if (container) {
+      container.style.display = "none";
+    }
+  });
+}
+function showComment(target) {
+  hideAllComment();
+  //- show target
+  const targetContainer = document.querySelector(target);
+  if (targetContainer) {
+    targetContainer.style.display = "block";
+  }
+}
+</script></div><div id="disqus_thread"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqusjs.css"><script src="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqus.js"></script><script>const disqusjsConfig = {"enable":true,"shortname":"dazhao","apikey":"RyjBTPSwdNnrvz3hGg10KZWgMvaxmE0GuJEdpamXXSQdo97zBKUFv3v1oYaEyxxU","nocomment":"这里好冷清鸭,快来发表一下高见吧~"}
+function loadDisqus() {
+  const dsqjs = new DisqusJS(disqusjsConfig)
+}</script><script src="/js/comments/disqus.js"></script><div id="valine-container"></div><script>Yun.utils.getScript("https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js", () => {
+  const valineConfig = {"enable":true,"appId":"8GMDTzNh5Onyndyb0xIfgcd3-MdYXbMMI","appKey":"RIHIioX2uUer5PgWIDxsdriP","placeholder":"大佬求指教&nbsp_(:з」∠)_ （填写邮箱可以收到回复通知～）","avatar":null,"pageSize":10,"visitor":true,"highlight":true,"recordIP":true,"enableQQ":true,"serverURLs":null,"requiredFields":["nick","mail"],"emojiCDN":"//i0.hdslb.com/bfs/emote/","emojiMaps":{"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png","tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png","tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png","tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png","tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png","tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png","tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png","tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png","tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png","tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png","tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png","tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png","tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png","tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png","tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png","tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png","tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png","tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png","tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png","tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png","tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png","tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png","tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png","tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png","tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png","tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png","tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png","tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png","tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png","tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"},"el":"#valine-container","lang":"zh-cn"}
+  valineConfig.path = "/posts/f29265a7/"
+  new Valine(valineConfig)
+}, window.Valine);</script><style>.utterances {
+  max-width: 100%;
+}</style><script src="https://utteranc.es/client.js" repo="webyang-male/webyang-male.github.io" issue-term="title" theme="photon-dark" crossorigin="anonymous" async></script></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015500号-1</a></div><div class="copyright"><span>&copy; 2020 – 2021 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.upyun.com/" title="大赵菌的赞助者们"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 大赵菌</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-08-23T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div><div class="footer-support"><span>本网站由</span><a class="footer-support-logo" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png" alt="又拍云"></a><span>提供 CDN 加速</span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><div class="aplayer no-destroy" id="aplayer" data-id="99315329" data-server="netease" data-type="playlist" data-fixed="true" data-theme="#0078E7" data-loop="all" data-order="list" data-preload="auto" data-volume="0.7" data-mutex data-lrctype="0" data-listmaxheight="340px" data-storagename="metingjs"></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"live2d-widget-model-koharu"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

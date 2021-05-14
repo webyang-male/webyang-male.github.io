@@ -1,0 +1,464 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="大赵菌"><meta name="copyright" content="大赵菌"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>Hello!C | 大赵菌的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.24/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_j5gk85dg4pf.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link class="aplayer-style-marker" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script class="aplayer-script-marker" src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" defer></script><script class="meting-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"zzychaser.top","root":"/","title":"大赵菌的小站","version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://el-bot-api.vercel.app/api/words/young"},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["255, 182, 93","135, 206, 250","173, 255, 47","255, 165, 0","255, 127, 79"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="/css/custom.css"><script src="/js/FunnyTitle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="C语言是一门面向过程的计算机编程语言 编译类语言 弱类型语言 静态语言   ###c代码 .c  ###源文件 .h ###头文件 head  vs2010使用 vs新建项目（Visual C++） ——–  空项目 ——– “源文件”文件夹里面右键新建C代码文件  选项只有C++，文件后缀命名为.c即可  为了代码输出结果易于观看，需要设置输出为控制台    运行快捷键： ctr + F5 或">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hello!C">
+<meta property="og:url" content="http://zzychaser.top/posts/bf4221aa/index.html">
+<meta property="og:site_name" content="大赵菌的小站">
+<meta property="og:description" content="C语言是一门面向过程的计算机编程语言 编译类语言 弱类型语言 静态语言   ###c代码 .c  ###源文件 .h ###头文件 head  vs2010使用 vs新建项目（Visual C++） ——–  空项目 ——– “源文件”文件夹里面右键新建C代码文件  选项只有C++，文件后缀命名为.c即可  为了代码输出结果易于观看，需要设置输出为控制台    运行快捷键： ctr + F5 或">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.jpg.cm/2021/03/01/0dJmL.jpg">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2021/03/04/vs.jpg">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2021/03/05/-2021-03-05-143215.jpg">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2021/03/05/1.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2021/03/05/-2021-03-05-153510.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2021/03/05/222.jpg">
+<meta property="article:published_time" content="2021-02-04T01:18:22.000Z">
+<meta property="article:modified_time" content="2021-04-27T15:10:31.471Z">
+<meta property="article:author" content="大赵菌">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.jpg.cm/2021/03/01/0dJmL.jpg"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="大赵菌"><img width="96" loading="lazy" src="/img/avatar.png" alt="大赵菌"><span class="site-author-status" title="撸起袖子加油干">👨‍🎓</span></a><div class="site-author-name"><a href="/about/">大赵菌</a></div><a class="site-name" href="/about/site.html">大赵菌的小站</a><sub class="site-subtitle">阿洋前端博客</sub><div class="site-desciption">祝幸福🍀祝你,也祝我</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">99</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">14</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">26</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="QQ-857613711" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/webyang-male/testOnline.git" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="豆瓣" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=86882247" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/shi-guang-fu-bi" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/284523421" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微信公众号" target="_blank" style="color:#1AAD19"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-2-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Telegram Channel" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=JR0QEhMUFhIcEWVUVAtGSkg" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-send-plane-2-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:#FFB6C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a><a class="links-item hty-icon-button" href="/albums/" title="大赵の相册" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#vs2010%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">vs2010使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">快捷键自定义设置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.</span> <span class="toc-text">C语言学习</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text">基本结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#C%E8%AF%AD%E8%A8%80%E4%B8%AD%E6%A0%87%E8%AF%86%E7%AC%A6%E7%9A%84%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83%EF%BC%9A"><span class="toc-number">2.2.</span> <span class="toc-text">C语言中标识符的命名规范：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%AF%B4%E6%98%8E%E7%AC%A6"><span class="toc-number">2.4.</span> <span class="toc-text">格式化说明符</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%F0%9F%90%A6-x%E3%80%81-X%E3%80%81-x%E3%80%81-X-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.4.1.</span> <span class="toc-text">🐦%x、%X、%#x、%#X 的区别</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%87%BD%E6%95%B0scanf"><span class="toc-number">2.5.</span> <span class="toc-text">输入函数scanf()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">2.6.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E5%92%8C%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="toc-number">2.6.1.</span> <span class="toc-text">局部变量和全局变量</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">2.6.2.</span> <span class="toc-text">变量的作用域和生命周期作用域</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%86%85%E5%AD%98%E5%AF%BB%E5%9D%80-%E4%B8%8E%E7%B3%BB%E7%BB%9F%E6%9C%89%E5%85%B3"><span class="toc-number">2.6.3.</span> <span class="toc-text">变量的内存寻址(与系统有关)</span></a></li></ol></li></ol></li></ol></div></div></div><div class="tag-cloud"><div class="tag-cloud-tags"><a href="/tags/C/" style="font-size: 30px; color: #0078e7">C</a> <a href="/tags/C%E8%AF%95%E9%A2%98/" style="font-size: 21px; color: #4d89c0">C试题</a> <a href="/tags/Echarts/" style="font-size: 12px; color: #999">Echarts</a> <a href="/tags/Electron/" style="font-size: 16.5px; color: #7391ad">Electron</a> <a href="/tags/MongoDB/" style="font-size: 12px; color: #999">MongoDB</a> <a href="/tags/Node/" style="font-size: 25.5px; color: #2680d4">Node</a> <a href="/tags/Promise/" style="font-size: 12px; color: #999">Promise</a> <a href="/tags/css/" style="font-size: 16.5px; color: #7391ad">css</a> <a href="/tags/flutter/" style="font-size: 12px; color: #999">flutter</a> <a href="/tags/jq/" style="font-size: 16.5px; color: #7391ad">jq</a></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://zzychaser.top/posts/bf4221aa/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="大赵菌"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大赵菌的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Hello!C</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2021-02-04 09:18:22" itemprop="dateCreated datePublished" datetime="2021-02-04T09:18:22+08:00">2021-02-04</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-04-27 23:10:31" itemprop="dateModified" datetime="2021-04-27T23:10:31+08:00">2021-04-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">2.8k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">11m</span></span></span><span class="leancloud_visitors" id="/posts/bf4221aa/" data-flag-title="Hello!C"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/C/" style="--text-color:#BDB76B" itemprop="url" rel="index"><span itemprop="text">C</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/C/" style="--text-color:#FF6347"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">C</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><blockquote>
+<p>C语言是一门面向过程的计算机编程语言</p>
+<p>编译类语言</p>
+<p>弱类型语言</p>
+<p>静态语言</p>
+</blockquote>
+<p><img src="https://s3.jpg.cm/2021/03/01/0dJmL.jpg" alt="0dJmL.jpg" loading="lazy"></p>
+<pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token comment">###c代码</span>
+.c  <span class="token comment">###源文件</span>
+.h <span class="token comment">###头文件 head</span></code></pre>
+
+<h4 id="vs2010使用"><a href="#vs2010使用" class="headerlink" title="vs2010使用"></a>vs2010使用</h4><ul>
+<li>vs新建项目（Visual C++） ——–  空项目 ——– “源文件”文件夹里面右键新建C代码文件</li>
+</ul>
+<p><font style="color:skyblue;">选项只有C++，文件后缀命名为<code>.c</code>即可</font></p>
+<ul>
+<li><p>为了代码输出结果易于观看，需要设置输出为控制台</p>
+<p><a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/4AeNk"><img src="https://s1.imagehub.cc/images/2021/03/04/vs.jpg" alt="vs.jpg" loading="lazy"></a></p>
+</li>
+</ul>
+<p>运行快捷键：</p>
+<pre class="language-shell" data-language="shell"><code class="language-shell">ctr + F5
+或ctr + fn + F10</code></pre>
+
+<h5 id="快捷键自定义设置"><a href="#快捷键自定义设置" class="headerlink" title="快捷键自定义设置"></a>快捷键自定义设置</h5><p>工具 —– 选项 —– 键盘 —–在“显示命令包含“中查找你要修改的快捷键 —– 然后鼠标点击<code>按下快捷键</code>，按下你想要设置的快捷键。然后点”分配“，注意要先将上面的”移除“点一下 —— 确定,设置完成</p>
+<h4 id="C语言学习"><a href="#C语言学习" class="headerlink" title="C语言学习"></a>C语言学习</h4><h5 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h5><p><strong>例1</strong></p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"hello zzy!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<ul>
+<li><p>int 整型的意思</p>
+</li>
+<li><p>main()函数是程序的主入口,有且仅有一个</p>
+</li>
+<li><p>printf(“字符串\n”);函数<code>-print function - printf</code> 打印函数;<br>其中<code>\n</code>表示换行的意思。它是一个转义字符，前面在讲字符常量的时候见过。其中 n 是“new line”的缩写，即“新的一行”。</p>
+<p><font style="color:orange;">printf  库函数-c语言本身提供给我们使用的函数</font></p>
+<pre class="language-markdown" data-language="markdown"><code class="language-markdown">要使用,"打招呼"
+<span class="token title important"><span class="token punctuation">#</span>include &lt;stdio.h></span>
+包含一个叫stdio.h的文件
+
+std-标准standard input output</code></pre></li>
+<li><p>return 0; 返回0,这里完成任务 0和整型对应</p>
+</li>
+</ul>
+<h5 id="C语言中标识符的命名规范："><a href="#C语言中标识符的命名规范：" class="headerlink" title="C语言中标识符的命名规范："></a>C语言中标识符的命名规范：</h5><ul>
+<li> 1.标识符由字母、数字、下划线组成，并且首字母不能是数字。</li>
+<li> 2.不能把C的关键字作为用户的标识符，例如：if、for、while等。（注：标识符不能和C语言的关键字相同，也不能和用户自定义的函数或C语言库函数同名）</li>
+<li> 3.标识符长度是由机器上的编译系统决定的，一般的限制为8字符，(注：8字符长度限制是C89标准，C99标准已经扩充长度，其实大部分工业标准都更长)。</li>
+<li> 4.标识符对大小写敏感，即严格区分大小写。一般对变量名用小写，符号常量命名用大写。（注：C语言中字母是区分大小写的，因此score、Score、SCORE分别代表三个不同的标识符）</li>
+<li> 5.标识符命名应做到”见名知意”，例如，长度（外语：length），求和、总计（外语：sum），圆周率（外语：pi）</li>
+</ul>
+<h5 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h5><p><font style="color:deepskyblue;"><code>long long</code>更大的整型 c99标准</font></p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">char</span> ch <span class="token operator">=</span> <span class="token string">'a'</span><span class="token punctuation">;</span><span class="token comment">//内存</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c\n"</span><span class="token punctuation">,</span>ch<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//%c ----打印字符串格式的数据</span>
+<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">//输出  a</span></code></pre>
+
+<p>✏️<font style="color:skyblue;"><code>sizeof</code></font></p>
+<blockquote>
+<p><em>sizeof</em>() 是一个判断数据类型或者表达式长度的运算符</p>
+</blockquote>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">short</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><img src="https://s1.imagehub.cc/images/2021/03/05/-2021-03-05-143215.jpg" alt="-2021-03-05-143215.jpg" loading="lazy"></p>
+<p><font style="color:skyblue;">数据类型long可能为4/8,取决于平台/环境</font></p>
+<h5 id="格式化说明符"><a href="#格式化说明符" class="headerlink" title="格式化说明符"></a>格式化说明符</h5><p>常用的格式化说明符主要有以下几个：</p>
+<table>
+<thead>
+<tr>
+<th>格式化说明符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%d</td>
+<td>按十进制整型数据的实际长度输出。</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>以地址形式打印</td>
+</tr>
+<tr>
+<td>%ld</td>
+<td>输出长整型数据。</td>
+</tr>
+<tr>
+<td>%md</td>
+<td>m 为指定的输出字段的宽度。如果数据的位数小于 m，则左端补以空格，若大于 m，则按实际位数输出。</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>输出无符号整型（unsigned）。输出无符号整型时也可以用 %d，这时是将无符号转换成有符号数，然后输出。但编程的时候最好不要这么写，因为这样要进行一次转换，使 CPU 多做一次无用功。</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>用来输出一个字符。</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>用来输出实数，包括单精度和双精度，以小数形式输出。不指定字段宽度，由系统自动指定，整数部分全部输出，小数部分输出 6 位，超过 6 位的四舍五入。</td>
+</tr>
+<tr>
+<td>%.mf</td>
+<td>输出实数时小数点后保留 m 位，注意 m 前面有个点。</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>以八进制整数形式输出，这个就用得很少了，了解一下就行了。</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>用来输出字符串。用 %s 输出字符串同前面直接输出字符串是一样的。但是此时要先定义字符数组或字符指针存储或指向字符串</td>
+</tr>
+<tr>
+<td>%x（或 %X 或 %#x 或 %#X）</td>
+<td>以十六进制形式输出整数，这个很重要。</td>
+</tr>
+</tbody></table>
+<h6 id="🐦-x、-X、-x、-X-的区别"><a href="#🐦-x、-X、-x、-X-的区别" class="headerlink" title="🐦%x、%X、%#x、%#X 的区别"></a>🐦%x、%X、%#x、%#X 的区别</h6><p>一定要掌握 %x（或 %X 或 %#x 或 %#X），因为调试的时候经常要将内存中的二进制代码全部输出，然后用十六进制显示出来。下面写一个程序看看它们四个有什么区别：</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span> <span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>    
+  <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">47</span><span class="token punctuation">;</span>    
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%x\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>       
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%X\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>      
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%#x\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>       
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%#X\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>       
+ <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>在 V[C++]6.0 中的输出结果：</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token number">2f</span>
+<span class="token number">2F</span>
+<span class="token number">0x2f</span>
+<span class="token number">0X2F</span></code></pre>
+
+<p>从输出结果可以看出：如果是小写的<code>x</code>，输出的字母就是小写的；如果是大写的<code>X</code>，输出的字母就是大写的；如果加一个<code>#</code>，就以标准的十六进制形式输出。</p>
+<p>最好是加一个<code>#</code>，否则如果输出的十六进制数正好没有字母的话会误认为是一个十进制数呢！总之，不加<code>#</code>容易造成误解。但是如果输出 0x2f 或 0x2F，那么人家一看就知道是十六进制。而且<code>%#x</code>和<code>%#X</code>中，笔者觉得大写的比较好，因为大写是绝对标准的十六进制写法。</p>
+<h5 id="输入函数scanf"><a href="#输入函数scanf" class="headerlink" title="输入函数scanf()"></a>输入函数scanf()</h5><p>例:计算两数之和</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">int</span> num1 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> num2 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token comment">//输入数据---使用输入函数scanf</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>num1<span class="token punctuation">,</span><span class="token operator">&amp;</span>num2<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//取地址符号&amp;</span>
+
+<span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+sum <span class="token operator">=</span> num1 <span class="token operator">+</span> num2<span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"sum=%d\n"</span><span class="token punctuation">,</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>编译结果:</p>
+<p><img src="https://s1.imagehub.cc/images/2021/03/05/1.png" alt="1.png" loading="lazy"></p>
+<p>正确代码:</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token comment">//C语言语法规定:变量要定义在当前代码块的最前面</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">int</span> num1 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> num2 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">//输入数据---使用输入函数scanf</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>num1<span class="token punctuation">,</span><span class="token operator">&amp;</span>num2<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//取地址符号&amp;</span>
+
+sum <span class="token operator">=</span> num1 <span class="token operator">+</span> num2<span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"sum = %d\n"</span><span class="token punctuation">,</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><img src="https://s1.imagehub.cc/images/2021/03/05/-2021-03-05-153510.png" alt="-2021-03-05-153510.png" loading="lazy"></p>
+<p>⚠️<font style="color:tomato;"><code>scanf_s</code>()是vs编译器提供的函数,vs2013及其它编译器会报错,这类不具有跨平台性/可移植性</font></p>
+<p>✍vs报错解决方法:</p>
+<p>​        在代码文件第一行加上如下代码</p>
+<p>​      <font style="color:yellowgreen;">scanf是C语言提供的</font></p>
+<p>✍vs官方解决方法:</p>
+<p>在代码文件第一行加入如下代码</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_CRT_SECURE_NO_WARNINGS</span></span></code></pre>
+
+<p><font style="color:tomato;">其它函数报错也可以用如上代码解决报错</font></p>
+<p>快捷方式:每次新建C文件都会在代码文件头部加入这句代码</p>
+<p><img src="https://s1.imagehub.cc/images/2021/03/05/222.jpg" alt="222.jpg" loading="lazy"></p>
+<p>🤔为什么vs要加入自定义的函数?</p>
+<p>因为诸如 <code>scanf </code> <code>strcpy</code> <code>strlen</code>是C语言提供的不安全函数</p>
+<hr>
+<h5 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h5><p><strong>例2</strong></p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">extern</span> <span class="token keyword">int</span> a<span class="token punctuation">;</span>     <span class="token comment">// 声明一个全局变量 a</span>
+
+<span class="token keyword">int</span> a<span class="token punctuation">;</span>            <span class="token comment">// 定义一个全局变量 a</span>
+
+<span class="token keyword">extern</span> <span class="token keyword">int</span> a <span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>  <span class="token comment">// 定义一个全局变量 a 并给初值。一旦给予赋值，一定是定义，定义才会分配存储空间</span>
+
+<span class="token keyword">int</span> a <span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>         <span class="token comment">//定义一个全局变量 a，并给初值</span></code></pre>
+
+<p><font style="color:tomato;">声明之后你不能直接使用这个变量，需要定义之后才能使用。</font></p>
+<p>第四个等于第三个，都是定义一个可以被外部使用的全局变量，并给初值。</p>
+<p><font style="color:gold;">定义只能出现在一处。</font>也就是说，不管是 int a 还是 int a=0 都只能出现一次，而那个 extern int a 可以出现很多次。</p>
+<p>当你要引用一个全局变量的时候，你就要声明 extern int a 这时候 extern 不能省略，因为省略了，就变成 int a 这是一个定义，不是声明。</p>
+<pre class="language-markdown" data-language="markdown"><code class="language-markdown">变量定义：用于为变量分配存储空间，还可为变量指定初始值。程序中，变量有且仅有一个定义。
+
+变量声明：用于向程序表明变量的类型和名字。
+
+定义也是声明，extern 声明不是定义。
+
+定义也是声明：当定义变量时我们声明了它的类型和名字。
+
+extern 声明不是定义：通过使用 extern 关键字声明变量名而不定义它。
+
+[注意]
+
+变量在使用前就要被定义或者声明。
+
+在一个程序中，变量只能定义一次，却可以声明多次。
+
+定义分配存储空间，而声明不会。</code></pre>
+
+<hr>
+<h6 id="局部变量和全局变量"><a href="#局部变量和全局变量" class="headerlink" title="局部变量和全局变量"></a>局部变量和全局变量</h6><pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span><span class="token comment">//全局变量-定义在代码块&#123;&#125;之外的变量</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span><span class="token comment">//局部变量</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//输出20,就近原则</span>
+
+<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<ul>
+<li>局部变量和全局变量的名字建议不要相同-容易误会，产生bug</li>
+<li>当局部变量和全局变量的名字相同的时候，局部变量优先</li>
+</ul>
+<hr>
+<h6 id="变量的作用域和生命周期作用域"><a href="#变量的作用域和生命周期作用域" class="headerlink" title="变量的作用域和生命周期作用域"></a>变量的作用域和生命周期作用域</h6><blockquote>
+<p>作用域( scope )，程序设计概念，通常来说，一段程序代码中所用到的名字并不总是有效/可用的</p>
+<p>而限定这个名字的可用性的代码范围就是这个名字的作用域。</p>
+</blockquote>
+<p>1.局部变量的作用域是变量所在的局部范围。</p>
+<p><strong>eg1</strong></p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token comment">//局部变量的作用域</span>
+	<span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#123;</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"sum = %d\n"</span><span class="token punctuation">,</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//可输出0</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><strong>eg2</strong></p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token punctuation">&#123;</span><span class="token comment">//局部变量的作用域</span>
+	<span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"sum = %d\n"</span><span class="token punctuation">,</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//“num”: 未声明的标识符</span>
+	
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>2.全局变量的作用域是整个工程。</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> global <span class="token operator">=</span> <span class="token number">2021</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>global<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//输出---2021</span>
+	
+	<span class="token punctuation">&#123;</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"测试这个作用域输出结果为:%d\n"</span><span class="token punctuation">,</span>global<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//输出---测试这个作用域输出结果为:2021</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><strong>生命周期</strong></p>
+<blockquote>
+<p>变量的生命周期指的是变量的创建到变量的销毁之间的一个时间段</p>
+</blockquote>
+<p>1.局部变量的生命周期是∶进入作用域生命周期开始，出作用域生命周期结束。</p>
+<p>2.全局变量的生命周期是∶整个程序的生命周期。</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token punctuation">&#123;</span><span class="token comment">//开始括号为进入生命周期</span>
+		<span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">99</span><span class="token punctuation">;</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//ok</span>
+	<span class="token punctuation">&#125;</span><span class="token comment">//结束括号为生命周期完成</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//error</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<hr>
+<p><strong>例3</strong></p>
+<h6 id="变量的内存寻址-与系统有关"><a href="#变量的内存寻址-与系统有关" class="headerlink" title="变量的内存寻址(与系统有关)"></a>变量的内存寻址(与系统有关)</h6><p>(1)内存寻址由大到小，优先分配内存地址比较大的字节给变量，所以说变量越先定义，内存地址就越大。 如下面代码，先定义变量 a,再定义变量 b,打印出 a 的地址是 0x7fff5fbff828,b 的值是 0x7fff5fbff824。a 的地址比 b 的地址大 4 字节。</p>
+<p>(2)变量地址的获取方式：&amp; 变量名。</p>
+<p>(3)输出地址的方式：%p。</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span>  </span>
+  
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   
+<span class="token punctuation">&#123;</span>  
+      
+    <span class="token keyword">int</span> a<span class="token punctuation">;</span>  
+    <span class="token keyword">int</span> b<span class="token punctuation">;</span>  
+  
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a的地址是%p\nb的地址是%p\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>  
+     
+<span class="token punctuation">&#125;</span>  </code></pre>
+
+<p>(4)一个变量一定要先初始化才可以使用，因为 c 语言中默认一个没有初始化的变量值是一个不可知的很大值。如下面所示，a 没有初始化，打印出 a 的值是 1606422582。</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span>  </span>
+  
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   
+<span class="token punctuation">&#123;</span>  
+      
+    <span class="token keyword">int</span> a<span class="token punctuation">;</span>  
+  
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a的值是%d\n"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>  
+     
+<span class="token punctuation">&#125;</span>  </code></pre>
+
+<p>⚠️例3第一点和第四点有些小伙伴运行结果可能因为环境不同有差异</p>
+<hr>
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"></div><div style="display:inline-block"></div><div style="display:inline-block"></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>大赵菌</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://zzychaser.top/posts/bf4221aa/" title="Hello!C">http://zzychaser.top/posts/bf4221aa/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/3fae60a6/" rel="prev" title="Vue组件二"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">Vue组件二</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/30455ab0/" rel="next" title="Echarts踩坑和笔记"><span class="post-nav-text">Echarts踩坑和笔记</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>尝试使用 valine 评论系统。</span><br><span>您可以点击下方按钮切换对应评论系统。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/webyang-male/webyang-male.github.io/issues?q=is:open+Hello!C">GitHub Issues</a></div><div class="toggle-comment-system" style="margin: 1rem auto"><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#valine-container" onclick="showComment(this.dataset.target)">valine</a><style>.utterances {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target=".utterances" onclick="showComment(this.dataset.target)">utterances</a><style>#disqus_thread {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#disqus_thread" onclick="showComment(this.dataset.target)">disqusjs</a><script>function hideAllComment() {
+  //- hide all
+  document.querySelectorAll('.toggle-comment-btn').forEach((btn) => {
+    const container = document.querySelector(btn.dataset.target);
+    if (container) {
+      container.style.display = "none";
+    }
+  });
+}
+function showComment(target) {
+  hideAllComment();
+  //- show target
+  const targetContainer = document.querySelector(target);
+  if (targetContainer) {
+    targetContainer.style.display = "block";
+  }
+}
+</script></div><div id="disqus_thread"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqusjs.css"><script src="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqus.js"></script><script>const disqusjsConfig = {"enable":true,"shortname":"dazhao","apikey":"RyjBTPSwdNnrvz3hGg10KZWgMvaxmE0GuJEdpamXXSQdo97zBKUFv3v1oYaEyxxU","nocomment":"这里好冷清鸭,快来发表一下高见吧~"}
+function loadDisqus() {
+  const dsqjs = new DisqusJS(disqusjsConfig)
+}</script><script src="/js/comments/disqus.js"></script><div id="valine-container"></div><script>Yun.utils.getScript("https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js", () => {
+  const valineConfig = {"enable":true,"appId":"8GMDTzNh5Onyndyb0xIfgcd3-MdYXbMMI","appKey":"RIHIioX2uUer5PgWIDxsdriP","placeholder":"大佬求指教&nbsp_(:з」∠)_ （填写邮箱可以收到回复通知～）","avatar":null,"pageSize":10,"visitor":true,"highlight":true,"recordIP":true,"enableQQ":true,"serverURLs":null,"requiredFields":["nick","mail"],"emojiCDN":"//i0.hdslb.com/bfs/emote/","emojiMaps":{"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png","tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png","tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png","tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png","tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png","tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png","tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png","tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png","tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png","tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png","tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png","tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png","tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png","tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png","tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png","tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png","tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png","tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png","tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png","tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png","tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png","tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png","tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png","tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png","tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png","tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png","tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png","tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png","tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png","tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"},"el":"#valine-container","lang":"zh-cn"}
+  valineConfig.path = "/posts/bf4221aa/"
+  new Valine(valineConfig)
+}, window.Valine);</script><style>.utterances {
+  max-width: 100%;
+}</style><script src="https://utteranc.es/client.js" repo="webyang-male/webyang-male.github.io" issue-term="title" theme="photon-dark" crossorigin="anonymous" async></script></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015500号-1</a></div><div class="copyright"><span>&copy; 2020 – 2021 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.upyun.com/" title="大赵菌的赞助者们"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 大赵菌</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-08-23T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div><div class="footer-support"><span>本网站由</span><a class="footer-support-logo" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png" alt="又拍云"></a><span>提供 CDN 加速</span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><div class="aplayer no-destroy" id="aplayer" data-id="99315329" data-server="netease" data-type="playlist" data-fixed="true" data-theme="#0078E7" data-loop="all" data-order="list" data-preload="auto" data-volume="0.7" data-mutex data-lrctype="0" data-listmaxheight="340px" data-storagename="metingjs"></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"live2d-widget-model-koharu"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

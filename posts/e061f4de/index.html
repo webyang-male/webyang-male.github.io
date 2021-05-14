@@ -1,0 +1,565 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="大赵菌"><meta name="copyright" content="大赵菌"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>github搜索奇淫技巧 | 大赵菌的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.24/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_j5gk85dg4pf.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link class="aplayer-style-marker" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script class="aplayer-script-marker" src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" defer></script><script class="meting-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"zzychaser.top","root":"/","title":"大赵菌的小站","version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://el-bot-api.vercel.app/api/words/young"},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["255, 182, 93","135, 206, 250","173, 255, 47","255, 165, 0","255, 127, 79"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="/css/custom.css"><script src="/js/FunnyTitle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="搜索语法搜索 GitHub 时，你可以构建匹配特定数字和单词的查询。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="github搜索奇淫技巧">
+<meta property="og:url" content="http://zzychaser.top/posts/e061f4de/index.html">
+<meta property="og:site_name" content="大赵菌的小站">
+<meta property="og:description" content="搜索语法搜索 GitHub 时，你可以构建匹配特定数字和单词的查询。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-15T02:19:35.000Z">
+<meta property="article:modified_time" content="2021-04-27T15:10:31.623Z">
+<meta property="article:author" content="大赵菌">
+<meta property="article:tag" content="通识">
+<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="大赵菌"><img width="96" loading="lazy" src="/img/avatar.png" alt="大赵菌"><span class="site-author-status" title="撸起袖子加油干">👨‍🎓</span></a><div class="site-author-name"><a href="/about/">大赵菌</a></div><a class="site-name" href="/about/site.html">大赵菌的小站</a><sub class="site-subtitle">阿洋前端博客</sub><div class="site-desciption">祝幸福🍀祝你,也祝我</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">99</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">14</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">26</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="QQ-857613711" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/webyang-male/testOnline.git" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="豆瓣" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=86882247" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/shi-guang-fu-bi" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/284523421" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微信公众号" target="_blank" style="color:#1AAD19"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-2-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Telegram Channel" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=JR0QEhMUFhIcEWVUVAtGSkg" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-send-plane-2-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:#FFB6C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a><a class="links-item hty-icon-button" href="/albums/" title="大赵の相册" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">搜索语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%A4%A7%E4%BA%8E%E6%88%96%E5%B0%8F%E4%BA%8E%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%80%BC%E7%9A%84%E5%80%BC"><span class="toc-number">1.1.</span> <span class="toc-text">查询大于或小于另一个值的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%8C%83%E5%9B%B4%E4%B9%8B%E9%97%B4%E7%9A%84%E5%80%BC"><span class="toc-number">1.2.</span> <span class="toc-text">查询范围之间的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%97%A5%E6%9C%9F"><span class="toc-number">1.3.</span> <span class="toc-text">查询日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E9%99%A4%E7%89%B9%E5%AE%9A%E7%BB%93%E6%9E%9C"><span class="toc-number">1.4.</span> <span class="toc-text">排除特定结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%B8%A6%E6%9C%89%E7%A9%BA%E6%A0%BC%E7%9A%84%E6%9F%A5%E8%AF%A2%E4%BD%BF%E7%94%A8%E5%BC%95%E5%8F%B7"><span class="toc-number">1.5.</span> <span class="toc-text">对带有空格的查询使用引号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%94%A8%E6%88%B7%E5%90%8D%E7%9A%84%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.6.</span> <span class="toc-text">使用用户名的查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E7%9A%84%E6%90%9C%E7%B4%A2"><span class="toc-number">2.</span> <span class="toc-text">高级的搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E4%BB%93%E5%BA%93%E5%90%8D%E7%A7%B0%E3%80%81%E8%AF%B4%E6%98%8E%E6%88%96%E8%87%AA%E8%BF%B0%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E6%90%9C%E7%B4%A2"><span class="toc-number">2.1.</span> <span class="toc-text">按仓库名称、说明或自述文件内容搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E7%94%A8%E6%88%B7%E6%88%96%E7%BB%84%E7%BB%87%E7%9A%84%E4%BB%93%E5%BA%93%E5%86%85%E6%90%9C%E7%B4%A2"><span class="toc-number">2.2.</span> <span class="toc-text">在用户或组织的仓库内搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E4%BB%93%E5%BA%93%E5%A4%A7%E5%B0%8F%E6%90%9C%E7%B4%A2"><span class="toc-number">2.3.</span> <span class="toc-text">按仓库大小搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%85%B3%E6%B3%A8%E8%80%85%E6%95%B0%E9%87%8F%E6%90%9C%E7%B4%A2"><span class="toc-number">2.4.</span> <span class="toc-text">按关注者数量搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%A4%8D%E5%88%BB%E6%95%B0%E9%87%8F%E6%90%9C%E7%B4%A2"><span class="toc-number">2.5.</span> <span class="toc-text">按复刻数量搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E6%98%9F%E5%8F%B7%E6%95%B0%E9%87%8F%E6%90%9C%E7%B4%A2"><span class="toc-number">2.6.</span> <span class="toc-text">按星号数量搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E4%BB%93%E5%BA%93%E5%88%9B%E5%BB%BA%E6%88%96%E4%B8%8A%E6%AC%A1%E6%9B%B4%E6%96%B0%E6%97%B6%E9%97%B4%E6%90%9C%E7%B4%A2"><span class="toc-number">2.7.</span> <span class="toc-text">按仓库创建或上次更新时间搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E8%AF%AD%E8%A8%80%E6%90%9C%E7%B4%A2"><span class="toc-number">2.8.</span> <span class="toc-text">按语言搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E4%B8%BB%E9%A2%98%E6%90%9C%E7%B4%A2"><span class="toc-number">2.9.</span> <span class="toc-text">按主题搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E4%B8%BB%E9%A2%98%E6%95%B0%E9%87%8F%E6%90%9C%E7%B4%A2"><span class="toc-number">2.10.</span> <span class="toc-text">按主题数量搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%8F%AF%E8%A7%86%E7%95%8C%E9%9D%A2%E6%90%9C%E7%B4%A2"><span class="toc-number">2.11.</span> <span class="toc-text">使用可视界面搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E8%AE%B8%E5%8F%AF%E6%90%9C%E7%B4%A2"><span class="toc-number">2.12.</span> <span class="toc-text">按许可搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%85%AC%E5%85%B1%E6%88%96%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%9C%E7%B4%A2"><span class="toc-number">2.13.</span> <span class="toc-text">按公共或私有仓库搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%85%AC%E5%85%B1%E6%88%96%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%9C%E7%B4%A2-1"><span class="toc-number">2.14.</span> <span class="toc-text">按公共或私有仓库搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E4%BB%93%E5%BA%93%E6%98%AF%E5%90%A6%E5%B7%B2%E5%AD%98%E6%A1%A3%E6%90%9C%E7%B4%A2"><span class="toc-number">2.15.</span> <span class="toc-text">基于仓库是否已存档搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%85%B7%E6%9C%89-good-first-issue-%E6%88%96-help-wanted-%E6%A0%87%E7%AD%BE%E7%9A%84%E8%AE%AE%E9%A2%98%E6%95%B0%E9%87%8F%E6%90%9C%E7%B4%A2"><span class="toc-number">2.16.</span> <span class="toc-text">基于具有 good first issue 或 help wanted 标签的议题数量搜索</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">学习</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%9F%E6%96%87%E9%93%BE%E6%8E%A5"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">原文链接:</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><div class="tag-cloud"><div class="tag-cloud-tags"><a href="/tags/C/" style="font-size: 30px; color: #0078e7">C</a> <a href="/tags/C%E8%AF%95%E9%A2%98/" style="font-size: 21px; color: #4d89c0">C试题</a> <a href="/tags/Echarts/" style="font-size: 12px; color: #999">Echarts</a> <a href="/tags/Electron/" style="font-size: 16.5px; color: #7391ad">Electron</a> <a href="/tags/MongoDB/" style="font-size: 12px; color: #999">MongoDB</a> <a href="/tags/Node/" style="font-size: 25.5px; color: #2680d4">Node</a> <a href="/tags/Promise/" style="font-size: 12px; color: #999">Promise</a> <a href="/tags/css/" style="font-size: 16.5px; color: #7391ad">css</a> <a href="/tags/flutter/" style="font-size: 12px; color: #999">flutter</a> <a href="/tags/jq/" style="font-size: 16.5px; color: #7391ad">jq</a></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://zzychaser.top/posts/e061f4de/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="大赵菌"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大赵菌的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">github搜索奇淫技巧</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-11-15 10:19:35" itemprop="dateCreated datePublished" datetime="2020-11-15T10:19:35+08:00">2020-11-15</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-04-27 23:10:31" itemprop="dateModified" datetime="2021-04-27T23:10:31+08:00">2021-04-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">3k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">12m</span></span></span><span class="leancloud_visitors" id="/posts/e061f4de/" data-flag-title="github搜索奇淫技巧"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E7%AC%94%E8%AE%B0/" style="--text-color:#FFD700" itemprop="url" rel="index"><span itemprop="text">笔记</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E9%80%9A%E8%AF%86/" style="--text-color:#0078e7"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">通识</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><h2 id="搜索语法"><a href="#搜索语法" class="headerlink" title="搜索语法"></a>搜索语法</h2><p>搜索 GitHub 时，你可以构建匹配特定数字和单词的查询。</p>
+<span id="more"></span>
+
+<h3 id="查询大于或小于另一个值的值"><a href="#查询大于或小于另一个值的值" class="headerlink" title="查询大于或小于另一个值的值"></a>查询大于或小于另一个值的值</h3><p>您可以使用 <code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code> 和 <code>&lt;=</code> 搜索大于、大于等于、小于以及小于等于另一个值的值。</p>
+<table>
+<thead>
+<tr>
+<th>查询</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&gt;*n*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+stars:%3E1000&type=Repositories">cats vue:&gt;1000</a></strong> 匹配含有 “vue” 字样、星标超过 1000 个的仓库。</td>
+</tr>
+<tr>
+<td><code>&gt;=*n*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+topics:%3E=5&type=Repositories">vue topics:&gt;=5</a></strong> 匹配含有 “vue” 字样、有 5 个或更多主题的仓库。</td>
+</tr>
+<tr>
+<td><code>&lt;*n*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+size:%3C10000&type=Code">vue size:&lt;10000</a></strong> 匹配小于 10 KB 的文件中含有 “vue” 字样的代码。</td>
+</tr>
+<tr>
+<td><code>&lt;=*n*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+stars:%3C=50&type=Repositories">vue stars:&lt;=50</a></strong> 匹配含有 “vue” 字样、星标不超过 50 个的仓库。</td>
+</tr>
+</tbody></table>
+<p>您还可以使用 范围查询 搜索大于等于或小于等于另一个值的值。</p>
+<table>
+<thead>
+<tr>
+<th>查询</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>*n*..*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+stars:10..*&type=Repositories">vue stars:10..*</a></strong> 等同于 <code>stars:&gt;=10</code> 并匹配含有 “vue” 字样、有 10 个或更多星号的仓库。</td>
+</tr>
+<tr>
+<td><code>*..*n*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+stars:%22*..10%22&type=Repositories">vue stars:*..10</a></strong> 等同于 <code>stars:&lt;=10</code> 并匹配含有 “vue” 字样、有不超过 10 个星号的仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="查询范围之间的值"><a href="#查询范围之间的值" class="headerlink" title="查询范围之间的值"></a>查询范围之间的值</h3><p>您可以使用范围语法 <code>*n*..*n*</code> 搜索范围内的值，其中第一个数字 <em>n</em> 是最低值，而第二个是最高值。</p>
+<table>
+<thead>
+<tr>
+<th>查询</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>*n*..*n*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=cats+stars:10..50&type=Repositories">vue stars:10..50</a></strong> 匹配含有 “vue” 字样、有 10 到 50 个星号的仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="查询日期"><a href="#查询日期" class="headerlink" title="查询日期"></a>查询日期</h3><p>您可以通过使用 <code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>&lt;=</code> 和 范围查询 搜索早于或晚于另一个日期，或者位于日期范围内的日期。</p>
+<p>日期格式必须遵循 <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> 标准，即 <code>YYYY-MM-DD</code>（年-月-日）。</p>
+<table>
+<thead>
+<tr>
+<th>查询</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&gt;*YYYY*-*MM*-*DD*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+created:%3E2016-04-29&type=Issues">vue created:&gt;2016-04-29</a></strong> 匹配含有 “vue” 字样、在 2016 年 4 月 29 日之后创建的议题。</td>
+</tr>
+<tr>
+<td><code>&gt;=*YYYY*-*MM*-*DD*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+created:%3E=2017-04-01&type=Issues">vue created:&gt;=2017-04-01</a></strong> 匹配含有 “vue” 字样、在 2017 年 4 月 1 日或之后创建的议题。</td>
+</tr>
+<tr>
+<td><code>&lt;*YYYY*-*MM*-*DD*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?q=vue+pushed:%3C2012-07-05&type=Code&utf8=%E2%9C%93">vue pushed:&lt;2012-07-05</a></strong> 匹配在 2012 年 7 月 5 日之前推送的仓库中含有 “vue” 字样的代码。</td>
+</tr>
+<tr>
+<td><code>&lt;=*YYYY*-*MM*-*DD*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+created:%3C=2012-07-04&type=Issues">vue created:&lt;=2012-07-04</a></strong> 匹配含有 “vue” 字样、在 2012 年 7 月 4 日或之前创建的议题。</td>
+</tr>
+<tr>
+<td><code>*YYYY*-*MM*-*DD*..*YYYY*-*MM*-*DD*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+pushed:2016-04-30..2016-07-04&type=Repositories">vue pushed:2016-04-30..2016-07-04</a></strong> 匹配含有 “vue” 字样、在 2016 年 4 月末到 7 月之间推送的仓库。</td>
+</tr>
+<tr>
+<td><code>*YYYY*-*MM*-*DD*..*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+created:2012-04-30..*&type=Issues">vue created:2012-04-30..*</a></strong> 匹配在 2012 年 4 月 30 日之后创建、含有 “vue” 字样的议题。</td>
+</tr>
+<tr>
+<td><code>*..*YYYY*-*MM*-*DD*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+created:*..2012-07-04&type=Issues">vue created:*..2012-04-30</a></strong> 匹配在 2012 年 7 月 4 日之前创建、含有 “vue” 字样的议题。</td>
+</tr>
+</tbody></table>
+<p>您也可以在日期后添加可选的时间信息 <code>THH:MM:SS+00:00</code>，以便按小时、分钟和秒进行搜索。 这是 <code>T</code>，随后是 <code>HH:MM:SS</code>（时-分-秒）和 UTC 偏移 (<code>+00:00</code>)。</p>
+<table>
+<thead>
+<tr>
+<th>查询</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>*YYYY*-*MM*-*DD*T*HH*:*MM*:*SS*+*00*:*00*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+created:2017-01-01T01:00:00+07:00..2017-03-01T15:30:15+07:00&type=Issues">vue created:2017-01-01T01:00:00+07:00..2017-03-01T15:30:15+07:00</a></strong> 匹配在 2017 年 1 月 1 日凌晨 1 点（UTC 偏移为 <code>07:00</code>）与 2017 年 3 月 1 日下午 3 点（UTC 偏移为 <code>07:00</code>）之间创建的议题。 UTC 偏移量 <code>07:00</code>，2017 年 3 月 1 日下午 3 点。 UTC 偏移量 <code>07:00</code>。</td>
+</tr>
+<tr>
+<td><code>*YYYY*-*MM*-*DD*T*HH*:*MM*:*SS*Z</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=vue+created:2016-03-21T14:11:00Z..2016-04-07T20:45:00Z&type=Issues">vue created:2016-03-21T14:11:00Z..2016-04-07T20:45:00Z</a></strong> 匹配在 2016 年 3 月 21 日下午 2:11 与 2016 年 4 月 7 日晚上 8:45 之间创建的议题。</td>
+</tr>
+</tbody></table>
+<h3 id="排除特定结果"><a href="#排除特定结果" class="headerlink" title="排除特定结果"></a>排除特定结果</h3><p>您可以使用 <code>NOT</code> 语法排除包含特定字词的结果。 <code>NOT</code> 运算符只能用于字符串关键词， 不适用于数字或日期。</p>
+<table>
+<thead>
+<tr>
+<th>查询</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>NOT</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?q=hello+NOT+world&type=Repositories">hello NOT world</a></strong> 匹配含有 “hello” 字样但不含有 “world” 字样的仓库。</td>
+</tr>
+</tbody></table>
+<p>缩小搜索结果范围的另一种途径是排除特定的子集。 您可以为任何搜索限定符添加 <code>-</code> 前缀，以排除该限定符匹配的所有结果。</p>
+<table>
+<thead>
+<tr>
+<th>查询</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-*QUALIFIER*</code></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?q=vue+stars:%3E10+-language:javascript&type=Repositories">vue stars:&gt;10 -language:javascript</a></strong> 匹配含有 “vue” 字样、有超过 10 个星号但并非以 JavaScript 编写的仓库。</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=mentions:defunkt+-org:github&type=Issues">mentions:biaochenxuying -org:github</a></strong> 匹配提及 <a target="_blank" rel="noopener" href="https://github.com/biaochenxuying">@biaochenxuying</a> 且不在 GitHub 组织仓库中的议题</td>
+</tr>
+</tbody></table>
+<h3 id="对带有空格的查询使用引号"><a href="#对带有空格的查询使用引号" class="headerlink" title="对带有空格的查询使用引号"></a>对带有空格的查询使用引号</h3><p>如果搜索含有空格的查询，您需要用引号将其括起来。 例如：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=cats+NOT+%22hello+world%22&type=Repositories">cats NOT “hello world”</a> 匹配含有 “vue” 字样但不含有 “hello world” 字样的仓库。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=build+label:%22bug+fix%22&type=Issues">build label:”bug fix”</a> 匹配具有标签 “bug fix”、含有 “build” 字样的议题。</li>
+</ul>
+<p>某些非字母数字符号（例如空格）会从引号内的代码搜索查询中删除，因此结果可能出乎意料。</p>
+<h3 id="使用用户名的查询"><a href="#使用用户名的查询" class="headerlink" title="使用用户名的查询"></a>使用用户名的查询</h3><p>如果搜索查询包含需要用户名的限定符，例如 <code>user</code>、<code>actor</code> 或 <code>assignee</code>，您可以使用任何 GitHub 用户名指定特定人员，或使用 <code>@me</code> 指定当前用户。</p>
+<table>
+<thead>
+<tr>
+<th>查询</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QUALIFIER:USERNAME</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=author:nat&type=Commits"><code>author:biaochenxuying</code></a> 匹配 <a target="_blank" rel="noopener" href="https://github.com/biaochenxuying">@biaochenxuying</a> 创作的提交。</td>
+</tr>
+<tr>
+<td><code>QUALIFIER:@me</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=is:issue+assignee:@me&type=Issues"><code>is:issue assignee:@me</code></a> 匹配已分配给结果查看者的议题</td>
+</tr>
+</tbody></table>
+<p><code>@me</code> 只能与限定符一起使用，而不能用作搜索词，例如 <code>@me main.workflow</code>。</p>
+<h2 id="高级的搜索"><a href="#高级的搜索" class="headerlink" title="高级的搜索"></a>高级的搜索</h2><h3 id="按仓库名称、说明或自述文件内容搜索"><a href="#按仓库名称、说明或自述文件内容搜索" class="headerlink" title="按仓库名称、说明或自述文件内容搜索"></a>按仓库名称、说明或自述文件内容搜索</h3><p>通过 <code>in</code> 限定符，您可以将搜索限制为仓库名称、仓库说明、自述文件内容或这些的任意组合。</p>
+<p>如果省略此限定符，则只搜索仓库名称和说明。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>in:name</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=vue+in:name&type=Repositories"><strong>vue in:name</strong></a> 匹配其名称中含有 “jquery” 的仓库。</td>
+</tr>
+<tr>
+<td><code>in:description</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=vue+in:name,description&type=Repositories"><strong>vue in:name,description</strong></a> 匹配其名称或说明中含有 “vue” 的仓库。</td>
+</tr>
+<tr>
+<td><code>in:readme</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=vue+in:readme&type=Repositories"><strong>vue in:readme</strong></a> 匹配其自述文件中提及 “vue” 的仓库。</td>
+</tr>
+<tr>
+<td><code>repo:owner/name</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=repo:biaochenxuying/blog"><strong>repo:biaochenxuying/blog</strong></a> 匹配特定仓库名称，比如：用户为 biaochenxuying 的 blog 项目。</td>
+</tr>
+</tbody></table>
+<h3 id="在用户或组织的仓库内搜索"><a href="#在用户或组织的仓库内搜索" class="headerlink" title="在用户或组织的仓库内搜索"></a>在用户或组织的仓库内搜索</h3><p>要在 <code>特定用户或组织</code> 拥有的所有仓库中搜索，您可以使用 <code>user</code> 或 <code>org</code> 限定符。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>user:*USERNAME*</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=user:biaochenxuying+forks:%3E=100&type=Repositories"><strong>user:biaochenxuying forks:&gt;=100</strong></a> 匹配来自 <a target="_blank" rel="noopener" href="https://github.com/biaochenxuying">@biaochenxuying</a>、拥有超过 100 复刻的仓库。</td>
+</tr>
+<tr>
+<td><code>org:*ORGNAME*</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=org:github&type=Repositories"><strong>org:github</strong></a> 匹配来自 GitHub 的仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="按仓库大小搜索"><a href="#按仓库大小搜索" class="headerlink" title="按仓库大小搜索"></a>按仓库大小搜索</h3><p><code>size</code> 限定符使用 <a target="_blank" rel="noopener" href="https://docs.github.com/cn/free-pro-team@latest/articles/understanding-the-search-syntax">大于、小于和范围限定符</a> 查找匹配特定大小（以千字节为单位）的仓库。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>size:*n*</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=size:1000&type=Repositories"><strong>size:1000</strong></a> 匹配恰好为 1 MB 的仓库。</td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=size:%3E=30000&type=Repositories"><strong>size:&gt;=30000</strong></a> 匹配至少为 30 MB 的仓库。</td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=size:%3C50&type=Repositories"><strong>size:&lt;50</strong></a> 匹配小于 50 KB 的仓库。</td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=size:50..120&type=Repositories"><strong>size:50..120</strong></a> 匹配介于 50 KB 与 120 KB 之间的仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="按关注者数量搜索"><a href="#按关注者数量搜索" class="headerlink" title="按关注者数量搜索"></a>按关注者数量搜索</h3><p>您可以使用 <code>followers</code> 限定符以及<a target="_blank" rel="noopener" href="https://docs.github.com/cn/free-pro-team@latest/articles/understanding-the-search-syntax">大于、小于和范围限定符</a>基于仓库拥有的关注者数量过滤仓库。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>followers:*n*</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=node+followers:%3E=10000"><strong>node followers:&gt;=10000</strong></a> 匹配有 10,000 或更多关注者提及文字 “node” 的仓库。</td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=styleguide+linter+followers:1..10&type=Repositories"><strong>styleguide linter followers:1..10</strong></a> 匹配拥有 1 到 10 个关注者并且提及 “styleguide linter” 一词的的仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="按复刻数量搜索"><a href="#按复刻数量搜索" class="headerlink" title="按复刻数量搜索"></a>按复刻数量搜索</h3><p><code>forks</code> 限定符使用<a target="_blank" rel="noopener" href="https://docs.github.com/cn/free-pro-team@latest/articles/understanding-the-search-syntax">大于、小于和范围限定符</a>指定仓库应具有的复刻数量。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>forks:*n*</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=forks:5&type=Repositories"><strong>forks:5</strong></a> 匹配只有 5 个复刻的仓库。</td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=forks:%3E=205&type=Repositories"><strong>forks:&gt;=205</strong></a> 匹配具有至少 205 个复刻的仓库。</td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=forks:%3C90&type=Repositories"><strong>forks:&lt;90</strong></a> 匹配具有少于 90 个复刻的仓库。</td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=forks:10..20&type=Repositories"><strong>forks:10..20</strong></a> 匹配具有 10 到 20 个复刻的仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="按星号数量搜索"><a href="#按星号数量搜索" class="headerlink" title="按星号数量搜索"></a>按星号数量搜索</h3><p>您可以使用 <a target="_blank" rel="noopener" href="https://docs.github.com/cn/free-pro-team@latest/articles/understanding-the-search-syntax">大于、小于和范围限定符</a> 基于仓库具有的 <a target="_blank" rel="noopener" href="https://docs.github.com/cn/free-pro-team@latest/articles/saving-repositories-with-stars">星标</a> 数量搜索仓库</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>stars:*n*</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=stars:500&type=Repositories"><strong>stars:500</strong></a> 匹配恰好具有 500 个星号的仓库。</td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=stars:10..20+size:%3C1000&type=Repositories"><strong>stars:10..20</strong></a> 匹配具有 10 到 20 个星号、小于 1000 KB 的仓库。</td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=stars:%3E=500+fork:true+language:vue&type=Repositories"><strong>stars:&gt;=500 fork:true language:vue</strong></a> 匹配具有至少 500 个星号，包括复刻的星号（以 vue 编写）的仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="按仓库创建或上次更新时间搜索"><a href="#按仓库创建或上次更新时间搜索" class="headerlink" title="按仓库创建或上次更新时间搜索"></a>按仓库创建或上次更新时间搜索</h3><p>你可以基于创建时间或上次更新时间过滤仓库。</p>
+<ul>
+<li>对于仓库创建，您可以使用 <code>created</code> 限定符；</li>
+<li>要了解仓库上次更新的时间，您要使用 <code>pushed</code> 限定符。 <code>pushed</code> 限定符将返回仓库列表，按仓库中任意分支上最近进行的提交排序。</li>
+</ul>
+<p>两者均采用日期作为参数。 日期格式必须遵循 ISO8601 标准，即 <code>YYYY-MM-DD</code>（年-月-日）。</p>
+<p>也可以在日期后添加可选的时间信息 <code>THH:MM:SS+00:00</code>，以便按小时、分钟和秒进行搜索。 这是 <code>T</code>，随后是 <code>HH:MM:SS</code>（时-分-秒）和 UTC 偏移 (<code>+00:00</code>)。</p>
+<p>日期支持 <code>大于、小于和范围限定符</code>。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>created:*YYYY-MM-DD*</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=vue+created:%3C2020-01-01&type=Repositories"><strong>vue created:&lt;2020-01-01</strong></a> 匹配具有 “vue” 字样、在 2020 年之前创建的仓库。</td>
+</tr>
+<tr>
+<td><code>pushed:*YYYY-MM-DD*</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=css+pushed:%3E2020-02-01&type=Repositories"><strong>css pushed:&gt;2020-02-01</strong></a> 匹配具有 “css” 字样、在 2020 年 1 月之后收到推送的仓库。</td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=vue+pushed:%3E=2020-03-06+fork:only&type=Repositories"><strong>vue pushed:&gt;=2020-03-06 fork:only</strong></a> 匹配具有 “vue” 字样、在 2020 年 3 月 6 日或之后收到推送并且作为复刻的仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="按语言搜索"><a href="#按语言搜索" class="headerlink" title="按语言搜索"></a>按语言搜索</h3><p>您可以基于其编写采用的主要语言搜索仓库。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>language:*LANGUAGE*</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=vue+language:javascript&type=Repositories"><strong>vue language:javascript</strong></a> 匹配具有 “vue” 字样、以 JavaScript 编写的仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="按主题搜索"><a href="#按主题搜索" class="headerlink" title="按主题搜索"></a>按主题搜索</h3><p>您可以查找归类为特定 <a target="_blank" rel="noopener" href="https://docs.github.com/cn/free-pro-team@latest/articles/classifying-your-repository-with-topics">主题</a> 的所有仓库。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>topic:*TOPIC*</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=topic:algorithm&type=Repositories&ref=searchresults"><strong>topic:algorithm</strong></a> 匹配已归类为 “algorithm” 主题的仓库。</td>
+</tr>
+</tbody></table>
+<p>估计又有很多人不知道 GitHub 上有话题一说的吧。</p>
+<h3 id="按主题数量搜索"><a href="#按主题数量搜索" class="headerlink" title="按主题数量搜索"></a>按主题数量搜索</h3><p>您可以使用 <code>topics</code> 限定符以及 <a target="_blank" rel="noopener" href="https://docs.github.com/cn/free-pro-team@latest/articles/understanding-the-search-syntax">大于、小于和范围限定符</a> 按应用于仓库的 <a target="_blank" rel="noopener" href="https://docs.github.com/cn/free-pro-team@latest/articles/classifying-your-repository-with-topics">主题</a> 数量搜索仓库。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>topics:*n*</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=topics:5&type=Repositories&ref=searchresults"><strong>topics:5</strong></a> 匹配具有五个主题的仓库。</td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=topics:%3E3&type=Repositories&ref=searchresults"><strong>topics:&gt;3</strong></a> 匹配超过三个主题的仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="使用可视界面搜索"><a href="#使用可视界面搜索" class="headerlink" title="使用可视界面搜索"></a>使用可视界面搜索</h3><p>还可以使用 <a target="_blank" rel="noopener" href="https://github.com/search">search</a> page 或 <a target="_blank" rel="noopener" href="https://github.com/search/advanced">advanced search</a> page 搜索 GitHub 哦。</p>
+<p>这种搜索方式，估计就更少人知道了吧。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/search/advanced">advanced search</a> page 提供用于构建搜索查询的可视界面。</p>
+<p>您可以按各种因素过滤搜索，例如仓库具有的星标数或复刻数。 在填写高级搜索字段时，您的查询将在顶部搜索栏中自动构建。</p>
+<h3 id="按许可搜索"><a href="#按许可搜索" class="headerlink" title="按许可搜索"></a>按许可搜索</h3><p>您可以按其<a target="_blank" rel="noopener" href="https://docs.github.com/cn/free-pro-team@latest/articles/licensing-a-repository">许可</a>搜索仓库。 您必须使用<a target="_blank" rel="noopener" href="https://docs.github.com/cn/free-pro-team@latest/articles/licensing-a-repository/#searching-github-by-license-type">许可关键词</a>按特定许可或许可系列过滤仓库。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>license:*LICENSE_KEYWORD*</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=license:apache-2.0&type=Repositories&ref=searchresults"><strong>license:apache-2.0</strong></a> 匹配根据 Apache License 2.0 授权的仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="按公共或私有仓库搜索"><a href="#按公共或私有仓库搜索" class="headerlink" title="按公共或私有仓库搜索"></a>按公共或私有仓库搜索</h3><p>您可以基于仓库是公共还是私有来过滤搜索。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>is:public</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?q=is:public+org:github&type=Repositories&utf8=%E2%9C%93"><strong>is:public org:github</strong></a> 匹配 GitHub 拥有的公共仓库。</td>
+</tr>
+<tr>
+<td><code>is:private</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=pages+is:private&type=Repositories"><strong>is:private pages</strong></a> 匹配您有访问权限且包含 “pages” 字样的私有仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="按公共或私有仓库搜索-1"><a href="#按公共或私有仓库搜索-1" class="headerlink" title="按公共或私有仓库搜索"></a>按公共或私有仓库搜索</h3><p>您可以根据仓库是否为镜像以及托管于其他位置托管来搜索它们。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>mirror:true</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=mirror:true+GNOME&type="><strong>mirror:true GNOME</strong></a> 匹配是镜像且包含 “GNOME” 字样的仓库。</td>
+</tr>
+<tr>
+<td><code>mirror:false</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=mirror:false+GNOME&type="><strong>mirror:false GNOME</strong></a> 匹配并非镜像且包含 “GNOME” 字样的仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="基于仓库是否已存档搜索"><a href="#基于仓库是否已存档搜索" class="headerlink" title="基于仓库是否已存档搜索"></a>基于仓库是否已存档搜索</h3><p>你可以基于仓库是否<a target="_blank" rel="noopener" href="https://docs.github.com/cn/free-pro-team@latest/articles/about-archiving-repositories">已存档</a>来搜索仓库。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>archived:true</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=archived:true+GNOME&type="><strong>archived:true GNOME</strong></a> 匹配已存档且包含 “GNOME” 字样的仓库。</td>
+</tr>
+<tr>
+<td><code>archived:false</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=archived:false+GNOME&type="><strong>archived:false GNOME</strong></a> 匹配未存档且包含 “GNOME” 字样的仓库。</td>
+</tr>
+</tbody></table>
+<h3 id="基于具有-good-first-issue-或-help-wanted-标签的议题数量搜索"><a href="#基于具有-good-first-issue-或-help-wanted-标签的议题数量搜索" class="headerlink" title="基于具有 good first issue 或 help wanted 标签的议题数量搜索"></a>基于具有 <code>good first issue</code> 或 <code>help wanted</code> 标签的议题数量搜索</h3><p>您可以使用限定符 <code>help-wanted-issues:&gt;n</code> 和 <code>good-first-issues:&gt;n</code> 搜索具有最少数量标签为 <code>help-wanted</code> 或 <code>good-first-issue</code> 议题的仓库。</p>
+<table>
+<thead>
+<tr>
+<th>限定符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>good-first-issues:&gt;n</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=javascript+good-first-issues:%3E2&type="><strong>good-first-issues:&gt;2 javascript</strong></a> 匹配具有超过两个标签为 <code>good-first-issue</code> 的议题且包含 “javascript” 字样的仓库。</td>
+</tr>
+<tr>
+<td><code>help-wanted-issues:&gt;n</code></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/search?utf8=%E2%9C%93&q=react+help-wanted-issues:%3E4&type="><strong>help-wanted-issues:&gt;4 react</strong></a> 匹配具有超过四个标签为 <code>help-wanted</code> 的议题且包含 “React” 字样的仓库。</td>
+</tr>
+</tbody></table>
+<h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><p>其实，以上很多内容的都是来自于 GitHub 的官方文档\</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.github.com/cn">GitHub 官方文档</a> : <a target="_blank" rel="noopener" href="https://docs.github.com/cn">https://docs.github.com/cn</a></p>
+</blockquote>
+<p>如果你还不了解或者不会使用 GitHub ，可以看看这一章节：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.github.com/cn/free-pro-team@latest/github/getting-started-with-github/git-and-github-learning-resources">Git 和 GitHub 学习资源</a> ：<a target="_blank" rel="noopener" href="https://docs.github.com/cn/free-pro-team@latest/github/getting-started-with-github/git-and-github-learning-resources">https://docs.github.com/cn/free-pro-team@latest/github/getting-started-with-github/git-and-github-learning-resources</a></p>
+</blockquote>
+<p>平时如何发现好的开源项目，可以看看这篇文章：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/98P-ARrYlkmog8i79zX6Og">GitHub 上能挖矿的神仙技巧 - 如何发现优秀开源项目</a>。</p>
+<h5 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接:"></a><font style="color:skyblue">原文链接:</font></h5><p><a target="_blank" rel="noopener" href="https://github.com/FrontEndGitHub/FrontEndGitHub/issues/4">https://github.com/FrontEndGitHub/FrontEndGitHub/issues/4</a></p>
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"></div><div style="display:inline-block"></div><div style="display:inline-block"></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>大赵菌</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://zzychaser.top/posts/e061f4de/" title="github搜索奇淫技巧">http://zzychaser.top/posts/e061f4de/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/61e0434c/" rel="prev" title="Git 忽略提交 .gitignore"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">Git 忽略提交 .gitignore</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/27d394ca/" rel="next" title="备忘录"><span class="post-nav-text">备忘录</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>尝试使用 valine 评论系统。</span><br><span>您可以点击下方按钮切换对应评论系统。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/webyang-male/webyang-male.github.io/issues?q=is:open+github搜索奇淫技巧">GitHub Issues</a></div><div class="toggle-comment-system" style="margin: 1rem auto"><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#valine-container" onclick="showComment(this.dataset.target)">valine</a><style>.utterances {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target=".utterances" onclick="showComment(this.dataset.target)">utterances</a><style>#disqus_thread {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#disqus_thread" onclick="showComment(this.dataset.target)">disqusjs</a><script>function hideAllComment() {
+  //- hide all
+  document.querySelectorAll('.toggle-comment-btn').forEach((btn) => {
+    const container = document.querySelector(btn.dataset.target);
+    if (container) {
+      container.style.display = "none";
+    }
+  });
+}
+function showComment(target) {
+  hideAllComment();
+  //- show target
+  const targetContainer = document.querySelector(target);
+  if (targetContainer) {
+    targetContainer.style.display = "block";
+  }
+}
+</script></div><div id="disqus_thread"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqusjs.css"><script src="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqus.js"></script><script>const disqusjsConfig = {"enable":true,"shortname":"dazhao","apikey":"RyjBTPSwdNnrvz3hGg10KZWgMvaxmE0GuJEdpamXXSQdo97zBKUFv3v1oYaEyxxU","nocomment":"这里好冷清鸭,快来发表一下高见吧~"}
+function loadDisqus() {
+  const dsqjs = new DisqusJS(disqusjsConfig)
+}</script><script src="/js/comments/disqus.js"></script><div id="valine-container"></div><script>Yun.utils.getScript("https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js", () => {
+  const valineConfig = {"enable":true,"appId":"8GMDTzNh5Onyndyb0xIfgcd3-MdYXbMMI","appKey":"RIHIioX2uUer5PgWIDxsdriP","placeholder":"大佬求指教&nbsp_(:з」∠)_ （填写邮箱可以收到回复通知～）","avatar":null,"pageSize":10,"visitor":true,"highlight":true,"recordIP":true,"enableQQ":true,"serverURLs":null,"requiredFields":["nick","mail"],"emojiCDN":"//i0.hdslb.com/bfs/emote/","emojiMaps":{"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png","tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png","tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png","tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png","tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png","tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png","tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png","tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png","tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png","tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png","tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png","tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png","tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png","tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png","tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png","tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png","tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png","tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png","tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png","tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png","tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png","tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png","tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png","tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png","tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png","tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png","tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png","tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png","tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png","tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"},"el":"#valine-container","lang":"zh-cn"}
+  valineConfig.path = "/posts/e061f4de/"
+  new Valine(valineConfig)
+}, window.Valine);</script><style>.utterances {
+  max-width: 100%;
+}</style><script src="https://utteranc.es/client.js" repo="webyang-male/webyang-male.github.io" issue-term="title" theme="photon-dark" crossorigin="anonymous" async></script></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015500号-1</a></div><div class="copyright"><span>&copy; 2020 – 2021 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.upyun.com/" title="大赵菌的赞助者们"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 大赵菌</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-08-23T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div><div class="footer-support"><span>本网站由</span><a class="footer-support-logo" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png" alt="又拍云"></a><span>提供 CDN 加速</span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><div class="aplayer no-destroy" id="aplayer" data-id="99315329" data-server="netease" data-type="playlist" data-fixed="true" data-theme="#0078E7" data-loop="all" data-order="list" data-preload="auto" data-volume="0.7" data-mutex data-lrctype="0" data-listmaxheight="340px" data-storagename="metingjs"></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"live2d-widget-model-koharu"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

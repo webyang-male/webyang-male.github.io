@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="大赵菌"><meta name="copyright" content="大赵菌"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>Git/hub指南 | 大赵菌的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.24/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_j5gk85dg4pf.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link class="aplayer-style-marker" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script class="aplayer-script-marker" src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" defer></script><script class="meting-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"zzychaser.top","root":"/","title":"大赵菌的小站","version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://el-bot-api.vercel.app/api/words/young"},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["255, 182, 93","135, 206, 250","173, 255, 47","255, 165, 0","255, 127, 79"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="stylesheet" href="/css/custom.css"><script src="/js/FunnyTitle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="🌐github指南中文网    功能名称 作用    Pull Reques 指开发者在本地对源代码进行更改后，向 GitHub中 托管的Git仓库请求合并的功能。也可以向别人的仓库提出申请，请求对方合并。   Wiki 任何人都能随时对一篇文章进行更改并保存，因此可以多人共同完成一篇文章。该功能常用在开发文档或手册的编写中,改版的历史记录也会被切实保存下来。   Issue 追踪和管理一个任务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git&#x2F;hub指南">
+<meta property="og:url" content="http://zzychaser.top/posts/1e14c664/index.html">
+<meta property="og:site_name" content="大赵菌的小站">
+<meta property="og:description" content="🌐github指南中文网    功能名称 作用    Pull Reques 指开发者在本地对源代码进行更改后，向 GitHub中 托管的Git仓库请求合并的功能。也可以向别人的仓库提出申请，请求对方合并。   Wiki 任何人都能随时对一篇文章进行更改并保存，因此可以多人共同完成一篇文章。该功能常用在开发文档或手册的编写中,改版的历史记录也会被切实保存下来。   Issue 追踪和管理一个任务">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-02T14:01:42.000Z">
+<meta property="article:modified_time" content="2021-04-27T15:10:31.469Z">
+<meta property="article:author" content="大赵菌">
+<meta property="article:tag" content="通识">
+<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info mickey-mouse"><a class="site-author-avatar" href="/about/" title="大赵菌"><img width="96" loading="lazy" src="/img/avatar.png" alt="大赵菌"><span class="site-author-status" title="撸起袖子加油干">👨‍🎓</span></a><div class="site-author-name"><a href="/about/">大赵菌</a></div><a class="site-name" href="/about/site.html">大赵菌的小站</a><sub class="site-subtitle">阿洋前端博客</sub><div class="site-desciption">祝幸福🍀祝你,也祝我</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">99</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">14</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">26</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="QQ-857613711" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/webyang-male/testOnline.git" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="豆瓣" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=86882247" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/shi-guang-fu-bi" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/284523421" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微信公众号" target="_blank" style="color:#1AAD19"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-2-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Telegram Channel" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=JR0QEhMUFhIcEWVUVAtGSkg" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-send-plane-2-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:#FFB6C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a><a class="links-item hty-icon-button" href="/albums/" title="大赵の相册" style="color:#1E90FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95"><span class="toc-number">1.</span> <span class="toc-text">git备忘清单</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Git-%E5%85%A8%E5%B9%B3%E5%8F%B0%E7%89%88"><span class="toc-number">1.0.1.</span> <span class="toc-text">Git 全平台版</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="toc-number">1.0.2.</span> <span class="toc-text">创建仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%B7%A5%E5%85%B7"><span class="toc-number">1.0.3.</span> <span class="toc-text">配置工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%94%AF"><span class="toc-number">1.0.4.</span> <span class="toc-text">分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E8%A1%8C%E6%9B%B4%E6%94%B9"><span class="toc-number">1.0.5.</span> <span class="toc-text">进行更改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%81%9A%E6%8F%90%E4%BA%A4"><span class="toc-number">1.0.6.</span> <span class="toc-text">重做提交</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gitignore-%E6%96%87%E4%BB%B6"><span class="toc-number">1.0.7.</span> <span class="toc-text">.gitignore 文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E6%9B%B4%E6%94%B9"><span class="toc-number">1.0.8.</span> <span class="toc-text">同步更改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E8%A1%8C%E6%9B%B4%E6%94%B9-1"><span class="toc-number">1.0.9.</span> <span class="toc-text">进行更改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%81%9A%E6%8F%90%E4%BA%A4-1"><span class="toc-number">1.0.10.</span> <span class="toc-text">重做提交</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AF%E8%AF%AD%E8%A1%A8"><span class="toc-number">1.0.11.</span> <span class="toc-text">术语表</span></a></li></ol></li></ol></li></ol></div></div></div><div class="tag-cloud"><div class="tag-cloud-tags"><a href="/tags/C/" style="font-size: 30px; color: #0078e7">C</a> <a href="/tags/C%E8%AF%95%E9%A2%98/" style="font-size: 21px; color: #4d89c0">C试题</a> <a href="/tags/Echarts/" style="font-size: 12px; color: #999">Echarts</a> <a href="/tags/Electron/" style="font-size: 16.5px; color: #7391ad">Electron</a> <a href="/tags/MongoDB/" style="font-size: 12px; color: #999">MongoDB</a> <a href="/tags/Node/" style="font-size: 25.5px; color: #2680d4">Node</a> <a href="/tags/Promise/" style="font-size: 12px; color: #999">Promise</a> <a href="/tags/css/" style="font-size: 16.5px; color: #7391ad">css</a> <a href="/tags/flutter/" style="font-size: 12px; color: #999">flutter</a> <a href="/tags/jq/" style="font-size: 16.5px; color: #7391ad">jq</a></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://zzychaser.top/posts/1e14c664/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="大赵菌"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大赵菌的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Git/hub指南</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-09-02 22:01:42" itemprop="dateCreated datePublished" datetime="2020-09-02T22:01:42+08:00">2020-09-02</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-04-27 23:10:31" itemprop="dateModified" datetime="2021-04-27T23:10:31+08:00">2021-04-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">2.4k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">8m</span></span></span><span class="leancloud_visitors" id="/posts/1e14c664/" data-flag-title="Git/hub指南"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E7%AC%94%E8%AE%B0/" style="--text-color:#FFD700" itemprop="url" rel="index"><span itemprop="text">笔记</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E9%80%9A%E8%AF%86/" style="--text-color:#0078e7"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">通识</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><p>🌐github<a target="_blank" rel="noopener" href="https://docs.github.com/cn/github/getting-started-with-github/git-cheatsheet">指南中文网</a></p>
+<table>
+<thead>
+<tr>
+<th align="center">功能名称</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Pull Reques</td>
+<td align="left">指开发者在本地对源代码进行更改后，向 GitHub中 托管的Git仓库请求合并的功能。也可以向别人的仓库提出申请，请求对方合并。</td>
+</tr>
+<tr>
+<td align="center">Wiki</td>
+<td align="left">任何人都能随时对一篇文章进行更改并保存，因此可以多人共同完成一篇文章。该功能常用在开发文档或手册的编写中,改版的历史记录也会被切实保存下来。</td>
+</tr>
+<tr>
+<td align="center">Issue</td>
+<td align="left">追踪和管理一个任务或问题的功能，类似于留言板。可以像 BUG 管理系统或 TiDD（Ticket-driven Development）的 Ticket一样使用。在 GitHub上，每当进行Pull Request， 都会同时创建一个 Issue。BUG报告、功能添加、方向性讨论等，这些将以issue的形式进行管理。Pull Request时也会创建Issue。旁边显示的数字是当前处于open状态的issue数目。</td>
+</tr>
+<tr>
+<td align="center">Watch</td>
+<td align="left">指关注这个项目的人数。对于你已经Watch过的项目，如果该仓库有改动，就会在News Feed上优先显示。相当于“订阅”。</td>
+</tr>
+<tr>
+<td align="center">Fork</td>
+<td align="left">将 GitHub的某个特定仓库（所有文件）原封不动地复制到自己的账户下（但不会与原仓库相同）。以此实现分散式版本管理</td>
+</tr>
+<tr>
+<td align="center">Branch</td>
+<td align="left">分支</td>
+</tr>
+<tr>
+<td align="center">README.md</td>
+<td align="left">每当创建项目、初始化时，都会帮你自动生成README.md文件并显示在仓库首页。一般都是使用Markdown语法（准确来说应该是GitHub Flavored Markdown(GFM）语法)来描述项目的概要、使用流程、许可协议等。</td>
+</tr>
+<tr>
+<td align="center">code</td>
+<td align="left">显示该仓库中的文件列表。</td>
+</tr>
+<tr>
+<td align="center">releases</td>
+<td align="left">显示仓库的标签（Tag）列表。同时可以将标签加入时的文件以归档形式（ZIP、tar.gz）下载到本地。软件在升级时一般都会打标签，如果需要特定版本的文件，可以从这里寻找。</td>
+</tr>
+<tr>
+<td align="center">Repositories</td>
+<td align="left">显示该用户公开的仓库。Fork来的仓库也显示在这里。仓库名称、简要说明、使用的语言、最终更新日期都会出现在列表中。星星图案旁边的数字表示给这个仓库添加Star的人数，再旁边是Fork数。</td>
+</tr>
+<tr>
+<td align="center">Your repositories</td>
+<td align="left">按更新时间顺序显示用户的仓库。标有钥匙图案的是非公开仓库，标有类似字母Y图案的是用户Fork过的仓库。</td>
+</tr>
+<tr>
+<td align="center">Popular repositories</td>
+<td align="left">显示公开仓库中最受欢迎的、拥有大量star的部分热门仓库</td>
+</tr>
+<tr>
+<td align="center">Contribution Activity</td>
+<td align="left">按时间顺序显示具体贡献活动的链接。</td>
+</tr>
+<tr>
+<td align="center">Insights</td>
+<td align="left">洞察：<strong>1.Pulse</strong>：显示该仓库最近的活动信息。该仓库中的软件是 无人问津，还是在火热的开发之中，从这里可以一目了然。<strong>2.Graphs</strong>：以图表形式显示该仓库的各项指标。让用户轻松了解该仓库的活动倾向。<strong>3.Network</strong>：以图表形式直观地显示出当前从宽的状态及Fork出的仓库的状态，同时会显示成员列表</td>
+</tr>
+<tr>
+<td align="center">Packages</td>
+<td align="left">Github Packages是一个包承载服务，它完全跟Github集成。Github Packages使你的源码和包在同一个地方进行统一的管理，使你可以集中的在Github上开发跟发布。你可以发布公共包（public packages）跟所有人分享，也可以发布私有包（private packages）提供给个人或者组织使用。<strong>简单点就是以前你代码是在Github，但是包可能是在npm，maven或者nuget上，现在你在Github上传代码后还可以直接把包也上传到Github，方便统一管理，发布。</strong></td>
+</tr>
+<tr>
+<td align="center">Your gists</td>
+<td align="left">代码片段，代码记事本，代码剪贴板，代码备忘录，代码灵感，代码主意<br/>意思差不多，用来存一些不成大项目的小片段，不是git的概念，是github的在git上的定制服务</td>
+</tr>
+<tr>
+<td align="center">projects</td>
+<td align="left">projects可以翻译为项目板，是project-boards的简写。简单可以理解为工作计划表之类的书签，制定一下工作计划，Bug，流程什么的。<br />GitHub 上的项目板帮助您组织工作和排列工作的优先级。 您可以为特定功能工作、全面的路线图甚至发布检查列表创建项目板。 通过项目板可以灵活地创建适合需求的自定义工作流程。项目板包括议题、拉取请求和注释，在选择的列中分类为卡片。 您可以拖放或使用键盘快捷键对列中的卡片重新排序，在不同列之间移动卡片，以及更改列的顺序。</td>
+</tr>
+</tbody></table>
+<p>​    个人信息页面：<br>profile：用户个人信息，包括姓名、公司、邮箱地址、已加入的Organization等。<br>Popular repositories：显示用户的公开仓库中受欢迎的仓库。<br>Contributions：记录每日用户对仓库的贡献程度。<br>Contribution activity：按时间顺序显示具体贡献活动的链接。</p>
+<h2 id="git备忘清单"><a href="#git备忘清单" class="headerlink" title="git备忘清单"></a>git备忘清单</h2><hr>
+<h4 id="Git-全平台版"><a href="#Git-全平台版" class="headerlink" title="Git 全平台版"></a>Git 全平台版</h4><p><a target="_blank" rel="noopener" href="https://git-scm.com/">git-scm.com</a></p>
+<h4 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h4><p>当着手于一个新的仓库时，你只需创建一次。要么在本地创建，然后推送到 GitHub；要么通过 clone 一个现有仓库。</p>
+<pre class="language-none"><code class="language-none">$ git init</code></pre>
+
+<p>在使用过 <code>git init</code> 命令后，使用以下命令将本地仓库与一个 GitHub 上的空仓库连接起来：</p>
+<pre class="language-none"><code class="language-none">$ git remote add origin [url]</code></pre>
+
+<p>将现有目录转换为一个 Git 仓库</p>
+<pre class="language-none"><code class="language-none">$ git clone [url]</code></pre>
+
+<p>Clone（下载）一个已存在于 GitHub 上的仓库，包括所有的文件、分支和提交(commits)</p>
+<h4 id="配置工具"><a href="#配置工具" class="headerlink" title="配置工具"></a>配置工具</h4><p>对所有本地仓库的用户信息进行配置</p>
+<pre class="language-none"><code class="language-none">$ git config --global user.name &quot;[name]&quot;</code></pre>
+
+<p>对你的commit操作设置关联的用户名</p>
+<pre class="language-none"><code class="language-none">$ git config --global user.email &quot;[email address]&quot;</code></pre>
+
+<p>对你的commit操作设置关联的邮箱地址</p>
+<pre class="language-none"><code class="language-none">$ git config --global color.ui auto</code></pre>
+
+<p>启用有帮助的彩色命令行输出</p>
+<h4 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h4><p>分支是使用 Git 工作的一个重要部分。你做的任何提交都会发生在当前“checked out”到的分支上。使用 <code>git status</code> 查看那是哪个分支。</p>
+<pre class="language-none"><code class="language-none">$ git branch [branch-name]</code></pre>
+
+<p>创建一个新分支</p>
+<pre class="language-none"><code class="language-none">$ git checkout [branch-name]</code></pre>
+
+<p>切换到指定分支并更新工作目录(working directory)</p>
+<pre class="language-none"><code class="language-none">$ git merge [branch]</code></pre>
+
+<p>将指定分支的历史合并到当前分支。这通常在拉取请求(PR)中完成，但也是一个重要的 Git 操作。</p>
+<pre class="language-none"><code class="language-none">$ git branch -d [branch-name]</code></pre>
+
+<p>删除指定分支</p>
+<h4 id="进行更改"><a href="#进行更改" class="headerlink" title="进行更改"></a>进行更改</h4><p>浏览并检查项目文件的发展</p>
+<pre class="language-none"><code class="language-none">$ git log</code></pre>
+
+<p>列出当前分支的版本历史</p>
+<pre class="language-none"><code class="language-none">$ git log --follow [file]</code></pre>
+
+<p>列出文件的版本历史，包括重命名</p>
+<pre class="language-none"><code class="language-none">$ git diff [first-branch]...[second-branch]</code></pre>
+
+<p>展示两个分支之间的内容差异</p>
+<pre class="language-none"><code class="language-none">$ git show [commit]</code></pre>
+
+<p>输出指定commit的元数据和内容变化</p>
+<pre class="language-none"><code class="language-none">$ git add [file]</code></pre>
+
+<p>将文件进行快照处理用于版本控制</p>
+<pre class="language-none"><code class="language-none">$ git commit -m &quot;[descriptive message]&quot;</code></pre>
+
+<p>将文件快照永久地记录在版本历史中</p>
+<h4 id="重做提交"><a href="#重做提交" class="headerlink" title="重做提交"></a>重做提交</h4><p>清除错误和构建用于替换的历史</p>
+<pre class="language-none"><code class="language-none">$ git reset [commit]</code></pre>
+
+<p>撤销所有 <code>[commit]</code> 后的的提交，在本地保存更改</p>
+<pre class="language-none"><code class="language-none">$ git reset --hard [commit]</code></pre>
+
+<p>放弃所有历史，改回指定提交。</p>
+<blockquote>
+<p>小心！更改历史可能带来不良后果。如果你需要更改 GitHub（远端）已有的提交，请谨慎操作。如果你需要帮助，可访问 github.community 或联系支持(support)。</p>
+</blockquote>
+<h4 id="gitignore-文件"><a href="#gitignore-文件" class="headerlink" title=".gitignore 文件"></a>.gitignore 文件</h4><p>有时一些文件最好不要用 Git 跟踪。这通常在名为 <code>.gitignore</code> 的特殊文件中完成。你可以在 <a target="_blank" rel="noopener" href="https://github.com/github/gitignore">github.com/github/gitignore</a> 找到有用的 <code>.gitignore</code> 文件模板。</p>
+<h4 id="同步更改"><a href="#同步更改" class="headerlink" title="同步更改"></a>同步更改</h4><p>将你本地仓库与 GitHub.com 上的远端仓库同步</p>
+<pre class="language-none"><code class="language-none">$ git fetch</code></pre>
+
+<p>下载远端跟踪分支的所有历史</p>
+<pre class="language-none"><code class="language-none">$ git merge</code></pre>
+
+<p>将远端跟踪分支合并到当前本地分支</p>
+<pre class="language-none"><code class="language-none">$ git push</code></pre>
+
+<p>将所有本地分支提交上传到 GitHub</p>
+<pre class="language-none"><code class="language-none">$ git pull</code></pre>
+
+<p>使用来自 GitHub 的对应远端分支的所有新提交更新你当前的本地工作分支。<code>git pull</code> 是 <code>git fetch</code> 和 <code>git merge</code> 的结合</p>
+<h4 id="进行更改-1"><a href="#进行更改-1" class="headerlink" title="进行更改"></a>进行更改</h4><p>浏览并检查项目文件的发展</p>
+<pre class="language-none"><code class="language-none">$ git log</code></pre>
+
+<p>列出当前分支的版本历史</p>
+<pre class="language-none"><code class="language-none">$ git log --follow [file]</code></pre>
+
+<p>列出文件的版本历史，包括重命名</p>
+<pre class="language-none"><code class="language-none">$ git diff [first-branch]...[second-branch]</code></pre>
+
+<p>展示两个分支之间的内容差异</p>
+<pre class="language-none"><code class="language-none">$ git show [commit]</code></pre>
+
+<p>输出指定commit的元数据和内容变化</p>
+<pre class="language-none"><code class="language-none">$ git add [file]</code></pre>
+
+<p>将文件进行快照处理用于版本控制</p>
+<pre class="language-none"><code class="language-none">$ git commit -m &quot;[descriptive message]&quot;</code></pre>
+
+<p>将文件快照永久地记录在版本历史中</p>
+<h4 id="重做提交-1"><a href="#重做提交-1" class="headerlink" title="重做提交"></a>重做提交</h4><p>清除错误和构建用于替换的历史</p>
+<pre class="language-none"><code class="language-none">$ git reset [commit]</code></pre>
+
+<p>撤销所有 <code>[commit]</code> 后的的提交，在本地保存更改</p>
+<pre class="language-none"><code class="language-none">$ git reset --hard [commit]</code></pre>
+
+<p>放弃所有历史，改回指定提交。</p>
+<blockquote>
+<p>小心！更改历史可能带来不良后果。如果你需要更改 GitHub（远端）已有的提交，请谨慎操作。如果你需要帮助，可访问 github.community 或联系支持(support)。</p>
+</blockquote>
+<h4 id="术语表"><a href="#术语表" class="headerlink" title="术语表"></a>术语表</h4><ul>
+<li><strong>git</strong>: 一个开源的分布式版本控制系统</li>
+<li><strong>GitHub</strong>: 一个托管和协作管理 Git 仓库的平台</li>
+<li><strong>commit 提交</strong>: 一个 Git 对象，是你整个仓库的快照的哈希值</li>
+<li><strong>branch 分支</strong>: 一个轻型可移动的 commit 指针</li>
+<li><strong>clone</strong>: 一个仓库的本地版本，包含所有提交和分支</li>
+<li><strong>remote 远端</strong>: 一个 GitHub 上的公共仓库，所有小组成员通过它来交换修改</li>
+<li><strong>fork</strong>: 一个属于另一用户的 GitHub 上的仓库的副本</li>
+<li><strong>pull request 拉取请求</strong>: 一处用于比较和讨论分支上引入的差异，且具有评审、评论、集成测试等功能的地方</li>
+<li><strong>HEAD</strong>: 代表你当前的工作目录。使用<code>git checkout</code> 可移动 HEAD 指针到不同的分支、标记(tags)或提交</li>
+</ul>
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"></div><div style="display:inline-block"></div><div style="display:inline-block"></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>大赵菌</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://zzychaser.top/posts/1e14c664/" title="Git/hub指南">http://zzychaser.top/posts/1e14c664/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/3a595082/" rel="prev" title="Js变量和数据类型"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">Js变量和数据类型</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/8b258e43/" rel="next" title="默认显示类型与显示类型转换"><span class="post-nav-text">默认显示类型与显示类型转换</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>尝试使用 valine 评论系统。</span><br><span>您可以点击下方按钮切换对应评论系统。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/webyang-male/webyang-male.github.io/issues?q=is:open+Git/hub指南">GitHub Issues</a></div><div class="toggle-comment-system" style="margin: 1rem auto"><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#valine-container" onclick="showComment(this.dataset.target)">valine</a><style>.utterances {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target=".utterances" onclick="showComment(this.dataset.target)">utterances</a><style>#disqus_thread {
+  display: none;
+}</style><a class="toggle-comment-btn hty-button hty-button--raised text-uppercase" data-target="#disqus_thread" onclick="showComment(this.dataset.target)">disqusjs</a><script>function hideAllComment() {
+  //- hide all
+  document.querySelectorAll('.toggle-comment-btn').forEach((btn) => {
+    const container = document.querySelector(btn.dataset.target);
+    if (container) {
+      container.style.display = "none";
+    }
+  });
+}
+function showComment(target) {
+  hideAllComment();
+  //- show target
+  const targetContainer = document.querySelector(target);
+  if (targetContainer) {
+    targetContainer.style.display = "block";
+  }
+}
+</script></div><div id="disqus_thread"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqusjs.css"><script src="https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqus.js"></script><script>const disqusjsConfig = {"enable":true,"shortname":"dazhao","apikey":"RyjBTPSwdNnrvz3hGg10KZWgMvaxmE0GuJEdpamXXSQdo97zBKUFv3v1oYaEyxxU","nocomment":"这里好冷清鸭,快来发表一下高见吧~"}
+function loadDisqus() {
+  const dsqjs = new DisqusJS(disqusjsConfig)
+}</script><script src="/js/comments/disqus.js"></script><div id="valine-container"></div><script>Yun.utils.getScript("https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js", () => {
+  const valineConfig = {"enable":true,"appId":"8GMDTzNh5Onyndyb0xIfgcd3-MdYXbMMI","appKey":"RIHIioX2uUer5PgWIDxsdriP","placeholder":"大佬求指教&nbsp_(:з」∠)_ （填写邮箱可以收到回复通知～）","avatar":null,"pageSize":10,"visitor":true,"highlight":true,"recordIP":true,"enableQQ":true,"serverURLs":null,"requiredFields":["nick","mail"],"emojiCDN":"//i0.hdslb.com/bfs/emote/","emojiMaps":{"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png","tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png","tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png","tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png","tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png","tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png","tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png","tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png","tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png","tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png","tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png","tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png","tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png","tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png","tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png","tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png","tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png","tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png","tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png","tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png","tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png","tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png","tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png","tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png","tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png","tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png","tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png","tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png","tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png","tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"},"el":"#valine-container","lang":"zh-cn"}
+  valineConfig.path = "/posts/1e14c664/"
+  new Valine(valineConfig)
+}, window.Valine);</script><style>.utterances {
+  max-width: 100%;
+}</style><script src="https://utteranc.es/client.js" repo="webyang-male/webyang-male.github.io" issue-term="title" theme="photon-dark" crossorigin="anonymous" async></script></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015500号-1</a></div><div class="copyright"><span>&copy; 2020 – 2021 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.upyun.com/" title="大赵菌的赞助者们"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 大赵菌</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-08-23T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div><div class="footer-support"><span>本网站由</span><a class="footer-support-logo" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png" alt="又拍云"></a><span>提供 CDN 加速</span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><div class="aplayer no-destroy" id="aplayer" data-id="99315329" data-server="netease" data-type="playlist" data-fixed="true" data-theme="#0078E7" data-loop="all" data-order="list" data-preload="auto" data-volume="0.7" data-mutex data-lrctype="0" data-listmaxheight="340px" data-storagename="metingjs"></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"live2d-widget-model-koharu"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
