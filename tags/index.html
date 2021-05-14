@@ -34,7 +34,7 @@
   const wordcloud_canvas = document.getElementById('wordcloud-canvas')
   wordcloud_canvas.width = document.querySelector('#page').clientWidth - 16
   wordcloud_canvas.height = 350
-  let wordcloud_config = {"list":[["前端基础面试题",1.2,"/tags/前端基础面试题/"],["试题",2.1,"/tags/试题/"],["C试题",1.6,"/tags/C试题/"],["css",1.2,"/tags/css/"],["C",2.4,"/tags/C/"],["Echarts",1.1,"/tags/Echarts/"],["Electron",1.2,"/tags/Electron/"],["通识",1.5,"/tags/通识/"],["Node",2.3,"/tags/Node/"],["flutter",1.1,"/tags/flutter/"],["js",1.5,"/tags/js/"],["MongoDB",1.1,"/tags/MongoDB/"],["Promise",1.1,"/tags/Promise/"],["typescript",2.8,"/tags/typescript/"],["vue",1.7,"/tags/vue/"],["webpack",1.4,"/tags/webpack/"],["其他",1.5,"/tags/其他/"],["react",1.1,"/tags/react/"],["专升本",1.4,"/tags/专升本/"],["js面试题",1.2,"/tags/js面试题/"],["前端综合面试题",1.1,"/tags/前端综合面试题/"],["生活二三事",1.2,"/tags/生活二三事/"],["诗词",1.1,"/tags/诗词/"],["笔记",1.3,"/tags/笔记/"],["jq",1.2,"/tags/jq/"],["大屏可视化",1.1,"/tags/大屏可视化/"]],"fontFamily":"'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif","fontWeight":400,"gridSize":10,"weightFactor":13,"backgroundColor":"transparent","color":"random-dark"}
+  let wordcloud_config = {"list":[["前端基础面试题",1.2,"/tags/前端基础面试题/"],["试题",2.1,"/tags/试题/"],["css",1.2,"/tags/css/"],["C",2.4,"/tags/C/"],["C试题",1.6,"/tags/C试题/"],["Electron",1.2,"/tags/Electron/"],["Echarts",1.1,"/tags/Echarts/"],["通识",1.5,"/tags/通识/"],["flutter",1.1,"/tags/flutter/"],["Node",2.3,"/tags/Node/"],["js",1.5,"/tags/js/"],["MongoDB",1.1,"/tags/MongoDB/"],["Promise",1.1,"/tags/Promise/"],["typescript",2.8,"/tags/typescript/"],["vue",1.7,"/tags/vue/"],["webpack",1.4,"/tags/webpack/"],["其他",1.5,"/tags/其他/"],["react",1.1,"/tags/react/"],["专升本",1.4,"/tags/专升本/"],["js面试题",1.2,"/tags/js面试题/"],["前端综合面试题",1.1,"/tags/前端综合面试题/"],["生活二三事",1.2,"/tags/生活二三事/"],["诗词",1.1,"/tags/诗词/"],["笔记",1.3,"/tags/笔记/"],["jq",1.2,"/tags/jq/"],["大屏可视化",1.1,"/tags/大屏可视化/"]],"fontFamily":"'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif","fontWeight":400,"gridSize":10,"weightFactor":13,"backgroundColor":"transparent","color":"random-dark"}
   wordcloud_config.hover = function(item, dimension){
     if (!dimension) {
       wordbox.hidden = true
@@ -95,4 +95,25 @@ blog_live_time();
     }
   });
 });
-</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><div class="aplayer no-destroy" id="aplayer" data-id="99315329" data-server="netease" data-type="playlist" data-fixed="true" data-theme="#0078E7" data-loop="all" data-order="list" data-preload="auto" data-volume="0.7" data-mutex data-lrctype="0" data-listmaxheight="340px" data-storagename="metingjs"></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div><div class="aplayer no-destroy" id="aplayer" data-id="99315329" data-server="netease" data-type="playlist" data-fixed="true" data-theme="#0078E7" data-loop="all" data-order="list" data-preload="auto" data-volume="0.7" data-mutex data-lrctype="0" data-listmaxheight="340px" data-storagename="metingjs"></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@latest/js/index.js"></script>
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?webyang-male";
+            var git_color =['#F5F5F5', '#bce672', '#bddd22', '#afdd22', '#a3d900', '#9ed900', '#9ed048', '#3CB371', '#228B22', '#008000', '#006400'];
+            var git_user ="webyang-male";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container" style="width:70vw!important;position: relative; left: 205%;"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:450px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
