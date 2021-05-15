@@ -1,9 +1,21 @@
 
 /* 侧边栏透明 */
 .sidebar{
-  opacity: 0.7!important;
+  opacity: 0.8!important;
 }
-
+/* 网站描述 */
+.site-subtitle{
+	color:skyblue!important;
+}
+.site-subtitle:hover{
+	color:deepskyblue!important;
+}
+div.site-desciption{
+  color:darkorange;
+}
+div.site-desciption:hover{
+  color:gold!important;
+}
 /* 阅读更多按钮 */
 a.hty-button:hover {
   background-color: #ffb6c1 !important;
@@ -11,6 +23,9 @@ a.hty-button:hover {
 /* 网站公告 */
 div.notice {
   color: #ffb6c1;
+}
+div.notice:hover {
+  color: tomato;
 }
 /* 目录 */
 a.category-list-link {
