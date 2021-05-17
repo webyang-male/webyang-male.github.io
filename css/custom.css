@@ -1,20 +1,19 @@
-
 /* 侧边栏透明 */
-.sidebar{
-  opacity: 0.8!important;
+.sidebar {
+  opacity: 0.8 !important;
 }
 /* 网站描述 */
-.site-subtitle{
-	color:skyblue!important;
+.site-subtitle {
+  color: skyblue !important;
 }
-.site-subtitle:hover{
-	color:deepskyblue!important;
+.site-subtitle:hover {
+  color: deepskyblue !important;
 }
-div.site-desciption{
-  color:darkorange;
+div.site-desciption {
+  color: darkorange;
 }
-div.site-desciption:hover{
-  color:gold!important;
+div.site-desciption:hover {
+  color: gold !important;
 }
 /* 阅读更多按钮 */
 a.hty-button:hover {
@@ -86,4 +85,12 @@ textarea#veditor {
 /* 页脚 */
 footer > div:hover {
   color: tomato !important;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
