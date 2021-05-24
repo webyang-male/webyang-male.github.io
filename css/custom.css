@@ -4,16 +4,16 @@
 }
 /* 网站描述 */
 .site-subtitle {
-  color: skyblue !important;
+  color: tomato !important;
 }
 .site-subtitle:hover {
-  color: deepskyblue !important;
+  color: lightskyblue !important;
 }
 div.site-desciption {
-  color: darkorange;
+  color: deepskyblue;
 }
 div.site-desciption:hover {
-  color: gold !important;
+  color: darkorange !important;
 }
 /* 阅读更多按钮 */
 a.hty-button:hover {
@@ -33,10 +33,9 @@ a.category-list-link {
 span.category-list-count {
   color: #3cb371;
 }
-.category-list li:hover a {
+.category-list-link:hover{
   color: tomato !important;
 }
-
 /* 头像旋转 */
 .site-author-avatar img:hover {
   transform: rotate(360deg);
