@@ -255,6 +255,11 @@ input {
   align-items: center;
   height: 100vh;
 }
+.banner-char-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .vertical-line-top,
 .vertical-line-bottom {
   display: flex;
