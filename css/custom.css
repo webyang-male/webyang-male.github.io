@@ -90,3 +90,9 @@ footer > div:hover {
   color: tomato !important;
 }
 
+/* 移动端音乐播放器消失 */
+@media screen and (max-width: 500px) {
+  .aplayer-body,.aplayer-list,.aplayer-lrc{
+    display: none !important;
+  }
+}
