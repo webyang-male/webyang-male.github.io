@@ -27,6 +27,6 @@ import("https://code.jquery.com/jquery-3.3.1.min.js").then(res =>
 
 
 // (!(~+[])+{})[--[~+""][+[]]*[~+[]]+~~!+[]]+({}+[])[[~!+[]]*~+[]]
-let china = `<img id="china" src="../img/china.svg" style="right:0px;position:fixed!important;top:10%!important;" loading="lazy">`;
+
 
 
