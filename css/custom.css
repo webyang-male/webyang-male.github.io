@@ -106,10 +106,7 @@ footer > div:hover {
   }
 }
 
-/* 阿里图标 */
-/* .icon {
-  width: 1em; height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
-} */
+/* 自定义图标 */
+i[class^="ri-"], i[class*=" ri-"] {
+  font-size: 1.5rem;
+}
