@@ -6,9 +6,9 @@
 .site-subtitle {
   color: tomato !important;
 }
-.site-subtitle:hover {
+/* .site-subtitle:hover {
   color: lightskyblue !important;
-}
+} */
 div.site-desciption {
   color: deepskyblue;
 }
@@ -95,6 +95,9 @@ textarea#veditor {
   color: pink !important;
 }
 /* 页脚 */
+#footer{
+ color: #fff !important;
+}
 footer > div:hover {
   color: tomato !important;
 }
