@@ -36,6 +36,12 @@ span.category-list-count {
 .category-list-link:hover{
   color: tomato !important;
 }
+.category-lists .category-list-item::before {
+  content: '🗂' !important;
+}
+.category-lists .category-list-child .category-list-item::before {
+  content: '📘' !important;
+}
 /* 头像旋转 */
 .site-author-avatar img:hover {
   transform: rotate(360deg);
