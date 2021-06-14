@@ -37,7 +37,7 @@ span.category-list-count {
   color: tomato !important;
 }
 .category-lists .category-list-item::before {
-  content: '🗂' !important;
+  content: '📚' !important;
 }
 .category-lists .category-list-child .category-list-item::before {
   content: '📘' !important;
