@@ -33,14 +33,14 @@ a.category-list-link {
 span.category-list-count {
   color: #3cb371;
 }
-.category-list-link:hover{
+.category-list-link:hover {
   color: tomato !important;
 }
 .category-lists .category-list-item::before {
-  content: '📚' !important;
+  content: "📚" !important;
 }
 .category-lists .category-list-child .category-list-item::before {
-  content: '📘' !important;
+  content: "📘" !important;
 }
 /* 头像旋转 */
 .site-author-avatar img:hover {
@@ -65,8 +65,8 @@ span.category-list-count {
 #search .icon {
   color: darkorange !important;
 }
-.search-popup{
-  background-color: rgba(255,255,255,.7);
+.search-popup {
+  background-color: rgba(255, 255, 255, 0.7);
 }
 /* 评论样式 */
 @media screen and (max-width: 500px) {
@@ -95,8 +95,8 @@ textarea#veditor {
   color: pink !important;
 }
 /* 页脚 */
-#footer{
- color: #fff !important;
+#footer {
+  color: #fff !important;
 }
 footer > div:hover {
   color: tomato !important;
@@ -104,12 +104,21 @@ footer > div:hover {
 
 /* 移动端音乐播放器消失 */
 @media screen and (max-width: 500px) {
-  .aplayer-body,.aplayer-list,.aplayer-lrc{
+  .aplayer-body,
+  .aplayer-list,
+  .aplayer-lrc {
     display: none !important;
   }
 }
 
 /* 自定义图标 */
-i[class^="ri-"], i[class*=" ri-"] {
+i[class^="ri-"],
+i[class*=" ri-"] {
   font-size: 1.5rem;
+}
+
+/* 天气 */
+#tp-weather-widget .brRCBH{
+ top: 60px;
+ z-index: 10;
 }

@@ -28,5 +28,22 @@ import("https://code.jquery.com/jquery-3.3.1.min.js").then(res =>
 
 // (!(~+[])+{})[--[~+""][+[]]*[~+[]]+~~!+[]]+({}+[])[[~!+[]]*~+[]]
 
+// 天气插件
+import("https://code.jquery.com/jquery-3.3.1.min.js").then(res =>
+  $("body").append(`<div id="tp-weather-widget"></div>`)
+);
 
+
+(function (a, h, g, f, e, d, c, b) { b = function () { d = h.createElement(g); c = h.getElementsByTagName(g)[0]; d.src = e; d.charset = "utf-8"; d.async = 1; c.parentNode.insertBefore(d, c) }; a["SeniverseWeatherWidgetObject"] = f; a[f] || (a[f] = function () { (a[f].q = a[f].q || []).push(arguments) }); a[f].l = +new Date(); if (a.attachEvent) { a.attachEvent("onload", b) } else { a.addEventListener("load", b, false) } }(window, document, "script", "SeniverseWeatherWidget", "//cdn.sencdn.com/widget2/static/js/bundle.js?t=" + parseInt((new Date().getTime() / 100000000).toString(), 10)));
+window.SeniverseWeatherWidget('show', {
+  flavor: "bubble",
+  location: "WMXY3PVX93RV",
+  geolocation: false,
+  language: "zh-Hans",
+  unit: "c",
+  theme: "auto",
+  token: "d852ae57-7cfb-4ae1-bbd1-53b22f96d905",
+  hover: "enabled",
+  container: "tp-weather-widget"
+})
 
