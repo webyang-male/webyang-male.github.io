@@ -120,7 +120,7 @@ i[class*=" ri-"] {
 }
 
 /* 天气 */
-#tp-weather-widget .brRCBH{
- top: 60px;
+#tp-weather-widget .dfDWUQ{
+ top: 60px !important;
  z-index: 10;
 }
