@@ -101,7 +101,9 @@ textarea#veditor {
 footer > div:hover {
   color: tomato !important;
 }
-
+.beian a{
+  color: darkorange !important;
+}
 /* 移动端音乐播放器消失 */
 @media screen and (max-width: 500px) {
   .aplayer-body,
