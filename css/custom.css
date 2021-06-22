@@ -148,7 +148,7 @@ i[class*=" ri-"] {
 }
 
 /* 天气 */
-#tp-weather-widget .dfDWUQ {
+#tp-weather-widget .dfDWUQ,.brRCBH  {
   top: 60px !important;
   z-index: 10;
 }
