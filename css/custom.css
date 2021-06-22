@@ -2,75 +2,93 @@
 .sidebar {
   opacity: 0.8 !important;
 }
+
 /* 网站描述 */
 .site-subtitle {
   color: tomato !important;
 }
+
 /* .site-subtitle:hover {
   color: lightskyblue !important;
 } */
 div.site-desciption {
   color: deepskyblue;
 }
+
 div.site-desciption:hover {
   color: darkorange !important;
 }
+
 /* 阅读更多按钮 */
 a.hty-button:hover {
   background-color: #ffb6c1 !important;
 }
+
 /* 网站公告 */
 div.notice {
   color: #ffb6c1;
 }
+
 div.notice:hover {
   color: tomato;
 }
+
 /* 目录 */
 a.category-list-link {
   color: #0078e7 !important;
 }
+
 span.category-list-count {
   color: #3cb371;
 }
+
 .category-list-link:hover {
   color: tomato !important;
 }
+
 .category-lists .category-list-item::before {
   content: "📚" !important;
 }
+
 .category-lists .category-list-child .category-list-item::before {
   content: "📘" !important;
 }
+
 /* 头像旋转 */
 .site-author-avatar img:hover {
   transform: rotate(360deg);
   animation: rotation 2s linear infinite;
 }
+
 @keyframes rotation {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
 /* 折叠菜单 */
 .hamburger-inner,
 .hamburger-inner::before,
 .hamburger-inner::after {
   background-color: orange !important;
 }
+
 /* 搜索 */
 #search .icon {
   color: darkorange !important;
 }
+
 .search-popup {
   background-color: rgba(255, 255, 255, 0.7);
 }
+
 /* 评论样式 */
 @media screen and (max-width: 500px) {
-  div.toggle-comment-system > a {
+  div.toggle-comment-system>a {
     display: inline-flex !important;
     justify-content: space-between !important;
     align-items: center;
@@ -78,34 +96,44 @@ span.category-list-count {
     max-width: 33.333% !important;
   }
 }
+
 .vheader {
   font-size: 1.2em;
 }
-.vheader > .vnick {
+
+.vheader>.vnick {
   color: gold !important;
 }
+
 input.vmail {
   color: rgba(0, 120, 231, 0.9) !important;
 }
+
 input.vlink {
   color: tomato !important;
 }
+
 textarea#veditor {
   font-size: 1em;
   color: pink !important;
 }
+
 /* 页脚 */
 #footer {
   color: #fff !important;
 }
-footer > div:hover {
+
+footer>div:hover {
   color: tomato !important;
 }
-.beian a{
+
+.beian a {
   color: darkorange !important;
 }
+
 /* 移动端音乐播放器消失 */
 @media screen and (max-width: 500px) {
+
   .aplayer-body,
   .aplayer-list,
   .aplayer-lrc {
@@ -120,7 +148,12 @@ i[class*=" ri-"] {
 }
 
 /* 天气 */
-#tp-weather-widget .dfDWUQ{
- top: 60px !important;
- z-index: 10;
+#tp-weather-widget .dfDWUQ {
+  top: 60px !important;
+  z-index: 10;
+}
+
+#tp-weather-widget .iNJlNg {
+  top: 60px !important;
+  z-index: 10;
 }
