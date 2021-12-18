@@ -1,21 +1,17 @@
 :root {
   --hty-primary-color: #0078e7;
-  --hty-inverse-color: #ff8718;
   --hty-success-color: #21ba45;
   --hty-warning-color: #f2711c;
   --hty-danger-color: #db2828;
   --hty-info-color: #42b8dd;
   --hty-link-color: #0078e7;
+  --hty-base-color: #999;
+  --hty-yellow-color: #ff8718;
 }
 .primary {
   color: #005eb4;
   --blockquote-border-left-color: var(--hty-primary-color);
   --blockquote-bg-color: rgba(0,120,231,0.1);
-}
-.inverse {
-  color: #e46e00;
-  --blockquote-border-left-color: var(--hty-inverse-color);
-  --blockquote-bg-color: rgba(255,135,24,0.1);
 }
 .success {
   color: #198f35;
@@ -41,6 +37,24 @@
   color: #005eb4;
   --blockquote-border-left-color: var(--hty-link-color);
   --blockquote-bg-color: rgba(0,120,231,0.1);
+}
+.base {
+  color: #808080;
+  --blockquote-border-left-color: var(--hty-base-color);
+  --blockquote-bg-color: rgba(153,153,153,0.1);
+}
+.yellow {
+  color: #e46e00;
+  --blockquote-border-left-color: var(--hty-yellow-color);
+  --blockquote-bg-color: rgba(255,135,24,0.1);
+}
+:root {
+  --hty-mode: 'light';
+  --hty-bg-color: #f5f5f5;
+  --hty-text-color: #333;
+  --hty-secondary-text-color: #555;
+  --post-block-bg-color: #fff;
+  --smc-link-color: #0078e7;
 }
 .disable-hover,
 .disable-hover * {
@@ -77,12 +91,6 @@
   to {
     opacity: 1;
   }
-}
-.text-center {
-  text-align: center;
-}
-.text-uppercase {
-  text-transform: uppercase;
 }
 body {
   font-family: 'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif;
@@ -167,14 +175,6 @@ summary {
 details[open] summary {
   border-bottom: 1px solid var(--smc-secondary);
   margin: -1rem -1rem 1rem -1rem;
-}
-:root {
-  --hty-mode: 'light';
-  --hty-bg-color: #f5f5f5;
-  --hty-text-color: #333;
-  --hty-secondary-text-color: #555;
-  --post-block-bg-color: #fff;
-  --smc-link-color: #0078e7;
 }
 html {
   scroll-behavior: smooth;
@@ -870,6 +870,7 @@ input {
   cursor: default;
 }
 .post-block {
+  color: var(--hty-text-color);
   margin: 0 1rem;
   padding: 1rem;
   background-color: var(--post-block-bg-color);
@@ -1466,6 +1467,13 @@ input {
 }
 .markdown-body blockquote p {
   margin: 0;
+}
+.markdown-body video {
+  width: 100%;
+  max-height: 90vh;
+}
+.markdown-body iframe {
+  border: none;
 }
 .post-nav {
   display: flex;
@@ -2119,11 +2127,18 @@ input {
 .hidden {
   display: none;
 }
+.text-center {
+  text-align: center;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --color-mode: 'dark';
   }
   :root:not([data-user-color-scheme]) {
+    --hty-mode: 'dark';
     --hty-bg-color: #303030;
     --hty-text-color: #f2f2f2;
     --hty-secondary-text-color: #eee;
@@ -2152,17 +2167,10 @@ input {
     background-color: rgba(27,31,46,0.95);
     background-image: none;
   }
-  :root:not([data-user-color-scheme]) .post-title-link {
-    color: #3ca1ff;
-  }
   :root:not([data-user-color-scheme]) .post-card {
     color: #fff;
     background-color: rgba(27,31,46,0.7);
     box-shadow: 0 1px 8px rgba(27,31,46,0.1);
-  }
-  :root:not([data-user-color-scheme]) .post-block {
-    color: var(--hty-text-color);
-    background-color: rgba(27,31,46,0.95);
   }
   :root:not([data-user-color-scheme]) .page-number-basic {
     background-color: rgba(0,0,0,0.5);
@@ -2192,14 +2200,12 @@ input {
     background: rgba(227,242,255,0.9);
     cursor: default;
   }
-  :root:not([data-user-color-scheme]) #footer {
-    color: #eee;
-  }
   :root:not([data-user-color-scheme]) .aplayer {
     color: #000;
   }
 }
 [data-user-color-scheme='dark'] {
+  --hty-mode: 'dark';
   --hty-bg-color: #303030;
   --hty-text-color: #f2f2f2;
   --hty-secondary-text-color: #eee;
@@ -2228,17 +2234,10 @@ input {
   background-color: rgba(27,31,46,0.95);
   background-image: none;
 }
-[data-user-color-scheme='dark'] .post-title-link {
-  color: #3ca1ff;
-}
 [data-user-color-scheme='dark'] .post-card {
   color: #fff;
   background-color: rgba(27,31,46,0.7);
   box-shadow: 0 1px 8px rgba(27,31,46,0.1);
-}
-[data-user-color-scheme='dark'] .post-block {
-  color: var(--hty-text-color);
-  background-color: rgba(27,31,46,0.95);
 }
 [data-user-color-scheme='dark'] .page-number-basic {
   background-color: rgba(0,0,0,0.5);
@@ -2267,9 +2266,6 @@ input {
 [data-user-color-scheme='dark'] .pagination .space.current {
   background: rgba(227,242,255,0.9);
   cursor: default;
-}
-[data-user-color-scheme='dark'] #footer {
-  color: #eee;
 }
 [data-user-color-scheme='dark'] .aplayer {
   color: #000;
