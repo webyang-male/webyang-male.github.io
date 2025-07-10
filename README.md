@@ -2,10 +2,9 @@
 
 ## A personal portfolio website made using `Astro`.
 
+To view a demo example
 
-To view a demo example, **[click here](https://sparkly-speculoos-0c9197.netlify.app/)**
-
-or my portfolio **[click here](https://gianmarcocavallo.com)**
+![](./me-astro.png)
 
 ## Features
 
