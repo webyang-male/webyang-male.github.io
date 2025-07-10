@@ -1,0 +1,51 @@
+---
+import Card from "./Card/index.astro";
+---
+
+<Card colSpan="md:col-span-1" rowSpan="md:row-span-6" title="About me">
+  <div class="flex flex-col h-full gap-2 overflow-y-auto scroll-hide">
+    <div class="text-sm font-light">
+      <p>
+        Hi, I'm Zain, a front-end software developer from China.
+        <br />
+        My primary tools of choice includes:
+      </p>
+      <ul class="list-disc list-inside">
+        <li>JavaScript</li>
+        <li>React</li>
+        <li>Vue</li>
+        <li>Nodejs</li>
+        <li>擅长 Ai、Fw、Fl、Br、Ae、Pr、Id、Ps 等软件的安装与卸载</li>
+        <li>精通 Windows、Linux、MacOS系统的开关机</li>
+      </ul>
+    </div>
+    <p class="text-sm font-light tab">
+      Beyond coding, I'm passionate about design, illustration, animation and 3D
+      modelling and traveling. An unusual hobby of mine is collecting vintage
+      passports, they're interesting pieces of history to me.
+    </p>
+    <p class="text-sm font-light tab">
+      While I have some preferred tools, I always choose the best one for the
+      job, even if it's not on my usual list. My goal is to find the right
+      solution for each project.
+    </p>
+  </div>
+</Card>
+
+<style>
+  .scroll-hide {
+    /* 隐藏滚动条 - WebKit 浏览器（Chrome、Edge 等） */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* 隐藏滚动条 - Firefox */
+    scrollbar-width: none;
+
+    /* 隐藏滚动条 - IE/Edge（旧版） */
+    -ms-overflow-style: none;
+  }
+  .tab {
+    text-indent: 1em;
+  }
+</style>

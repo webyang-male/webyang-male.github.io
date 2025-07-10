@@ -1,0 +1,62 @@
+---
+import {
+  getCurrentTimeInItaly,
+  formatTimeForItaly,
+  getCurrentDateInfo,
+} from "../lib/helpers";
+import Card from "./Card/index.astro";
+
+// 调用函数并解构返回的数据
+const { year, month, day, weekday } = getCurrentDateInfo();
+
+// 将数字形式的星期转换为中文
+const weekdays = [
+  "星期日",
+  "星期一",
+  "星期二",
+  "星期三",
+  "星期四",
+  "星期五",
+  "星期六",
+];
+const weekdayChinese = weekdays[weekday];
+---
+
+<!-- 实时时间卡片 -->
+<script>
+  import { onCleanup, onMount } from "solid-js";
+  import { formatTimeForItaly } from "../lib/helpers";
+
+  let interval: ReturnType<typeof setInterval>;
+
+  function updateClock() {
+    const timeDisplay = document.getElementById("timeDisplay");
+    const now = new Date();
+
+    if (timeDisplay) {
+      timeDisplay.textContent = formatTimeForItaly(now);
+      timeDisplay.setAttribute("datetime", now.toISOString());
+    }
+  }
+
+  onMount(() => {
+    interval = setInterval(updateClock, 1000);
+  });
+
+  onCleanup(() => {
+    clearInterval(interval);
+  });
+</script>
+
+<Card colSpan="lg:col-span-2" rowSpan="md:row-span-2" title="Time Zone">
+  <time
+    class="w-full text-2xl xl:text-5xl xl:whitespace-nowrap w-50 xl:w-100 h-[calc(100%-28px)] font-serif flex justify-center items-center"
+    datetime=""
+    id="timeDisplay"
+  >
+    {formatTimeForItaly(getCurrentTimeInItaly())}
+  </time>
+  <div class="flex justify-center items-center w-full mt-2">
+    {year} 年 {month} 月 {day} 日 {weekdayChinese}
+  </div>
+</Card>
